@@ -1,4 +1,5 @@
 /*  OLD CODIGO
+CommonJS 
 
 const express = require('express');
 const cors = require('cors');
@@ -18,6 +19,9 @@ module.exports = app;
 
 import express from 'express';
 import cors from 'cors'; */
+
+
+// ECMAScript modules (ESM)
 
 // Creación de instancia de express app
 const app = express();
