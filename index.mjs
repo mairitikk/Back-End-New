@@ -5,7 +5,7 @@ import { createServer } from 'http';
 import app from './src/app.mjs';
 
 // Carga de variables de entorno
-import dotenv from 'dotenv'
+import dotenv from 'dotenv';
 dotenv.config();
 
 // Configuracion de bbdd
@@ -15,7 +15,7 @@ dotenv.config();
 const server = createServer(app);
 
 // Definición del puerto
-const PORT = dotenv.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 // Arranque del servidor
 server.listen(PORT);
