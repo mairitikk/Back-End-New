@@ -5,9 +5,7 @@ const router = express.Router();
 
 
 // Define your todo routes here
-router.get('/', (req, res) => {
-    // ...
-});
+router.get('/', TodosController.getAllTodos);
 
 router.post('/', (req, res) => {
     // ...
