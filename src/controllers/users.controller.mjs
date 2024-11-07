@@ -6,7 +6,7 @@ const createUser = (req, res) => {
     res.send('se crea user');
 }
 const updateUser = (req, res) => {
-    res.send('se actualiza usre');
+    res.send('se actualiza user');
 }
 const deleteUser = (req, res) => {
     res.send('se elimina user');
