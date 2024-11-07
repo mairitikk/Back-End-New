@@ -7,8 +7,8 @@ const router = express.Router();
 // Define your todo routes here
 router.get('/', getAllTodos);
 router.post('/', createTodo);
-router.put('/', updateTodo);
-router.delete('/', deleteTodo);
+router.put('/:todoId', updateTodo);
+router.delete('/:todoId', deleteTodo);
 
 
 export default router;
