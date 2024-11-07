@@ -3,6 +3,6 @@ import todoRoutes from './api/todo.mjs';
 
 const router = express.Router();
 
-router.use('/todo', todoRoutes)
+router.use('/todo', todoRoutes);
 
 export default router;
