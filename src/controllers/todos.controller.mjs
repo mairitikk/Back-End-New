@@ -2,8 +2,14 @@ const getAllTodos = (req, res) => {
     res.send('Funcsiona');
 }
 
-const createTodos = (req, res) => {
+const createTodo = (req, res) => {
     res.send('se crea todo');
 }
+const updateTodo = (req, res) => {
+    res.send('se actualiza todo');
+}
+const deleteTodo = (req, res) => {
+    res.send('se elimina todo');
+}
 
-export default getAllTodos
+export { getAllTodos, createTodo, updateTodo, deleteTodo };
