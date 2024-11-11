@@ -1,14 +1,14 @@
-const getAllTodos = (req, res) => {
+import pool from "../config/db.mjs";
 
-    db.query('select* from to_do_db.todo')
-        .then((result) => {
-            console.log(result)
-        })
-        .catch((error) => {
-            console.log(error)
-        });
-    res.send('Funcsiona');
-}
+const getAllTodos = async (req, res) => {
+    try {
+        const [rows] = await pool.query('SELECT * FROM to_do_db.todo');
+        res.send(rows);
+    } catch (error) {
+        console.error(error);
+        res.status(500).send('Internal Server Error');
+    }
+};
 
 const createTodo = (req, res) => {
     res.send('se crea todo');
