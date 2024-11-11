@@ -1,4 +1,10 @@
 const getAllTodos = (req, res) => {
+
+    db.query('select* from to_do_db.todo')
+        .then(() => { })
+        .catch((error) => {
+            console.log(error)
+        });
     res.send('Funcsiona');
 }
 
