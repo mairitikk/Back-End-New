@@ -8,6 +8,6 @@ const pool = mysql.createPool({
     database: "to_do_db"
 
 });
-console.log(process.env.DB_HOST)
+
 
 export default pool;
