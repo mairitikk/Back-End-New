@@ -1,7 +1,9 @@
 const getAllTodos = (req, res) => {
 
     db.query('select* from to_do_db.todo')
-        .then(() => { })
+        .then((result) => {
+            console.log(result)
+        })
         .catch((error) => {
             console.log(error)
         });

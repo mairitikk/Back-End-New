@@ -9,7 +9,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 // Configuracion de bbdd
-import './src/config/db';
+import './src/config/db.mjs';
 
 // Creación del servidor
 const server = createServer(app);
