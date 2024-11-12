@@ -1,14 +1,18 @@
-import pool from "../config/db.mjs";
+import TodoModel from '../models/todo.model.mjs';
 
+// GET /api/todos
 const getAllTodos = async (req, res) => {
     try {
-        const [rows] = await pool.query('SELECT * FROM to_do_db.todo');
-        res.send(rows);
+        const todos = await TodoModel.findAll();
+        res.json(todos);
     } catch (error) {
         console.error(error);
         res.status(500).send('Internal Server Error');
     }
 };
+
+
+
 
 const createTodo = (req, res) => {
     res.send('se crea todo');
