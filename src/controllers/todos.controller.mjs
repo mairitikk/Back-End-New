@@ -2,10 +2,14 @@ import TodoModel from '../models/todo.model.mjs';
 
 // GET /api/todos
 const getAllTodos = async (req, res) => {
-    const [result] = await TodoModel.selectAllTodos();
-    console.log(result)
+    try {
+        const result = await TodoModel.selectAllTodos();
 
-    res.json(result)
+
+        res.json(result);
+    } catch (error) {
+        res.json({ fatal: error.message });
+    }
 };
 
 
