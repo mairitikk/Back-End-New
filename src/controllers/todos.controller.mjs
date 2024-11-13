@@ -16,6 +16,7 @@ const getAllTodos = async (req, res) => {
 
 
 const createTodo = (req, res) => {
+    console.log(req.body)
     res.send('se crea todo');
 }
 const updateTodo = (req, res) => {
