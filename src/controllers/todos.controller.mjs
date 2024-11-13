@@ -25,7 +25,9 @@ const createTodo = async (req, res) => {
 
 const updateTodo = async (req, res) => {
     try {
-        const updatedTodo = await TodoModel.updateTodo(req.params.id, req.body);
+        console.log(req.body)
+        const { todoId } = req.params;
+        const updatedTodo = await TodoModel.updateTodo(todoId, req.body);
         res.json(updatedTodo);
     } catch (error) {
         res.status(500).json({ error: error.message });

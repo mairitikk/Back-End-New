@@ -16,9 +16,9 @@ const insertTodo = async ({ to_do }) => {
 
 };
 
-const updateTodo = async ({ id, to_do }) => {
+const updateTodo = async (id, { todo }) => {
     try {
-        const [result] = await db.query('UPDATE todo SET todo = ? WHERE id = ?', [to_do, id]);
+        const [result] = await db.query('UPDATE todo SET todo = ? WHERE id = ?', [todo, id]);
         return result.affectedRows > 0;
     } catch (error) {
         console.error('Error updating todo:', error);
