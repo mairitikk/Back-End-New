@@ -15,7 +15,7 @@ import './src/config/db.mjs';
 const server = createServer(app);
 
 // Definición del puerto
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.BACKEND_PORT || 3000;
 
 // Arranque del servidor
 server.listen(PORT);

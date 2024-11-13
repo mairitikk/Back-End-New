@@ -14,10 +14,12 @@ const getAllTodos = async (req, res) => {
 
 const createTodo = async (req, res) => {
     try {
-        const newTodo = await TodoModel.createTodo(req.body.todo);
-        res.json(newTodo);
+        const todoData = { to_do: req.body.todo };
+        const newTodoId = await TodoModel.insertTodo(todoData);
+        res.status(201).json({ id: newTodoId }); // Send the inserted ID as a response
     } catch (error) {
-        res.status(500).json({ error: error.message });
+        console.error(error);
+        res.status(500).json({ error: 'Failed to create todo' });
     }
 };
 
