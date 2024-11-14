@@ -4,16 +4,18 @@ const selectAllUsers = async () => {
     const [rows] = await db.query('SELECT * FROM user');
     return rows;
 };
-const insertUser = async ({ user }) => {
+const insertUser = async ({ name, email }) => {
     try {
-        const [result] = await db.query('INSERT INTO user(user) VALUES (?)', [user]);
+        const [result] = await db.query(
+            'INSERT INTO user(name, email) VALUES (?, ?)',
+            [name, email]
+        );
         const insertId = result.insertId;
         return insertId;
     } catch (error) {
         console.error('Error inserting user:', error);
         throw error;
     }
-
 };
 
 const updateUser = async (id, { user }) => {

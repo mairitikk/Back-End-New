@@ -21,9 +21,16 @@ const createUser = async (req, res) => {
         res.status(500).json({ error: 'Failed to create user' });
     }
 };
-const updateUser = (req, res) => {
-    res.send('se actualiza user');
-}
+const updateUser = async (req, res) => {
+    try {
+
+        const { userId } = req.params;
+        const updatedUser = await UserModel.updateUser(userId, req.body);
+        res.json(updatedUser);
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 const deleteUser = (req, res) => {
     res.send('se elimina user');
 }
