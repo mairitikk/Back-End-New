@@ -1,8 +1,15 @@
 import UserModel from '../models/user.model.mjs';
 
-const getAllUsers = (req, res) => {
-    res.send('Funcsiona user');
-}
+// GET /api/users
+
+const getAllUsers = async (req, res) => {
+    try {
+        const result = await UserModel.selectAllUsers();
+        res.json(result);
+    } catch (error) {
+        res.json({ fatal: error.message });
+    }
+};
 
 const createUser = (req, res) => {
     res.send('se crea user');
