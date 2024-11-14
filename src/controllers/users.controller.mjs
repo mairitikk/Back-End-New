@@ -11,9 +11,16 @@ const getAllUsers = async (req, res) => {
     }
 };
 
-const createUser = (req, res) => {
-    res.send('se crea user');
-}
+const createUser = async (req, res) => {
+    try {
+        const userData = { to_do: req.body.todo };
+        const newUserId = await UserModel.insertUser(userData);
+        res.status(201).json({ id: newUserId }); // Send the inserted ID as a response
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Failed to create user' });
+    }
+};
 const updateUser = (req, res) => {
     res.send('se actualiza user');
 }
