@@ -1,3 +1,5 @@
+import UserModel from '../models/user.model.mjs';
+
 const getAllUsers = (req, res) => {
     res.send('Funcsiona user');
 }
