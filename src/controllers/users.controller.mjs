@@ -32,7 +32,7 @@ const updateUser = async (req, res) => {
     }
 };
 const deleteUser = (req, res) => {
-    res.send('se elimina user');
+    res.send('delete user ');
 }
 
 export { getAllUsers, createUser, updateUser, deleteUser };
