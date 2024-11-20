@@ -42,4 +42,4 @@ const deleteUser = (req, res) => {
     res.send('delete user ');
 }
 
-export { getAllUsers, createUser, updateUser, deleteUser };
+export { getAllUsers, createUser, updateUser, deleteUser, register, login };
