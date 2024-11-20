@@ -1,5 +1,12 @@
 import UserModel from '../models/user.model.mjs';
 
+const register = (req, res) => {
+    const { name, email, password } = req.body;
+}
+const login = (req, res) => {
+    const { email, password } = req.body;
+}
+
 // GET /api/users
 
 const getAllUsers = async (req, res) => {
