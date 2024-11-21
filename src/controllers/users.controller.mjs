@@ -3,7 +3,7 @@ import UserModel from '../models/user.model.mjs';
 const register = (req, res) => {
     const { name, email, password } = req.body;
     try {
-
+        UserModel.create(req.body);
     }
     catch (error) {
         res.status(500).json({ message: 'Error registering user' });
