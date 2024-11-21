@@ -1,13 +1,13 @@
 import UserModel from '../models/user.model.mjs';
 
 const register = async (req, res) => {
-    const { name, email, password } = req.body;
+
     try {
-        await UserModel.create(req.body);
-        res.status(201).json({ message: 'User created successfully' });
+        const user = await UserModel.create(req.body);
+        res.json(user)
     }
     catch (error) {
-        res.status(500).json({ message: 'Error registering user' });
+        res.json({ fatal: error.message });
     }
 }
 const login = (req, res) => {
