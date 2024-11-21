@@ -1,10 +1,10 @@
 import db from '../config/db.mjs';
 
-const Sequelize = require('sequelize');
+import Sequelize from 'sequelize';
 
 const sequelize = new Sequelize('your_database_name', 'your_username', 'your_password', {
     dialect: 'mysql',
-    host: 'your_host'
+    host: '127.0.0.1'
 });
 
 const User = sequelize.define('user', {
@@ -20,8 +20,6 @@ const User = sequelize.define('user', {
     }
 });
 
-
-
 sequelize.sync()
     .then(() => {
         console.log('Database synced');
@@ -29,6 +27,7 @@ sequelize.sync()
     .catch(err => {
         console.error('Error syncing database:', err);
     });
+
 
 const selectAllUsers = async () => {
     const [rows] = await db.query('SELECT * FROM user');
