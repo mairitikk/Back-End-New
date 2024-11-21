@@ -2,6 +2,12 @@ import UserModel from '../models/user.model.mjs';
 
 const register = (req, res) => {
     const { name, email, password } = req.body;
+    try {
+
+    }
+    catch (error) {
+        res.status(500).json({ message: 'Error registering user' });
+    }
 }
 const login = (req, res) => {
     const { email, password } = req.body;
