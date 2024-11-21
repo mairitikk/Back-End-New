@@ -2,9 +2,11 @@ import db from '../config/db.mjs';
 
 import Sequelize from 'sequelize';
 
-const sequelize = new Sequelize('your_database_name', 'your_username', 'your_password', {
+const sequelize = new Sequelize('to_do_db', 'root', '', {
     dialect: 'mysql',
-    host: '127.0.0.1'
+    host: '127.0.0.1',
+    port: 3306,
+    logging: false
 });
 
 const User = sequelize.define('user', {
@@ -65,8 +67,5 @@ const deleteUser = async (id) => {
         throw error;
     }
 };
-
-
-
 
 export default { selectAllUsers, insertUser, updateUser, deleteUser };
