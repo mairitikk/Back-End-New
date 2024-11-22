@@ -45,8 +45,18 @@ const updateUser = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
-const deleteUser = (req, res) => {
-    res.send('delete user ');
-}
+const deleteUser = async (req, res) => {
+    try {
+        const { userId } = req.params;
+        const deleted = await UserModel.deleteUser(userId);
+        if (deleted) {
+            res.status(204).send(); // No Content response for successful deletion
+        } else {
+            res.status(404).json({ error: 'User not found' }); // Handle non-existent user
+        }
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+};
 
 export { getAllUsers, updateUser, deleteUser, register, login };
