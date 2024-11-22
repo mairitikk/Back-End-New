@@ -35,7 +35,7 @@ const selectAllUsers = async () => {
     const [rows] = await db.query('SELECT * FROM user');
     return rows;
 };
-const insertUser = async ({ name, email }) => {
+/*const insertUser = async ({ name, email }) => {
     try {
         const [result] = await db.query(
             'INSERT INTO user(name, email) VALUES (?, ?)',
@@ -48,7 +48,7 @@ const insertUser = async ({ name, email }) => {
         throw error;
     }
 };
-
+*/
 const updateUser = async (id, { user }) => {
     try {
         const [result] = await db.query('UPDATE user SET user = ? WHERE id = ?', [user, id]);

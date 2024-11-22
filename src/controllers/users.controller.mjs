@@ -25,7 +25,7 @@ const getAllUsers = async (req, res) => {
     }
 };
 
-const createUser = async (req, res) => {
+/*const createUser = async (req, res) => {
     try {
         const userData = { to_do: req.body.todo };
         const newUserId = await UserModel.insertUser(userData);
@@ -34,7 +34,7 @@ const createUser = async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'Failed to create user' });
     }
-};
+};*/
 const updateUser = async (req, res) => {
     try {
 
@@ -49,4 +49,4 @@ const deleteUser = (req, res) => {
     res.send('delete user ');
 }
 
-export { getAllUsers, createUser, updateUser, deleteUser, register, login };
+export { getAllUsers, updateUser, deleteUser, register, login };
