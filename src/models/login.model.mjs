@@ -16,12 +16,12 @@ const insertLogin = async ({ to_do }) => {
 
 };
 
-const updateTodo = async (id, { todo }) => {
+const updateLogin = async (id, { login }) => {
     try {
-        const [result] = await db.query('UPDATE todo SET todo = ? WHERE id = ?', [todo, id]);
+        const [result] = await db.query('UPDATE todo SET login = ? WHERE id = ?', [login, id]);
         return result.affectedRows > 0;
     } catch (error) {
-        console.error('Error updating todo:', error);
+        console.error('Error updating login:', error);
         throw error;
     }
 };
