@@ -25,12 +25,12 @@ const updateLogin = async (id, { login }) => {
         throw error;
     }
 };
-const deleteTodo = async (id) => {
+const deleteLogin = async (id) => {
     try {
-        const [result] = await db.query('DELETE FROM todo WHERE id = ?', [id]);
+        const [result] = await db.query('DELETE FROM login WHERE id = ?', [id]);
         return result.affectedRows > 0;
     } catch (error) {
-        console.error('Error deleting todo:', error);
+        console.error('Error deleting login:', error);
         throw error;
     }
 };
