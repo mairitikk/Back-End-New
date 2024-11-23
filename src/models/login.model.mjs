@@ -38,4 +38,4 @@ const deleteLogin = async (id) => {
 
 
 
-export default { selectAllTodos, insertTodo, updateTodo, deleteTodo };
+export default { selectAllLogins, insertLogin, updateLogin, deleteLogin };
