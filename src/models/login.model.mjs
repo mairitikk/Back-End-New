@@ -4,7 +4,7 @@ const selectAllLogins = async () => {
     const [rows] = await db.query('SELECT * FROM login');
     return rows;
 };
-const insertLogin = async ({ to_do }) => {
+const insertLogin = async ({ login }) => {
     try {
         const [result] = await db.query('INSERT INTO login(login) VALUES (?)', [login]);
         const insertId = result.insertId;
