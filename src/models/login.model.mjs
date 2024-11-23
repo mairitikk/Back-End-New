@@ -1,16 +1,16 @@
 import db from '../config/db.mjs';
 
-const selectAllTodos = async () => {
-    const [rows] = await db.query('SELECT * FROM todo');
+const selectAllLogins = async () => {
+    const [rows] = await db.query('SELECT * FROM login');
     return rows;
 };
-const insertTodo = async ({ to_do }) => {
+const insertLogin = async ({ to_do }) => {
     try {
-        const [result] = await db.query('INSERT INTO todo(todo) VALUES (?)', [to_do]);
+        const [result] = await db.query('INSERT INTO login(login) VALUES (?)', [login]);
         const insertId = result.insertId;
         return insertId;
     } catch (error) {
-        console.error('Error inserting todo:', error);
+        console.error('Error inserting login:', error);
         throw error;
     }
 
