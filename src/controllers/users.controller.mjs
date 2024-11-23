@@ -10,9 +10,7 @@ const register = async (req, res) => {
         res.json({ fatal: error.message });
     }
 }
-const login = (req, res) => {
-    const { email, password } = req.body;
-}
+
 
 // GET /api/users
 
@@ -25,7 +23,7 @@ const getAllUsers = async (req, res) => {
     }
 };
 
-/*const createUser = async (req, res) => {
+const createUser = async (req, res) => {
     try {
         const userData = { to_do: req.body.todo };
         const newUserId = await UserModel.insertUser(userData);
@@ -34,7 +32,7 @@ const getAllUsers = async (req, res) => {
         console.error(error);
         res.status(500).json({ error: 'Failed to create user' });
     }
-};*/
+};
 const updateUser = async (req, res) => {
     try {
 
@@ -59,4 +57,4 @@ const deleteUser = async (req, res) => {
     }
 };
 
-export { getAllUsers, updateUser, deleteUser, register, login };
+export { getAllUsers, createUser, updateUser, deleteUser, register };

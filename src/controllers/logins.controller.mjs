@@ -1,4 +1,6 @@
-import LofinModel from '../models/login.model.mjs';
+import LoginModel from '../models/login.model.mjs';
+
+
 
 // GET /api/todos
 const getAllLogins = async (req, res) => {
