@@ -11,7 +11,6 @@ const register = async (req, res) => {
     }
 }
 
-
 // GET /api/users
 
 const getAllUsers = async (req, res) => {

@@ -68,4 +68,4 @@ const deleteUser = async (id) => {
     }
 };
 
-export default { selectAllUsers, insertUser, updateUser, deleteUser };
+export default { selectAllUsers, updateUser, deleteUser };
