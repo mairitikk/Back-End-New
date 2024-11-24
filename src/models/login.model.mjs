@@ -3,11 +3,10 @@ import db from '../config/db.mjs';
 
 const login = async ({ email, password }) => {
     try {
-        const [result] = await db.query('INSERT INTO login(login) VALUES (?)', [login]);
-        const insertId = result.insertId;
-        return insertId;
+        const [result] = await db.query('Select id from login where email=? and password= ?', [email, password]);
+        return result;
     } catch (error) {
-        console.error('Error inserting login:', error);
+        console.error('Error login:', error);
         throw error;
     }
 

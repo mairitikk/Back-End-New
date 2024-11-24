@@ -6,7 +6,12 @@ const login = async (req, res) => {
         const { email, password } = req.body;
 
         const newLoginId = await LoginModel.login(email, password);
-        res.status(201).json({ id: newLoginId }); // Send the inserted ID as a response
+        if (newLoginId) {
+            res.json({ message: 'Login successful', newLoginId });
+        } else {
+            res.status(401).json({ message: 'Invalid email or password' });
+        }
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to create login' });
