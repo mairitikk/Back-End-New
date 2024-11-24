@@ -1,6 +1,6 @@
 import db from '../config/db.mjs';
 
-import Sequelize from 'sequelize';
+/* import Sequelize from 'sequelize';
 
 const sequelize = new Sequelize('to_do_db', 'root', '', {
     dialect: 'mysql',
@@ -9,7 +9,7 @@ const sequelize = new Sequelize('to_do_db', 'root', '', {
     logging: false
 });
 
-const User = sequelize.define('user', {
+const User = sequelize.define('usersss', {
     name: {
         type: Sequelize.STRING,
         allowNull: false
@@ -28,7 +28,7 @@ sequelize.sync()
     })
     .catch(err => {
         console.error('Error syncing database:', err);
-    });
+    }); */
 
 
 const selectAllUsers = async () => {
