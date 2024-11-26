@@ -21,6 +21,7 @@ const login = async (req, res) => {
 
 export { login };*/
 
+import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import LoginModel from '../models/login.model.mjs';
 
@@ -28,23 +29,24 @@ const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Find the user by email
         const user = await LoginModel.findByEmail(email);
 
         if (!user) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
-        // Compare the hashed password
         const passwordMatch = await bcrypt.compare(password, user.password);
 
-
         if (passwordMatch) {
-            // Authentication successful, generate a token or session ID
-            const token = generateToken(user); // Implement token generation
+            // Generate JWT token
+            const token = jwt.sign({ userId: user.id }, 'your_secret_key', {
+                expiresIn:
+                    '1h'
+            });
+
             res.json({ token });
         } else {
-            res.status(401).json({ message: 'Invalid email or password' });
+            return res.status(401).json({ message: 'Invalid email or password' });
         }
     } catch (error) {
         console.error('Login error:', error);
