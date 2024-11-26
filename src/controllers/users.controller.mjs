@@ -1,4 +1,5 @@
 import UserModel from '../models/user.model.mjs';
+import jwt from 'jsonwebtoken';
 
 const register = async (req, res) => {
 
@@ -55,5 +56,33 @@ const deleteUser = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+const login = async (req, res) => {
+    try {
+        const { email, password } = req.body;
 
-export { getAllUsers, createUser, updateUser, deleteUser, register };
+        const user = await LoginModel.findByEmail(email);
+
+        if (!user) {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+
+        const passwordMatch = await bcrypt.compare(password, user.password);
+
+        if (passwordMatch) {
+            // Generate JWT token
+            const token = jwt.sign({ userId: user.id }, 'your_secret_key', {
+                expiresIn:
+                    '1h'
+            });
+
+            res.json({ token });
+        } else {
+            return res.status(401).json({ message: 'Invalid email or password' });
+        }
+    } catch (error) {
+        console.error('Login error:', error);
+        res.status(500).json({ error: 'Server error' });
+    }
+};
+
+export { getAllUsers, createUser, updateUser, deleteUser, register, login };
