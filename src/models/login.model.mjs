@@ -1,14 +1,15 @@
 import db from '../config/db.mjs';
 
 
-const login = async ({ email, password }) => {
-    try {
-        const [result] = await db.query('Select login_id from login where email=? and password= ?', [email, password]);
-        return result;
-    } catch (error) {
-        console.error('Error login:', error);
-        throw error;
-    }
 
+const findByEmail = async (email) => {
+    try {
+        const [rows] = await db.query('SELECT * FROM login WHERE email = ?', [email]);
+        return rows[0];
+    } catch (error) {
+        console.error('Error finding user:', error);
+        throw new Error('Failed to find user');
+    }
 };
-export default { login };
+
+export default { findByEmail };
