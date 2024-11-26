@@ -7,7 +7,6 @@ const router = express.Router();
 
 router.use('/todo', todoRoutes);
 router.use('/user', userRoutes);
-;
 
 
 export default router;

@@ -1,4 +1,5 @@
 import db from '../config/db.mjs';
+import bcrypt from 'bcrypt';
 
 /* import Sequelize from 'sequelize';
 
@@ -35,11 +36,12 @@ const selectAllUsers = async () => {
     const [rows] = await db.query('SELECT * FROM user');
     return rows;
 };
-/*const insertUser = async ({ name, email }) => {
+
+const create = async ({ name, email, password }) => {
     try {
         const [result] = await db.query(
-            'INSERT INTO user(name, email) VALUES (?, ?)',
-            [name, email]
+            'INSERT INTO user(name, email, password) VALUES (?, ?, ?)',
+            [name, email, bcrypt.hashSync(password, 8)]
         );
         const insertId = result.insertId;
         return insertId;
@@ -48,7 +50,7 @@ const selectAllUsers = async () => {
         throw error;
     }
 };
-*/
+
 const updateUser = async (id, { user }) => {
     try {
         const [result] = await db.query('UPDATE user SET user = ? WHERE id = ?', [user, id]);
@@ -69,7 +71,7 @@ const deleteUser = async (id) => {
 };
 const findByEmail = async (email) => {
     try {
-        const [rows] = await db.query('SELECT * FROM login WHERE email = ?', [email]);
+        const [rows] = await db.query('SELECT * FROM user WHERE email = ?', [email]);
         return rows[0];
     } catch (error) {
         console.error('Error finding user:', error);
@@ -77,4 +79,4 @@ const findByEmail = async (email) => {
     }
 };
 
-export default { selectAllUsers, updateUser, deleteUser, findByEmail };
+export default { selectAllUsers, updateUser, deleteUser, findByEmail, create };
