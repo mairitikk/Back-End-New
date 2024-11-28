@@ -1,5 +1,5 @@
 import UserModel from '../models/user.model.mjs';
-import jwt from 'jsonwebtoken';
+import createToken from '../helpers/utils.mjs';
 import bcrypt from 'bcrypt';
 
 const register = async (req, res) => {
@@ -60,13 +60,10 @@ const login = async (req, res) => {
         const passwordMatch = await bcrypt.compareSync(password, user.password);
 
         if (passwordMatch) {
-            // Generate JWT token
-            const token = jwt.sign({ userId: user.id }, 'your_secret_key', {
-                expiresIn:
-                    '1h'
+            res.json({
+                success: 'Login correct',
+                token: createToken()
             });
-
-            res.json({ token });
         } else {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
