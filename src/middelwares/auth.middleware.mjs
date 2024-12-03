@@ -5,8 +5,13 @@ const checkToken = (req, res, next) => {
         return res.status(403).json({ message: 'you need authorization' });
     }
     const token = req.headers['authorization'];
+    //comprobar si el token es valido
 
-
+    try {
+        const payload = jwt.verify(token, process.env.JWT_SECRET);
+    } catch (error) {
+        return res.status(403).json({ fatal: error.message });
+    }
     next();
 };
 
