@@ -1,13 +1,11 @@
 const checkToken = (req, res, next) => {
-
-    //comprobar si el token viene incluido en la cabecera
-
-    if (!req.headers[authorixation]) {
+    if (!req.headers.authorization) {
         return res.status(403).json({ message: 'you need authorization' });
     }
 
+    // ... rest of your token validation logic ...
 
     next();
+};
 
-}
-export default checkToken
+export default checkToken;
