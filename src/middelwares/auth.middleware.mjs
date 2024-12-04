@@ -6,9 +6,9 @@ const checkToken = (req, res, next) => {
     }
     const token = req.headers['authorization'];
     //comprobar si el token es valido
-
+    let payload
     try {
-        const payload = jwt.verify(token, process.env.JWT_SECRET);
+        payload = jwt.verify(token, process.env.JWT_SECRET);
     } catch (error) {
         return res.status(403).json({ fatal: error.message });
     }
