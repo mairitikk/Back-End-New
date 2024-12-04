@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import userModel from '../models/user.model.mjs';
 
 const checkToken = (req, res, next) => {
     if (!req.headers.authorization) {
@@ -12,6 +13,10 @@ const checkToken = (req, res, next) => {
     } catch (error) {
         return res.status(403).json({ fatal: error.message });
     }
+
+    //Recuperar el user que realiza la peticion
+
+    userModel.findById()
     next();
 };
 
