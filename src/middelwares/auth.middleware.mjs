@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import userModel from '../models/user.model.mjs';
 
-const checkToken = (req, res, next) => {
+const checkToken = async (req, res, next) => {
     if (!req.headers.authorization) {
         return res.status(403).json({ message: 'you need authorization' });
     }
@@ -16,7 +16,8 @@ const checkToken = (req, res, next) => {
 
     //Recuperar el user que realiza la peticion
 
-    userModel.findById()
+    const user = await userModel.findByEmail();
+    req.user = user;
     next();
 };
 
