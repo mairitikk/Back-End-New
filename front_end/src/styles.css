@@ -1,0 +1,298 @@
+html {
+font-family: 'Gloria Hallelujah', cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-weight: bold;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f5e3f4;
+    /* Light pink background */
+    color: #e233e2;
+    /* Black text for better contrast */
+    
+    padding: 1rem;
+    margin: 0 20px;
+    background-image: url('assets/background.jpg');
+        /* Replace with the actual path to your image */
+        background-size: cover;
+        /* Adjust the size to fit the screen */
+        background-repeat: no-repeat;
+        /* Prevent the image from repeating */
+        background-position: center;
+        /* Center the image vertically and horizontally */
+        height: 100vh;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    /* Change to column for smaller screens */
+}
+
+.new-item-form {
+    flex: 0 0 100%;
+    /* Take up the full width on smaller screens */
+}
+
+.form-row {
+    flex: 0 0 100%;
+    /* Take up the full width on smaller screens */
+}
+
+@media (min-width: 768px) {
+
+    /* Adjust the breakpoint as needed */
+    .container {
+        flex-direction: row;
+    }
+
+    .new-item-form {
+        flex: 0 0 30%;
+    }
+
+    .form-row {
+        flex: 0 0 70%;
+    }
+}
+
+.vorm {
+    margin-bottom: 10px;
+    border-radius: 2em;
+}
+.btn1 {
+    background-color: transparent;
+    /* Remove button background */
+    border: none;
+    /* Remove button border */
+    cursor: pointer;
+    padding: 0;
+    /* Remove button padding */
+    width: 20px;
+    /* Adjust button width as needed */
+    height: 20px;
+    /* Adjust button height as needed */
+}
+
+.btn1 img {
+    width: 100%;
+    /* Make image fill the button */
+    height: 100%;
+}
+.btn {
+    background:
+        #f5e3f4;
+    /* Light pink background */
+    border: 1px solid #d9b6d9;
+    /* Pink border */
+    color: #cf4bcf;
+    /* Pink text */
+    padding: 0.55em 0.5em;
+    border-radius: 1.25em;
+    cursor: pointer;
+    outline: none;
+    width: 25%;
+    font-size: medium;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.btn:hover,
+.btn:focus-visible {
+    background: #d9b6d9;
+    /* Darker pink background on hover */
+    color: #000000;
+    /* Black text for better contrast on hover */
+}
+
+.btn.btn-danger {
+    background: #f5e3f4;
+    /* Light pink background */
+    border: 1px solid #d9b6d9;
+    /* Pink border */
+    color: #d9b6d9;
+    /* Pink text */
+}
+
+.btn.btn-danger:hover,
+.btn.btn-danger:focus-visible {
+    background: #d9b6d9;
+    /* Darker pink background on hover */
+    color: #000000;
+    /* Black text for better contrast on hover */
+}
+
+.new-item-form input {
+    outline: none;
+    border: 1px solid #d9b6d9;
+    /* Pink border */
+    background: #f5e3f4;
+    /* Light pink background */
+    border-radius: 2.25em;
+    padding: 1em 0.5em;
+    width: 75%;
+    
+    color: #000000;
+    /* Black text for better contrast */
+}
+
+.new-item-form input:focus {
+    border: 1px solid #d9b6d9;
+    /* Darker pink border on focus */
+}
+.header span{
+  
+  display: table-cell;
+  animation: animate 8.25s linear infinite;
+text-transform: uppercase;
+  
+}
+.header span:nth-child(1) {
+    animation-delay: 0s;
+}
+.header span:nth-child(2) {
+    animation-delay: 0.25s;
+}
+.header span:nth-child(3) {
+    animation-delay: 0.5s;
+}
+.header span:nth-child(4) {
+    animation-delay: 0.75s;
+}
+.header span:nth-child(5) {
+    animation-delay: 1s;
+}
+.header span:nth-child(6) {
+    animation-delay: 1.25s;
+}
+.header span:nth-child(7) {
+    animation-delay: 1.5s;
+}
+.header span:nth-child(8) {
+    animation-delay: 1.75s;
+}
+.header span:nth-child(9) {
+    animation-delay: 2s;
+}
+@keyframes animate 
+{
+    0%,100% 
+    {
+        color: #fff;
+        filter:blur(2px);
+        text-shadow: 0 0 10px #d9b6d9,
+                    0 0 20px #d9b6d9,
+                    0 0 40px #d9b6d9,
+                    0 0 80px #d9b6d9,
+                    0 0 120px #d9b6d9,
+                    0 0 200px #d9b6d9,
+                    0 0 300px #d9b6d9,
+                    0 0 400px #d9b6d9,
+                    0 0 500px #d9b6d9;
+
+    }
+           5%,95% {
+            color: #e233e2;
+               filter: blur(0px);
+               text-shadow: none;
+           }
+}
+.header .header2{
+    font-size: 3.5rem;
+   
+    margin-top: 9.5rem;
+    margin-bottom: 0.5rem;
+    
+}
+.header2{
+margin-top: 5rem;
+}
+
+.list {
+    margin: 0;
+    padding: 0;
+    margin-left: 1rem;
+    list-style: none;
+    font-size: 22px;
+}
+
+.list li:has(input:checked) label {
+    color:
+        #d9b6d9;
+    /* Pink text for checked items */
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.list li {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.list li label {
+    display: flex;
+    gap: 0.25rem;
+    cursor: pointer;
+    align-items: center;
+}
+
+.list li:has(input:focus-visible) label {
+    outline:
+        1px solid #d9b6d9;
+    /* Pink outline on focus */
+}
+
+.list li input {
+    outline: none;
+    width: 0;
+    height: 0;
+    appearance: none;
+    pointer-events: none;
+    position: absolute;
+}
+
+.list li label::before {
+    content: "";
+    display: block;
+    width: 0.9rem;
+    height: 0.9rem;
+    background:
+        #ffffff;
+    /* White background for checkbox */
+    border: 1px solid #d9b6d9;
+    /* Pink border for checkbox */
+    border-radius: 0.25em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.list li label:hover::before {
+    background: #d9b6d9;
+    /* Darker pink background on hover */
+    border: 1px solid #000000;
+    /* Black border for better visibility */
+}
+
+.list li:has(input:checked) label::before {
+    content: "✔";
+    background: #d9b6d9;
+    /* Dark pink background for checked checkbox */
+    color: #000000;
+    /* Black text for checked checkbox */
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.list li:has(input:checked) label:hover::before {
+    background: #d9b6d9;
+    /* Darker pink background on hover for checked checkbox */
+    border: 1px solid #000000;
+    /* Black border for better visibility */
+}
