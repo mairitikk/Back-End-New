@@ -3,7 +3,7 @@ import { NewTodoForm } from "./NewTodoForm"
 import "./styles.css"
 import { TodoList } from "./TodoList"
 
-export default function App() {
+/*export default function App() {
   const [todos, setTodos] = useState(() => {
     const localValue = localStorage.getItem("ITEMS")
     
@@ -15,11 +15,32 @@ export default function App() {
     if (localValue == null) return []
     
     return JSON.parse(localValue)
-  })
+  }) */
 
-  useEffect(() => {
+  export default function App() {
+  const [todos, setTodos] = useState(() => {
+    // Check for local storage data
+    const localValue = localStorage.getItem("ITEMS");
+    if (localValue) {
+      return JSON.parse(localValue); // Use local data if available
+    } else {
+      return []; // Otherwise, initialize with an empty array
+    }
+  });
+
+
+ /* useEffect(() => {
     localStorage.setItem("ITEMS", JSON.stringify(todos))
-  }, [todos])
+  }, [todos]) */
+    
+    useEffect(() => {
+   
+    fetch('http://localhost:3000/api/todos')
+      .then(res => res.json())
+      .then(data => setTodos(data));
+    
+  }, []); 
+    
 
   function addTodo(title) {
     setTodos(currentTodos => {
