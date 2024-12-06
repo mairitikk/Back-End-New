@@ -3,44 +3,31 @@ import { NewTodoForm } from "./NewTodoForm"
 import "./styles.css"
 import { TodoList } from "./TodoList"
 
-/*export default function App() {
-  const [todos, setTodos] = useState(() => {
-    const localValue = localStorage.getItem("ITEMS")
-    
-    // llamar API para tener todos los valores
-    // fetch('https://dummyjson.com/todos')
-    //.then(res => res.json())
-    //.then(console.log);
-    
-    if (localValue == null) return []
-    
-    return JSON.parse(localValue)
-  }) */
+async function fetchTodos() {
+  try {
+    const response = await fetch('http://localhost:3000/api/todo/');
+    if (!response.ok) throw new Error(`Failed to fetch todos: ${response.status}`);
+    return await response.json();
+  } catch (error) {
+    console.error("Error fetching todos:", error);
+    // Handle error, e.g., display an error message to the user
+    return []; // Or set a loading state
+  }
+}
 
-  export default function App() {
-  const [todos, setTodos] = useState(() => {
-    // Check for local storage data
-    const localValue = localStorage.getItem("ITEMS");
-    if (localValue) {
-      return JSON.parse(localValue); // Use local data if available
-    } else {
-      return []; // Otherwise, initialize with an empty array
-    }
-  });
+export default function App() {
+  const [todos, setTodos] = useState([]);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const fetchedTodos = await fetchTodos();
+      setTodos(fetchedTodos);
+    };
 
- /* useEffect(() => {
-    localStorage.setItem("ITEMS", JSON.stringify(todos))
-  }, [todos]) */
-    
-    useEffect(() => {
-   
-    fetch('http://localhost:3000/api/todos')
-      .then(res => res.json())
-      .then(data => setTodos(data));
-    
-  }, []); 
-    
+    fetchData();
+  }, []); // Empty dependency array to run only once
+
+  console.log(todos);
 
   function addTodo(title) {
     setTodos(currentTodos => {
@@ -72,7 +59,7 @@ import { TodoList } from "./TodoList"
   return (
     <div className="container">
       <NewTodoForm onSubmit={addTodo} />
-    <div>
+      <div>
         <h1 className="header">
           <span>Ü</span>
           <span>l</span>
@@ -83,7 +70,7 @@ import { TodoList } from "./TodoList"
           <span>d</span>
           <span>e</span>
           <span>d</span>
-          </h1>
+        </h1>
         <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
       </div>
     </div>

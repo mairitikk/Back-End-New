@@ -6,7 +6,7 @@ const selectAllTodos = async () => {
 };
 const insertTodo = async ({ to_do }) => {
     try {
-        const [result] = await db.query('INSERT INTO todo(todo) VALUES (?)', [to_do]);
+        const [result] = await db.query('INSERT INTO todo(title) VALUES (?)', [to_do]);
         const insertId = result.insertId;
         return insertId;
     } catch (error) {
@@ -16,9 +16,9 @@ const insertTodo = async ({ to_do }) => {
 
 };
 
-const updateTodo = async (id, { todo }) => {
+const updateTodo = async (id, { title }) => {
     try {
-        const [result] = await db.query('UPDATE todo SET todo = ? WHERE id = ?', [todo, id]);
+        const [result] = await db.query('UPDATE todo SET title = ? WHERE id = ?', [title, id]);
         return result.affectedRows > 0;
     } catch (error) {
         console.error('Error updating todo:', error);
