@@ -4,8 +4,6 @@ import TodoModel from '../models/todo.model.mjs';
 const getAllTodos = async (req, res) => {
     try {
         const result = await TodoModel.selectAllTodos();
-
-
         res.json(result);
     } catch (error) {
         res.json({ fatal: error.message });
@@ -14,7 +12,7 @@ const getAllTodos = async (req, res) => {
 
 const createTodo = async (req, res) => {
     try {
-        const todoData = { to_do: req.body.todo };
+        const todoData = { title: req.body.title };
         const newTodoId = await TodoModel.insertTodo(todoData);
         res.status(201).json({ id: newTodoId }); // Send the inserted ID as a response
     } catch (error) {

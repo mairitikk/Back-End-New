@@ -4,21 +4,21 @@ const selectAllTodos = async () => {
     const [rows] = await db.query('SELECT * FROM todo');
     return rows;
 };
-const insertTodo = async ({ to_do }) => {
+
+const insertTodo = async ({ title }) => {
     try {
-        const [result] = await db.query('INSERT INTO todo(title) VALUES (?)', [to_do]);
+        const [result] = await db.query('INSERT INTO todo(title, completed) VALUES (?,false)', [title]);
         const insertId = result.insertId;
         return insertId;
     } catch (error) {
         console.error('Error inserting todo:', error);
         throw error;
     }
-
 };
 
-const updateTodo = async (id, { title }) => {
+const updateTodo = async (id, { title, completed }) => {
     try {
-        const [result] = await db.query('UPDATE todo SET title = ? WHERE id = ?', [title, id]);
+        const [result] = await db.query('UPDATE todo SET title = ?, completed = ? WHERE id = ?', [title, completed, id]);
         return result.affectedRows > 0;
     } catch (error) {
         console.error('Error updating todo:', error);
