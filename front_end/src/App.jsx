@@ -50,7 +50,24 @@ export default function App() {
       throw error; // Or handle the error appropriately, e.g., display an error message
     }
   }
+  async function deleteTodo(id) {
+    try {
+      const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
+        method: 'DELETE'
+      });
 
+      if (!response.ok) {
+        throw new Error(`Failed to delete todo: ${response.status}`);
+      }
+
+      // No need to return anything here as the response body is usually empty on DELETE
+
+      setTodos(currentTodos => currentTodos.filter(todo => todo.id !== id));
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+      // Optionally, display an error message to the user
+    }
+  }
 
 
 
@@ -85,11 +102,7 @@ export default function App() {
     })
   }
 
-  function deleteTodo(id) {
-    setTodos(currentTodos => {
-      return currentTodos.filter(todo => todo.id !== id)
-    })
-  }
+
 
   return (
     <div className="container">
