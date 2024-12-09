@@ -27,6 +27,31 @@ export default function App() {
     fetchData();
   }, []); // Empty dependency array to run only once
 
+  async function insertTodo(todoData) {
+    try {
+      const response = await fetch('http://localhost:3000/api/todo/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(todoData)
+
+
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to insert todo: ${response.status}`);
+      }
+
+      const newTodo = await response.json();
+      return newTodo;
+    } catch (error) {
+      console.error('Error inserting todo:', error);
+      throw error; // Or handle the error appropriately, e.g., display an error message
+    }
+  }
+
+
 
 
   function addTodo(title) {
