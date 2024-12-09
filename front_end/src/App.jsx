@@ -70,7 +70,6 @@ export default function App() {
   }
 
 
-
   function addTodo(title) {
     const newTodo = { id: crypto.randomUUID(), title, completed: false };
 
