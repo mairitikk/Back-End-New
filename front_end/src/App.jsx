@@ -52,15 +52,13 @@ export default function App() {
   }
   async function deleteTodo(id) {
     try {
-      const response = await fetch(`http://localhost:3000/api/todo/${parseInt(id)})`, {
+      const response = await fetch(`http://localhost:3000/api/todo/${parseInt(id)}`, {
         method: 'DELETE'
       });
 
       if (!response.ok) {
         throw new Error(`Failed to delete todo: ${response.status}`);
       }
-
-      // No need to return anything here as the response body is usually empty on DELETE
 
       setTodos(currentTodos => currentTodos.filter(todo => todo.id !== id));
     } catch (error) {
