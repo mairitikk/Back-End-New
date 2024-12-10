@@ -52,7 +52,7 @@ export default function App() {
   }
   async function deleteTodo(id) {
     try {
-      const response = await fetch(`http://localhost:3000/api/todo/${parseInt(id)}`, {
+      const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
         method: 'DELETE'
       });
 
