@@ -35,7 +35,7 @@ const updateTodo = async (req, res) => {
 const deleteTodo = async (req, res) => {
     try {
         await TodoModel.deleteTodo(req.params.id);
-        res.sendStatus(204); // No Content
+        res.status(200).json({ message: 'Todo deleted successfully' }); // Send a success message
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
