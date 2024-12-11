@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { NewTodoForm } from "./NewTodoForm"
 import "./styles.css"
 import { TodoList } from "./TodoList"
+import { LoginForm } from "./login"
 
 async function fetchTodos() {
   try {
@@ -147,6 +148,9 @@ export default function App() {
           <span>d</span>
         </h1>
         <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
+      </div>
+      <div>
+        <LoginForm />
       </div>
     </div>
   )
