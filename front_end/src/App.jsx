@@ -10,8 +10,8 @@ async function fetchTodos() {
     return await response.json();
   } catch (error) {
     console.error("Error fetching todos:", error);
-    // Handle error, e.g., display an error message to the user
-    return []; // Or set a loading state
+
+    return [];
   }
 }
 
@@ -25,7 +25,7 @@ export default function App() {
     };
 
     fetchData();
-  }, []); // Empty dependency array to run only once
+  }, []);
 
   async function insertTodo(todoData) {
     try {
@@ -47,7 +47,7 @@ export default function App() {
       return newTodo;
     } catch (error) {
       console.error('Error inserting todo:', error);
-      throw error; // Or handle the error appropriately, e.g., display an error message
+      throw error;
     }
   }
   async function deleteTodo(id) {
@@ -60,13 +60,35 @@ export default function App() {
         throw new Error(`Failed to delete todo: ${response.status}`);
       }
 
-      // Update local state based on successful deletion (Option B)
+
       setTodos(currentTodos => currentTodos.filter(todo => todo.id !== id));
 
       console.log("Todo deleted successfully!");
     } catch (error) {
       console.error("Error deleting todo:", error);
-      // Optionally, display an error message to the user
+
+    }
+  }
+  async function updateTodo(id, completed) {
+    try {
+      const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(completed)
+      });
+
+      if (!response.ok) {
+        throw new Error(`Failed to update todo: ${response.status}`);
+      }
+
+      const updatedTodo = await response.json();
+      setTodos(currentTodos => currentTodos.map(todo => todo.id === id ? updatedTodo : todo)); // Update specific todo
+      return updatedTodo;
+    } catch (error) {
+      console.error('Error updating todo:', error);
+      throw error;
     }
   }
 
@@ -76,16 +98,15 @@ export default function App() {
 
     setTodos(currentTodos => [...currentTodos, newTodo]);
 
-    // Call insertTodo and handle the promise
+
     insertTodo(newTodo)
       .then(responseTodo => {
         console.log("New todo created:", responseTodo);
-        // Update local state again if server response includes new information (optional)
+
       })
       .catch(error => {
         console.error("Error creating todo:", error);
-        // Optionally, remove the new todo from the local state if creation fails
-        // and display an error message to the user
+
       });
   }
 

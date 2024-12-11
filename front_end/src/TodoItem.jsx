@@ -6,7 +6,7 @@ export function TodoItem({ completed, id, title, toggleTodo, deleteTodo }) {
         <input
           type="checkbox"
           checked={completed}
-          onChange={e => toggleTodo(id, e.target.checked)}
+          onChange={e => toggleTodo(id, e.target.checked)} // Pass updated completed state (true)
         />
         {title}
       </label>
@@ -14,5 +14,5 @@ export function TodoItem({ completed, id, title, toggleTodo, deleteTodo }) {
         <img src="/src/assets/cross.png" title="delete button" alt="" />
       </button>
     </li>
-  )
+  );
 }
