@@ -23,10 +23,12 @@ const createTodo = async (req, res) => {
 
 const updateTodo = async (req, res) => {
     try {
-        console.log(req.body)
         const { todoId } = req.params;
-        const updatedTodo = await TodoModel.updateTodo(todoId, req.body);
-        res.json(updatedTodo);
+        const todoData = { title: req.body.title, completed: req.body.completed }; // Extract the completed state from the request body
+
+        await TodoModel.updateTodo(todoId, todoData); // Update the completed state in the database
+
+        res.json({ message: 'Todo updated successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }

@@ -66,14 +66,14 @@ export default function App() {
     }
   }
 
-  async function updateTodo(id, completed) {
+  async function updateTodo(id, completed, title) {
     try {
-      const response = await fetch(`http://localhost:3000/api/todo/${id, completed}`, {
+      const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ completed }) // Only send the updated completed state
+        body: JSON.stringify({ completed, title }) // Only send the updated completed state
       });
 
       if (!response.ok) {
