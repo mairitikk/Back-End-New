@@ -115,12 +115,20 @@ export default function App() {
     setTodos(currentTodos => {
       return currentTodos.map(todo => {
         if (todo.id === id) {
-          return { ...todo, completed }
+          return { ...todo, completed };
         }
+        return todo;
+      });
+    });
 
-        return todo
+
+    updateTodo(id, completed)
+      .then(updatedTodo => {
+        console.log("Todo updated successfully:", updatedTodo);
       })
-    })
+      .catch(error => {
+        console.error("Error updating todo:", error);
+      });
   }
 
 
