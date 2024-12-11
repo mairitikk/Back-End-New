@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 export function TodoItem({ completed, id, title, toggleTodo, deleteTodo }) {
   return (
-    <li>
+    <li className={completed ? "completed" : ""}>
       <label>
         <input
           type="checkbox"

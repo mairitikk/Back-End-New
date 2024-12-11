@@ -110,7 +110,6 @@ export default function App() {
       });
   }
 
-
   function toggleTodo(id, completed) {
     const currentTodo = todos.find(todo => todo.id === id); // Find todo by id
 
@@ -133,7 +132,6 @@ export default function App() {
       console.error("Todo not found:", id); // Handle missing todo
     }
   }
-
 
 
   return (
