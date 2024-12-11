@@ -60,7 +60,10 @@ export default function App() {
         throw new Error(`Failed to delete todo: ${response.status}`);
       }
 
+      // Update local state based on successful deletion (Option B)
       setTodos(currentTodos => currentTodos.filter(todo => todo.id !== id));
+
+      console.log("Todo deleted successfully!");
     } catch (error) {
       console.error("Error deleting todo:", error);
       // Optionally, display an error message to the user
