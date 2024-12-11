@@ -10,7 +10,6 @@ async function fetchTodos() {
     return await response.json();
   } catch (error) {
     console.error("Error fetching todos:", error);
-
     return [];
   }
 }
@@ -35,8 +34,6 @@ export default function App() {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify(todoData)
-
-
       });
 
       if (!response.ok) {
@@ -50,6 +47,7 @@ export default function App() {
       throw error;
     }
   }
+
   async function deleteTodo(id) {
     try {
       const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
@@ -60,32 +58,35 @@ export default function App() {
         throw new Error(`Failed to delete todo: ${response.status}`);
       }
 
-
       setTodos(currentTodos => currentTodos.filter(todo => todo.id !== id));
 
       console.log("Todo deleted successfully!");
     } catch (error) {
       console.error("Error deleting todo:", error);
-
     }
   }
-  async function updateTodo(id, completed, title) {
+
+  async function updateTodo(id, completed) {
     try {
-      const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
+      const response = await fetch(`http://localhost:3000/api/todo/${id, completed}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({ id, title, completed }) // Send entire todo object with updated completed
+        body: JSON.stringify({ completed }) // Only send the updated completed state
       });
 
       if (!response.ok) {
         throw new Error(`Failed to update todo: ${response.status}`);
       }
 
-      const updatedTodo = await response.json();
-      setTodos(currentTodos => currentTodos.map(todo => todo.id === id ? updatedTodo : todo));
-      return updatedTodo;
+      // No need to update the entire todo object, update local state directly
+      setTodos(currentTodos =>
+        currentTodos.map(todo => (todo.id === id ? { ...todo, completed } : todo))
+      );
+
+      console.log("Todo updated successfully:", { completed });
+
     } catch (error) {
       console.error('Error updating todo:', error);
       throw error;
@@ -98,30 +99,27 @@ export default function App() {
 
     setTodos(currentTodos => [...currentTodos, newTodo]);
 
-
     insertTodo(newTodo)
       .then(responseTodo => {
         console.log("New todo created:", responseTodo);
-
       })
       .catch(error => {
         console.error("Error creating todo:", error);
-
       });
   }
+
+
 
   function toggleTodo(id, completed) {
     const currentTodo = todos.find(todo => todo.id === id); // Find todo by id
 
-    setTodos(currentTodos => currentTodos.map(todo => {
-      if (todo.id === id) {
-        return { ...todo, completed }; // Update completed state locally
-      }
-      return todo;
-    }));
+    // Update local state for immediate UI feedback
+    setTodos(currentTodos =>
+      currentTodos.map(todo => (todo.id === id ? { ...todo, completed } : todo))
+    );
 
     if (currentTodo) { // Check if todo found
-      updateTodo(id, completed, currentTodo.title) // Pass title from currentTodo
+      updateTodo(id, completed, currentTodo.title) // Pass only completed for update
         .then(updatedTodo => {
           console.log("Todo updated successfully:", updatedTodo);
         })
@@ -132,7 +130,6 @@ export default function App() {
       console.error("Todo not found:", id); // Handle missing todo
     }
   }
-
 
   return (
     <div className="container">
