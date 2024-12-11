@@ -112,23 +112,26 @@ export default function App() {
 
 
   function toggleTodo(id, completed) {
-    setTodos(currentTodos => {
-      return currentTodos.map(todo => {
-        if (todo.id === id) {
-          return { ...todo, completed };
-        }
-        return todo;
-      });
-    });
+    const currentTodo = todos.find(todo => todo.id === id); // Find todo by id
 
+    setTodos(currentTodos => currentTodos.map(todo => {
+      if (todo.id === id) {
+        return { ...todo, completed }; // Update completed state locally
+      }
+      return todo;
+    }));
 
-    updateTodo(id, completed)
-      .then(updatedTodo => {
-        console.log("Todo updated successfully:", updatedTodo);
-      })
-      .catch(error => {
-        console.error("Error updating todo:", error);
-      });
+    if (currentTodo) { // Check if todo found
+      updateTodo(id, completed, currentTodo.title) // Pass title from currentTodo
+        .then(updatedTodo => {
+          console.log("Todo updated successfully:", updatedTodo);
+        })
+        .catch(error => {
+          console.error("Error updating todo:", error);
+        });
+    } else {
+      console.error("Todo not found:", id); // Handle missing todo
+    }
   }
 
 
