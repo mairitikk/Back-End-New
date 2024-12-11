@@ -69,14 +69,14 @@ export default function App() {
 
     }
   }
-  async function updateTodo(id, completed) {
+  async function updateTodo(id, completed, title) {
     try {
       const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(completed)
+        body: JSON.stringify({ id, title, completed }) // Send entire todo object with updated completed
       });
 
       if (!response.ok) {
@@ -84,7 +84,7 @@ export default function App() {
       }
 
       const updatedTodo = await response.json();
-      setTodos(currentTodos => currentTodos.map(todo => todo.id === id ? updatedTodo : todo)); // Update specific todo
+      setTodos(currentTodos => currentTodos.map(todo => todo.id === id ? updatedTodo : todo));
       return updatedTodo;
     } catch (error) {
       console.error('Error updating todo:', error);
