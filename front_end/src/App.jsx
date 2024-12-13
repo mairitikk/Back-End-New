@@ -2,6 +2,9 @@ import { useEffect, useState } from "react"
 import { NewTodoForm } from "./NewTodoForm"
 import "./styles.css"
 import { TodoList } from "./TodoList"
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Registration } from "./Registration";
+import { Login } from "./Login";
 
 
 async function fetchTodos() {
@@ -139,9 +142,13 @@ export default function App() {
     <div className="container">
       <div className="login-container">
         <div className="button-container">
-          <button className="btn-r">Sisene</button>
-          <button className="btn-r">Registreeri</button>
-
+          <Router>
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/register" element={<Registration />} />
+              {/* Other routes for your application */}
+            </Routes>
+          </Router>
         </div>
 
         <div className="form-container">

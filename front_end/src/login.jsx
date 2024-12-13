@@ -2,7 +2,7 @@ import { useState } from "react";
 import "./styles.css"
 
 export
-    const LoginForm = () => {
+    const Login = () => {
         const [username, setUsername] = useState('');
         const [password, setPassword] = useState('');
 
