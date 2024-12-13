@@ -132,10 +132,10 @@ body {
     cursor: pointer;
     outline: none;
     width: 55%;
-    /* Increased width to 35% */
+font-family: 'Gloria Hallelujah', cursive;
     font-size: 1.0em;
-    /* Increased font size by 40% */
-    text-transform: uppercase;
+    
+   
     font-weight: bold;
 }
 
