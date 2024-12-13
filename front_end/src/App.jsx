@@ -141,6 +141,7 @@ export default function App() {
         <div className="button-container">
           <button className="btn-r">Sisene</button>
           <button className="btn-r">Registreeri</button>
+
         </div>
 
         <div className="form-container">
