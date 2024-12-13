@@ -123,7 +123,8 @@ body {
     /* Black text for better contrast on hover */
 }
 .btn-r {
-    margin-top: 3px;;
+    margin-top: 3px;
+    margin-right: 3px;
     background: #f5e3f4;
     border: 1px solid #d9b6d9;
     color: #cf4bcf;
@@ -134,9 +135,9 @@ body {
     width: 45%;
 font-family: 'Gloria Hallelujah', cursive;
     font-size: 1.0em;
+
     
-   
-    font-weight: bold;
+
 }
 
 .login-container{
@@ -144,6 +145,11 @@ font-family: 'Gloria Hallelujah', cursive;
     flex-direction: column;
     margin-top: 20px;
     margin-right: 30px;
+}
+.button-container {
+    display: flex;
+    
+   
 }
 .new-item-form input {
     outline: none;

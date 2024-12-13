@@ -138,8 +138,10 @@ export default function App() {
   return (
     <div className="container">
       <div className="login-container">
-        <button className="btn-r">Sisene</button>
-        <button className="btn-r">Registreeri</button>
+        <div className="button-container">
+          <button className="btn-r">Sisene</button>
+          <button className="btn-r">Registreeri</button>
+        </div>
 
         <div className="form-container">
           <NewTodoForm onSubmit={addTodo} />
