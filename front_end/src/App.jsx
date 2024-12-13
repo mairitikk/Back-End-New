@@ -4,7 +4,6 @@ import "./styles.css"
 import { TodoList } from "./TodoList"
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Registration } from "./Registration";
-import { Login } from "./Login";
 
 
 async function fetchTodos() {
@@ -142,13 +141,9 @@ export default function App() {
     <div className="container">
       <div className="login-container">
         <div className="button-container">
-          <Router>
-            <Routes>
-              <Route path="/login" element={<Login />} />
-              <Route path="/register" element={<Registration />} />
-              {/* Other routes for your application */}
-            </Routes>
-          </Router>
+          <button className="btn-r">Sisene</button>
+          <button className="btn-r">Registreeri</button>
+
         </div>
 
         <div className="form-container">
