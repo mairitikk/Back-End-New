@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import { NewTodoForm } from "./NewTodoForm"
 import "./styles.css"
 import { TodoList } from "./TodoList"
-import { LoginForm } from "./Login"
+
 
 async function fetchTodos() {
   try {
@@ -137,7 +137,14 @@ export default function App() {
 
   return (
     <div className="container">
-      <NewTodoForm onSubmit={addTodo} />
+      <div className="login-container">
+        <button className="btn-r">Sisene</button>
+        <button className="btn-r">Registreeri</button>
+
+        <div className="form-container">
+          <NewTodoForm onSubmit={addTodo} />
+        </div>
+      </div>
       <div>
         <h1 className="header">
           <span>Ü</span>
@@ -152,9 +159,7 @@ export default function App() {
         </h1>
         <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
       </div>
-      <div>
-        <LoginForm />
-      </div>
+
     </div>
   )
 }

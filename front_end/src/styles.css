@@ -122,7 +122,28 @@ body {
     color: #000000;
     /* Black text for better contrast on hover */
 }
+.btn-r {
+    margin-top: 3px;;
+    background: #f5e3f4;
+    border: 1px solid #d9b6d9;
+    color: #cf4bcf;
+    padding: 0.55em 0.5em;
+    border-radius: 1.25em;
+    cursor: pointer;
+    outline: none;
+    width: 55%;
+    /* Increased width to 35% */
+    font-size: 1.0em;
+    /* Increased font size by 40% */
+    text-transform: uppercase;
+    font-weight: bold;
+}
 
+.login-container{
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+}
 .new-item-form input {
     outline: none;
     border: 1px solid #d9b6d9;
