@@ -33,7 +33,7 @@ export
         };
 
         return (
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="new-item-form">
                 <input
                     type="text"
                     placeholder="Username"
