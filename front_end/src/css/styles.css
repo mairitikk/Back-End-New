@@ -331,3 +331,12 @@ margin-top: 5rem;
     margin: 0 auto;
     
 }
+
+/* Input Fields */
+.login-page-container input[type="text"],
+.login-page-container input[type="password"] {
+    width: 100%;
+
+    margin-bottom: 15px;
+    
+}
