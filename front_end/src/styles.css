@@ -324,3 +324,7 @@ margin-top: 5rem;
     border: 1px solid #000000;
     /* Black border for better visibility */
 }
+
+.login-page-container{
+    width: 30%;
+}

@@ -33,7 +33,7 @@ export default function Login() {
 
     return (
         <form onSubmit={handleSubmit} className="new-item-form">
-            <div className="login-container">
+            <div className="login-page-container">
                 <input
                     type="text"
                     placeholder="Username"
