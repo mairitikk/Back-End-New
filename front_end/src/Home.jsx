@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react"
-import { NewTodoForm } from "./NewTodoForm"
-import styles from './styles/HomeComponent.module.css'
-import { TodoList } from "./TodoList"
+
 import HomeComponent from './HomeComponent';
 
 
@@ -139,7 +137,10 @@ export default function App() {
 
     return (
         <div>
-            <HomeComponent></HomeComponent>
+            <HomeComponent todos={todos}
+                addTodo={addTodo}
+                toggleTodo={toggleTodo}
+                deleteTodo={deleteTodo} ></HomeComponent>
         </div>
 
     )
