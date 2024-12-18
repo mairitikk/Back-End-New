@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import styles from './styles/HomeComponent.module.css';
 import { NewTodoForm } from "./NewTodoForm";
 import { TodoList } from "./TodoList";
@@ -6,16 +7,16 @@ function HomeComponent({ todos, addTodo, toggleTodo, deleteTodo }) {
     return (
         <div className={styles.container}>
             <div className={styles.loginContainer}>
-                <div className="button-container">
-                    <button className="btn-r">Sisene</button>
-                    <button className="btn-r">Registreeri</button>
+                <div className={styles.buttonContainer}>
+                    <button className={styles.btnR}>Sisene</button>
+                    <button className={styles.btnR}>Registreeri</button>
                 </div>
-                <div className="form-container">
+                <div className={styles.formContainer}>
                     <NewTodoForm onSubmit={addTodo} />
                 </div>
             </div>
             <div>
-                <h1 className="header">
+                <h1 className={styles.header}>
                     <span>Ü</span>
                     <span>l</span>
                     <span>e</span>
@@ -31,4 +32,5 @@ function HomeComponent({ todos, addTodo, toggleTodo, deleteTodo }) {
         </div>
     );
 }
-export default HomeComponent
+
+export default HomeComponent;

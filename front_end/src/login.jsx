@@ -31,23 +31,26 @@ export default function Login() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className={styles.new - item - form}>
-            <div className="login-page-container">
+        <form onSubmit={handleSubmit} className={styles.loginForm}>
+            <div className={styles.loginContainer}>
                 <input
                     type="text"
-                    placeholder="Username"
+                    placeholder="Kasutajanimi"
                     value={username}
                     onChange={(e) => setUsername(e.target.value)}
+                    className={styles.usernameInput}
                 />
                 <input
                     type="password"
-                    placeholder="Password"
+                    placeholder="Salasõna"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
+                    className={styles.passwordInput}
                 />
-                <button type="submit" className="btn">Sisene</button>
+                <button type="submit" className={styles.loginButton}>Sisene</button>
             </div>
         </form>
     );
+
 };
 

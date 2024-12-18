@@ -3,7 +3,7 @@ body {
     place-items: center;
     min-height: 100vh;
 }
-.new-item-form input {
+.newItemForm input {
     outline: none;
     border: 1px solid #d9b6d9;
    
@@ -16,7 +16,7 @@ body {
     color: #000000;
     
 }
-.login-page-container {
+.loginPageContainer {
     width: 100%;
     padding: 20px;
 }
