@@ -1,6 +1,5 @@
 import { useState } from "react";
-import "../src/css/loginstyle.css"
-
+import styles from './styles/LoginComponent.module.css'
 export default function Login() {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -32,7 +31,7 @@ export default function Login() {
     };
 
     return (
-        <form onSubmit={handleSubmit} className="new-item-form">
+        <form onSubmit={handleSubmit} className={styles.new - item - form}>
             <div className="login-page-container">
                 <input
                     type="text"
