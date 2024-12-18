@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import { NewTodoForm } from "./NewTodoForm"
 import styles from './styles/HomeComponent.module.css'
 import { TodoList } from "./TodoList"
+import HomeComponent from './HomeComponent';
 
 
 async function fetchTodos() {
@@ -134,41 +135,13 @@ export default function App() {
             console.error("Todo not found:", id); // Handle missing todo
         }
     }
-    function HomeComponent() {
-
-        return (
-            <div className={styles.container}>
-                <div className={styles.loginContainer}>
-                    <div className="button-container">
-
-                        <button className="btn-r">Sisene</button>
-                        <button className="btn-r">Registreeri</button>
 
 
-                    </div>
+    return (
+        <div>
+            <HomeComponent></HomeComponent>
+        </div>
 
-                    <div className="form-container">
-                        <NewTodoForm onSubmit={addTodo} />
-                    </div>
-                </div>
-                <div>
-                    <h1 className="header">
-                        <span>Ü</span>
-                        <span>l</span>
-                        <span>e</span>
-                        <span>s</span>
-                        <span>a</span>
-                        <span>n</span>
-                        <span>d</span>
-                        <span>e</span>
-                        <span>d</span>
-                    </h1>
-                    <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
-                </div>
+    )
 
-            </div>
-        )
-    }
 }
-export default HomeComponent;
-
