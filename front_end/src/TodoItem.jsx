@@ -1,7 +1,10 @@
 /* eslint-disable react/prop-types */
+import styles from "./styles/HomeComponent.module.css"
 export function TodoItem({ completed, id, title, toggleTodo, deleteTodo }) {
+  const todoItemClass = completed ? styles.completed : ""; // Dynamically define class
+
   return (
-    <li className={completed ? "completed" : ""}>
+    <li className={todoItemClass}>
       <label>
         <input
           type="checkbox"

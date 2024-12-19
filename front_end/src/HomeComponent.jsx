@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import styles from './styles/HomeComponent.module.css';
+import styles from "./styles/HomeComponent.module.css"
 import { NewTodoForm } from "./NewTodoForm";
 import { TodoList } from "./TodoList";
 
