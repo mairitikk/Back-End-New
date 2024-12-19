@@ -29,7 +29,7 @@ body {
     display: flex;
     flex-direction: column;
     gap: 50px;
-    margin-top: 100px;
+    
 }
 
 
@@ -170,7 +170,7 @@ text-transform: uppercase;
 }
 
 /*TodoItem*/
-.btn1 {
+.btnDelete {
     background-color: transparent;
     /* Remove button background */
     border: none;
@@ -184,7 +184,7 @@ text-transform: uppercase;
     /* Adjust button height as needed */
 }
 
-.btn1 img {
+.btnDelete img {
     width: 100%;
     /* Make image fill the button */
     height: 100%;
@@ -192,30 +192,6 @@ text-transform: uppercase;
 
 
 
-.btnR {
-    margin-top: 3px;
-    margin-right: 3px;
-    background: #f5e3f4;
-    border: 1px solid #d9b6d9;
-    color: #cf4bcf;
-    padding: 0.35em 0.5em;
-    border-radius: 1.25em;
-    cursor: pointer;
-    outline: none;
-    width: 45%;
-font-family: 'Gloria Hallelujah', cursive;
-    font-size: 1.0em;
-
-    
-
-}
-
-
-.buttonContainer {
-    display: flex;
-    
-   
-}
 .newItemForm input {
     outline: none;
     border: 1px solid #d9b6d9;

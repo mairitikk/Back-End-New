@@ -4,7 +4,7 @@ import { TodoItem } from "./TodoItem"
 
 export function TodoList({ todos, toggleTodo, deleteTodo }) {
   return (
-    <ul className="list">
+    <ul className={styles.list}>
       {todos.length === 0 && "Pole ülessandeid"}
       {todos.map(todo => {
         return (
