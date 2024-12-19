@@ -6,15 +6,12 @@ import { TodoList } from "./TodoList";
 function HomeComponent({ todos, addTodo, toggleTodo, deleteTodo }) {
     return (
         <div className={styles.container}>
-            <div className={styles.loginContainer}>
-                <div className={styles.buttonContainer}>
-                    <button className={styles.btnR}>Sisene</button>
-                    <button className={styles.btnR}>Registreeri</button>
-                </div>
+            
+                
                 <div className={styles.formContainer}>
                     <NewTodoForm onSubmit={addTodo} />
                 </div>
-            </div>
+           
             <div>
                 <h1 className={styles.header}>
                     <span>Ü</span>
