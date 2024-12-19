@@ -3,7 +3,7 @@ body {
     place-items: center;
     min-height: 100vh;
 }
-.newItemForm input {
+.loginForm input {
     outline: none;
     border: 1px solid #d9b6d9;
    
@@ -12,16 +12,16 @@ body {
     border-radius: 2.25em;
     padding: 1em 0.5em;
     width: 75%;
-
     color: #000000;
+    margin: 7px;
     
 }
-.loginPageContainer {
+.loginContainer {
     width: 100%;
     padding: 20px;
 }
 
-.btn {
+.loginButton {
     background:
         #f5e3f4;
     /* Light pink background */
@@ -35,7 +35,7 @@ body {
     outline: none;
     width: 25%;
     font-size: medium;
-    
+    margin: 7px;
     font-weight: bold;
 }
 
