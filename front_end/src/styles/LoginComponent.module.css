@@ -4,6 +4,9 @@
   align-items: center;   /* Center items vertically */
   min-height: 100vh;
 }
+.logTitel{
+    margin-left: 50px;
+}
 
 .loginForm input {
     outline: none;
