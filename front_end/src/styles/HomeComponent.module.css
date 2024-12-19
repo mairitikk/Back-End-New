@@ -36,142 +36,6 @@ body {
 .formContainer {
 
 }
-
-
-/*new todo Form*/
-.newItemForm {
-    flex: 0 0 100%;
-    /* Take up the full width on smaller screens */
-}
-
-.formRow {
-    flex: 0 0 100%;
-    /* Take up the full width on smaller screens */
-}
-
-@media (min-width: 768px) {
-
-    /* Adjust the breakpoint as needed */
-    .container {
-        flex-direction: row;
-    }
-
-    .newItemForm {
-        flex: 0 0 30%;
-    }
-
-    .formFow {
-        flex: 0 0 70%;
-    }
-}
-
-.vorm {
-    margin-bottom: 10px;
-    border-radius: 2em;
-}
-.btn1 {
-    background-color: transparent;
-    /* Remove button background */
-    border: none;
-    /* Remove button border */
-    cursor: pointer;
-    padding: 0;
-    /* Remove button padding */
-    width: 20px;
-    /* Adjust button width as needed */
-    height: 20px;
-    /* Adjust button height as needed */
-}
-
-.btn1 img {
-    width: 100%;
-    /* Make image fill the button */
-    height: 100%;
-}
-.btn {
-    background:
-        #f5e3f4;
-    /* Light pink background */
-    border: 1px solid #d9b6d9;
-    /* Pink border */
-    color: #cf4bcf;
-    /* Pink text */
-    padding: 0.55em 0.5em;
-    border-radius: 1.25em;
-    cursor: pointer;
-    outline: none;
-    width: 25%;
-    font-size: medium;
-    text-transform: uppercase;
-    font-weight: bold;
-}
-
-.btn:hover,
-.btn:focus-visible {
-    background: #d9b6d9;
-    /* Darker pink background on hover */
-    color: #000000;
-    /* Black text for better contrast on hover */
-}
-
-.btn.btnDanger {
-    background: #f5e3f4;
-    /* Light pink background */
-    border: 1px solid #d9b6d9;
-    /* Pink border */
-    color: #d9b6d9;
-    /* Pink text */
-}
-
-.btn.btnDanger:hover,
-.btn.btnDanger:focus-visible {
-    background: #d9b6d9;
-    /* Darker pink background on hover */
-    color: #000000;
-    /* Black text for better contrast on hover */
-}
-.btnR {
-    margin-top: 3px;
-    margin-right: 3px;
-    background: #f5e3f4;
-    border: 1px solid #d9b6d9;
-    color: #cf4bcf;
-    padding: 0.35em 0.5em;
-    border-radius: 1.25em;
-    cursor: pointer;
-    outline: none;
-    width: 45%;
-font-family: 'Gloria Hallelujah', cursive;
-    font-size: 1.0em;
-
-    
-
-}
-
-
-.buttonContainer {
-    display: flex;
-    
-   
-}
-.newItemForm input {
-    outline: none;
-    border: 1px solid #d9b6d9;
-    /* Pink border */
-    background: #f5e3f4;
-    /* Light pink background */
-    border-radius: 2.25em;
-    padding: 1em 0.5em;
-    width: 75%;
-    
-    color: #000000;
-    /* Black text for better contrast */
-}
-
-.newItemForm input:focus {
-    border: 1px solid #d9b6d9;
-    /* Darker pink border on focus */
-}
 .header span{
   
   display: table-cell;
@@ -236,9 +100,141 @@ text-transform: uppercase;
     margin-bottom: 0.5rem;
     
 }
-.header2{
-margin-top: 5rem;
+
+
+
+/*new todo Form*/
+.addTodoBtn {
+    background:
+        #f5e3f4;
+    /* Light pink background */
+    border: 1px solid #d9b6d9;
+    /* Pink border */
+    color: #cf4bcf;
+    /* Pink text */
+    padding: 0.55em 0.5em;
+    border-radius: 1.25em;
+    cursor: pointer;
+    outline: none;
+    width: 25%;
+    font-size: medium;
+   
+    font-weight: bold;
 }
+
+.addTodoBtn:hover,
+.addTodoBtn:focus-visible {
+    background: #d9b6d9;
+    /* Darker pink background on hover */
+    color: #000000;
+    /* Black text for better contrast on hover */
+}
+
+.newItemForm {
+    flex: 0 0 100%;
+    /* Take up the full width on smaller screens */
+}
+
+.formRow {
+    flex: 0 0 100%;
+    /* Take up the full width on smaller screens */
+}
+
+@media (min-width: 768px) {
+
+    /* Adjust the breakpoint as needed */
+    .container {
+        flex-direction: row;
+    }
+
+    .newItemForm {
+        flex: 0 0 30%;
+    }
+
+    .formFow {
+        flex: 0 0 70%;
+    }
+}
+
+.todoInput{
+    outline: none;
+    border: 1px solid #d9b6d9;
+   
+    background: #f5e3f4;
+    
+    border-radius: 2.25em;
+    padding: 1em 0.5em;
+    width: 75%;
+    color: #000000;
+    margin-bottom: 7px;
+}
+
+/**/
+.btn1 {
+    background-color: transparent;
+    /* Remove button background */
+    border: none;
+    /* Remove button border */
+    cursor: pointer;
+    padding: 0;
+    /* Remove button padding */
+    width: 20px;
+    /* Adjust button width as needed */
+    height: 20px;
+    /* Adjust button height as needed */
+}
+
+.btn1 img {
+    width: 100%;
+    /* Make image fill the button */
+    height: 100%;
+}
+
+
+
+.btnR {
+    margin-top: 3px;
+    margin-right: 3px;
+    background: #f5e3f4;
+    border: 1px solid #d9b6d9;
+    color: #cf4bcf;
+    padding: 0.35em 0.5em;
+    border-radius: 1.25em;
+    cursor: pointer;
+    outline: none;
+    width: 45%;
+font-family: 'Gloria Hallelujah', cursive;
+    font-size: 1.0em;
+
+    
+
+}
+
+
+.buttonContainer {
+    display: flex;
+    
+   
+}
+.newItemForm input {
+    outline: none;
+    border: 1px solid #d9b6d9;
+    /* Pink border */
+    background: #f5e3f4;
+    /* Light pink background */
+    border-radius: 2.25em;
+    padding: 1em 0.5em;
+    width: 75%;
+    
+    color: #000000;
+    /* Black text for better contrast */
+}
+
+.newItemForm input:focus {
+    border: 1px solid #d9b6d9;
+    /* Darker pink border on focus */
+}
+
 
 .list {
     margin: 0;
