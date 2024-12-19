@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import styles from "./styles/HomeComponent.module.css"
 import { TodoItem } from "./TodoItem"
 
 export function TodoList({ todos, toggleTodo, deleteTodo }) {

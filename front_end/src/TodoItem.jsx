@@ -4,7 +4,7 @@ export function TodoItem({ completed, id, title, toggleTodo, deleteTodo }) {
   const todoItemClass = completed ? styles.completed : ""; // Dynamically define class
 
   return (
-    <li className={todoItemClass}>
+    <li className={styles.todoItemClass}>
       <label>
         <input
           type="checkbox"
@@ -13,7 +13,7 @@ export function TodoItem({ completed, id, title, toggleTodo, deleteTodo }) {
         />
         {title}
       </label>
-      <button onClick={() => deleteTodo(id)} className="btn1">
+      <button onClick={() => deleteTodo(id)} className={styles.btn1}>
         <img src="/src/assets/cross.png" title="delete button" alt="" />
       </button>
     </li>

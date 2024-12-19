@@ -31,6 +31,8 @@ export default function Login() {
     };
 
     return (
+        <div className={styles.container}>
+            
         <form onSubmit={handleSubmit} className={styles.loginForm}>
             <div className={styles.loginContainer}>
                 <input
@@ -50,7 +52,10 @@ export default function Login() {
                 <button type="submit" className={styles.loginButton}>Sisene</button>
             </div>
         </form>
+        </div>
     );
+
+
 
 };
 

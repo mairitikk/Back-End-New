@@ -169,7 +169,7 @@ text-transform: uppercase;
     margin-bottom: 7px;
 }
 
-/**/
+/*TodoItem*/
 .btn1 {
     background-color: transparent;
     /* Remove button background */
@@ -235,6 +235,7 @@ font-family: 'Gloria Hallelujah', cursive;
     /* Darker pink border on focus */
 }
 
+/*TodoList*/
 
 .list {
     margin: 0;
