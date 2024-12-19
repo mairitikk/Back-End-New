@@ -52,6 +52,7 @@ export default function Login() {
                     className={styles.passwordInput}
                 />
                 <button type="submit" className={styles.loginButton}>Sisene</button>
+                <button type="submit" className={styles.loginButton}>Registreeri</button>
             </div>
         </form>
         </div>
