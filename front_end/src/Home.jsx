@@ -1,5 +1,5 @@
-import { useEffect, useState } from "react"
-
+import { useEffect, useState } from "react";
+import {useNavigate} from 'react-router-dom';
 import HomeComponent from './HomeComponent';
 
 
@@ -16,11 +16,18 @@ async function fetchTodos() {
 
 export default function App() {
 
-
+    const navigate = useNavigate();
 
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
+            
+        // Check for local storage data
+        const tokenValue = localStorage.getItem("TOKEN");
+        if (!tokenValue) {
+            return navigate('/');
+        } 
+    
         const fetchData = async () => {
             const fetchedTodos = await fetchTodos();
             setTodos(fetchedTodos);

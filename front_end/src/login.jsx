@@ -1,26 +1,39 @@
 import { useState } from "react";
 import styles from './styles/LoginComponent.module.css'
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+
+
 export default function Login() {
-    const [username, setUsername] = useState('');
+    const [email, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         // Send a POST request to your backend API
         try {
-            const response = await fetch('/api/login', {
+            const response = await fetch("http://localhost:3000/api/user/login/", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ username, password })
+                body: JSON.stringify({ "email": email, "password": password })
             });
 
             if (response.ok) {
-                const data = await response.json();
+                const token = await response.json();
+                
                 // Handle successful login, e.g., store token, redirect
-                console.log('Login successful:', data);
+                //console.log('Login successful:', token);
+
+                localStorage.setItem("TOKEN", token)
+
+                console.log(localStorage.getItem("TOKEN"))
+
+                navigate('/home');
+
             } else {
                 // Handle login failure, e.g., display error message
                 console.error('Login failed:', response.statusText);
@@ -40,7 +53,7 @@ export default function Login() {
                 <input
                     type="text"
                     placeholder="Kasutajanimi"
-                    value={username}
+                    value={email}
                     onChange={(e) => setUsername(e.target.value)}
                     className={styles.usernameInput}
                 />
@@ -51,8 +64,9 @@ export default function Login() {
                     onChange={(e) => setPassword(e.target.value)}
                     className={styles.passwordInput}
                 />
-                <button type="submit" className={styles.loginButton}>Sisene</button>
-                <button type="submit" className={styles.loginButton}>Registreeri</button>
+               <button className={styles.loginButton}>Sisene</button>
+               <button type="submit" className={styles.loginButton}>Registreeri</button>
+                
             </div>
         </form>
         </div>
