@@ -29,40 +29,42 @@ function RegistrationForm() {
         });
     };
 
-    return (
+    return (  <div  className={styles.container}>
         <form onSubmit={handleSubmit}>
-            <div>
-                <label htmlFor="username">Username:</label>
+            <div className={styles.registratonContainer}>
+            
+                <label htmlFor="username" className={styles.label} >Username:</label>
                 <input
+                className={styles.registrationForm}
                     type="text"
                     id="username"
                     name="username"
                     value={formData.username}
                     onChange={handleChange}
                 />
-            </div>
-            <div>
-                <label htmlFor="email">Email:</label>
-                <input
+           
+                <label htmlFor="email" className={styles.label} >Email:</label>
+                <input className={styles.registrationForm}
                     type="email"
                     id="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
                 />
-            </div>
-            <div>
-                <label htmlFor="password">Password:</label>
-                <input
+         
+                <label htmlFor="password" className={styles.label} >Password:</label>
+                <input className={styles.registrationForm}
                     type="password"
                     id="password"
                     name="password"
                     value={formData.password}
                     onChange={handleChange}
                 />
-            </div>
-            <button type="submit">Register</button>
+           
+            <button type="submit" className={styles.registrationButton}>Register</button>
+       </div>
         </form>
+        </div>
     );
 }
 

@@ -1,0 +1,49 @@
+.container {
+  display: grid;
+  justify-content: center; /* Center items horizontally */
+  align-items: center;   /* Center items vertically */
+  min-height: 100vh;
+}
+.registratonContainer{
+      width: 65%;
+  margin: 0 auto; /* Center the form horizontally */
+  padding: 20px;
+}
+.label{
+    font-size: 20px;
+}
+
+.registrationForm {
+ outline: none;
+  border: 1px solid #d9b6d9;
+  background-color: #fff;
+  border-radius: 2.25em;
+  padding: 1em 0.5em;
+  width: 100%;
+  font-size: 16px;
+  margin-bottom: 15px;
+    
+}
+
+.registrationButton {
+     background:
+        #f5e3f4;
+    /* Light pink background */
+    border: 1px solid #d9b6d9;
+    /* Pink border */
+    color: #cf4bcf;
+    /* Pink text */
+    padding: 0.55em 0.5em;
+    border-radius: 1.25em;
+    cursor: pointer;
+    outline: none;
+    width: 25%;
+    font-size: medium;
+   
+    font-weight: bold;
+}
+.registrationButton:hover {
+ background: #d9b6d9;
+    /* Darker pink background on hover */
+    color: #cf4bcf; 
+}
