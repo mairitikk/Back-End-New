@@ -33,7 +33,7 @@ function RegistrationForm() {
         <form onSubmit={handleSubmit}>
             <div className={styles.registratonContainer}>
             
-                <label htmlFor="username" className={styles.label} >Username:</label>
+                <label htmlFor="username" className={styles.label} >Kasutajanimi:</label>
                 <input
                 className={styles.registrationForm}
                     type="text"
@@ -43,7 +43,7 @@ function RegistrationForm() {
                     onChange={handleChange}
                 />
            
-                <label htmlFor="email" className={styles.label} >Email:</label>
+                <label htmlFor="email" className={styles.label} >E-post:</label>
                 <input className={styles.registrationForm}
                     type="email"
                     id="email"
@@ -52,12 +52,21 @@ function RegistrationForm() {
                     onChange={handleChange}
                 />
          
-                <label htmlFor="password" className={styles.label} >Password:</label>
+                <label htmlFor="password" className={styles.label} >Parool:</label>
                 <input className={styles.registrationForm}
                     type="password"
                     id="password"
                     name="password"
                     value={formData.password}
+                    onChange={handleChange}
+                />
+                
+                <label htmlFor="password" className={styles.label} > Korda parooli:</label>
+                <input className={styles.registrationForm}
+                    type="password"
+                    id="repeatpassword"
+                    name="repeatpassword"
+                    value={formData.repeatpassword}
                     onChange={handleChange}
                 />
            
