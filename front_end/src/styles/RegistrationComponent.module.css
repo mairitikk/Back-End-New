@@ -11,6 +11,7 @@
 }
 .label{
     font-size: 20px;
+    font-weight: bold;
 }
 
 .registrationForm {
@@ -39,8 +40,10 @@
     outline: none;
     width: 25%;
     font-size: medium;
-   
+   font-weight: bold;
+ font-family: 'Gloria Hallelujah', cursive;
     font-weight: bold;
+    font-size: 20px;
 }
 .registrationButton:hover {
  background: #d9b6d9;
