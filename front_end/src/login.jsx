@@ -58,7 +58,7 @@ export default function Login() {
                 />
                 <input
                     type="password"
-                    placeholder="Salasõna"
+                    placeholder="Parool"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     className={styles.passwordInput}
