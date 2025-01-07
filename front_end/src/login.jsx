@@ -30,7 +30,6 @@ export default function Login() {
 
                 localStorage.setItem("TOKEN", token)
 
-                console.log(localStorage.getItem("TOKEN"))
 
                 navigate('/home');
 
