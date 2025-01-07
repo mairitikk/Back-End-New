@@ -5,7 +5,7 @@ import styles from './styles/RegistrationComponent.module.css'
 
 function RegistrationForm() {
     const [formData, setFormData] = useState({
-        username: '',
+        name: '',
         email: '',
         password: '',
         repeatPassword: '',
@@ -23,6 +23,14 @@ function RegistrationForm() {
  const handleSubmit = async (e) => {
   e.preventDefault();
 
+  if (formData.password !== formData.repeatPassword) {
+      alert('Passwords do not match!');
+      return;
+    }
+
+    // Handle form submission, e.g., send data to server
+    console.log('Registration data:', formData);
+
   try {
     const response = await fetch("http://localhost:3000/api/user/register/", { 
       method: 'POST',
@@ -30,7 +38,7 @@ function RegistrationForm() {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ 
-        "username": formData.username, 
+        "name": formData.name, 
         "email": formData.email, 
         "password": formData.password 
       })
@@ -58,34 +66,21 @@ function RegistrationForm() {
 };
 
 
-    // Password validation
-    if (formData.password !== formData.repeatPassword) {
-      alert('Passwords do not match!');
-      return;
-    }
-
-    // Handle form submission, e.g., send data to server
-    console.log('Registration data:', formData);
-
-    // Clear form after successful submission (optional)
-    setFormData({
-      username: '',
-      email: '',
-      password: '',
-      repeatPassword: '',
-    });
-  };
-    return (  <div  className={styles.container}>
+    /*Password validation
+  
+ */
+return (  
+    <div  className={styles.container}>
         <form onSubmit={handleSubmit}>
             <div className={styles.registratonContainer}>
             
-                <label htmlFor="username" className={styles.label} >Kasutajanimi:</label>
+                <label htmlFor="name" className={styles.label} >Nimi:</label>
                 <input
                 className={styles.registrationForm}
                     type="text"
-                    id="username"
-                    name="username"
-                    value={formData.username}
+                    id="name"
+                    name="name"
+                    value={formData.name}
                     onChange={handleChange}
                 />
            
