@@ -50,8 +50,8 @@ export default function Login() {
             <h1 className={styles.logTitel}>Sisene ülessanete listi</h1>
             <div className={styles.loginContainer}>
                 <input
-                    type="text"
-                    placeholder="Kasutajanimi"
+                    type="email"
+                    placeholder="E-post"
                     value={email}
                     onChange={(e) => setUsername(e.target.value)}
                     className={styles.usernameInput}
