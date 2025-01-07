@@ -8,6 +8,7 @@ function RegistrationForm() {
         username: '',
         email: '',
         password: '',
+        repeatPassword: '',
     });
 
     const handleChange = (event) => {
