@@ -1,116 +1,128 @@
-/* eslint-disable no-unused-vars */
+
 import React, { useState } from 'react';
 
-import styles from './styles/RegistrationComponent.module.css'
+import styles from './styles/RegistrationComponent.module.css';
 
 function RegistrationForm() {
-    const [formData, setFormData] = useState({
-        name: '',
-        email: '',
-        password: '',
-        repeatPassword: '',
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    password: '',
+    repeatPassword: '',
+  });
+
+  const [errors, setErrors] = useState({}); // Object to store field-specific errors
+
+  const handleChange = (event) => {
+    setFormData({
+      ...formData,
+      [event.target.name]: event.target.value.trim(), // Trim whitespace
     });
 
- const handleChange = (event) => {
-        setFormData({
-            ...formData,
-            [event.target.name]: event.target.value,
-        });
-    };
+    // Validate individual fields on change
+    const updatedErrors = validateField(event.target.name, event.target.value);
+    setErrors({ ...errors, ...updatedErrors }); // Update errors object
+  };
 
-//POST 
+  const validateField = (fieldName, fieldValue) => {
+    const newErrors = {};
 
- const handleSubmit = async (e) => {
-  e.preventDefault();
-
-
-  // Empty field verification with trim()
-    const isEmpty = Object.values(formData).some((field) => field.trim() === '');
-    if (isEmpty) {
-      alert('Please fill in all required fields.');
-      return; // Prevent form submission if fields are empty
+    switch (fieldName) {
+      case 'name':
+        if (!fieldValue) {
+          newErrors.name = 'Name is required.';
+        }
+        break;
+      case 'email':
+        if (!fieldValue) {
+          newErrors.email = 'Email is required.';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fieldValue)) {
+          newErrors.email = 'Invalid email format.';
+        }
+        break;
+      case 'password':
+        if (!fieldValue) {
+          newErrors.password = 'Password is required.';
+        } else if (fieldValue.length < 6) {
+          newErrors.password = 'Password must be at least 6 characters long.';
+        }
+        break;
+      case 'repeatPassword':
+        if (!fieldValue) {
+          newErrors.repeatPassword = 'Repeat password is required.';
+        } else if (fieldValue !== formData.password) {
+          newErrors.repeatPassword = 'Passwords do not match.';
+        }
+        break;
+      default:
+        break;
     }
 
-  if (formData.password !== formData.repeatPassword) {
-      alert('Passwords do not match!');
-      return;
+    return newErrors;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Validate all fields before submission
+    const allErrors = validateField('name', formData.name);
+    allErrors.email = validateField('email', formData.email).email;
+    allErrors.password = validateField('password', formData.password).password;
+    allErrors.repeatPassword = validateField('repeatPassword', formData.repeatPassword).repeatPassword;
+    setErrors({ ...errors, ...allErrors }); // Update errors object
+
+    // Submit form only if there are no errors
+    if (Object.keys(errors).length === 0) {
+      console.log('Registration data:', formData);
+
+      // ... rest of your form submission logic (e.g., send data to server)
     }
+  };
 
-    // Handle form submission, e.g., send data to server
-    console.log('Registration data:', formData);
+  return (
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.registrationContainer}>
+          <label htmlFor="name" className={styles.label}>
+            Nimi:
+          </label>
+          <input
+            className={styles.registrationForm}
+            type="text"
+            id="name"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+          />
+          {errors.name && <p className={styles.error}>{errors.name}</p>}
 
-  try {
-    const response = await fetch("http://localhost:3000/api/user/register/", { 
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ 
-        "name": formData.name, 
-        "email": formData.email, 
-        "password": formData.password 
-      })
-    });
+          <label htmlFor="email" className={styles.label}>
+            E-post:
+          </label>
+          <input
+            className={styles.registrationForm}
+            type="email"
+            id="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+          />
+          {errors.email && <p className={styles.error}>{errors.email}</p>}
 
-    if (response.ok) {
-      // Handle successful registration, e.g., display success message, redirect
-      console.log('Registration successful!');
-      // Optionally, provide feedback to the user (e.g., success message)
-      alert('Registration successful! You can now login.'); 
-      // Redirect to login page after successful registration
-      navigate('/login'); 
-    } else {
-      // Handle registration failure, e.g., display error message
-      const errorData = await response.json(); // Try to get error details from the server
-      console.error('Registration failed:', errorData.message || response.statusText);
-      // Display error message to the user
-      alert('Registration failed. Please check the entered data.'); 
-    }
-  } catch (error) {
-    console.error('Error registering:', error);
-    // Display a general error message to the user
-    alert('An error occurred during registration. Please try again later.'); 
-  }
-};
+          <label htmlFor="password" className={styles.label}>
+            Parool:
+          </label>
+          <input
+            className={styles.registrationForm}
+            type="password"
+            id="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+          />
+          {errors.password && <p className={styles.error}>{errors.password}</p>}
 
-
-    /*Password validation
-  
- */
-return (  
-    <div  className={styles.container}>
-        <form onSubmit={handleSubmit}>
-            <div className={styles.registratonContainer}>
-            
-                <label htmlFor="name" className={styles.label} >Nimi:</label>
-                <input
-                className={styles.registrationForm}
-                    type="text"
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                />
-           
-                <label htmlFor="email" className={styles.label} >E-post:</label>
-                <input className={styles.registrationForm}
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                />
-         
-                <label htmlFor="password" className={styles.label} >Parool:</label>
-                <input className={styles.registrationForm}
-                    type="password"
-                    id="password"
-                    name="password"
-                    value={formData.password}
-                    onChange={handleChange}
-                />
-                
-                <label htmlFor="password" className={styles.label} > Korda parooli:</label>
+          <label htmlFor="repeatPassword" className={styles.label}>Korda parooli</label>
                 <input className={styles.registrationForm}
                     type="password"
                     id="repeatpassword"
@@ -125,5 +137,6 @@ return (
         </div>
     );
 }
+
 
 export default RegistrationForm;
