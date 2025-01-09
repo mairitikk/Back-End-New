@@ -11,7 +11,7 @@ function RegistrationForm() {
         repeatPassword: '',
     });
 
-    const handleChange = (event) => {
+ const handleChange = (event) => {
         setFormData({
             ...formData,
             [event.target.name]: event.target.value,
@@ -22,6 +22,14 @@ function RegistrationForm() {
 
  const handleSubmit = async (e) => {
   e.preventDefault();
+
+
+  // Empty field verification
+    const isEmpty = Object.values(formData).some((field) => field === '');
+    if (isEmpty) {
+      alert('Please fill in all required fields.');
+      return; // Prevent form submission if fields are empty
+    }
 
   if (formData.password !== formData.repeatPassword) {
       alert('Passwords do not match!');
