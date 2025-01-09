@@ -111,7 +111,7 @@ return (
                     onChange={handleChange}
                 />
            
-            <button type="submit" className={styles.registrationButton}>Register</button>
+            <button type="submit" className={styles.registrationButton}>Registreeri</button>
        </div>
         </form>
         </div>
