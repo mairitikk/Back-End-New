@@ -24,8 +24,8 @@ function RegistrationForm() {
   e.preventDefault();
 
 
-  // Empty field verification
-    const isEmpty = Object.values(formData).some((field) => field === '');
+  // Empty field verification with trim()
+    const isEmpty = Object.values(formData).some((field) => field.trim() === '');
     if (isEmpty) {
       alert('Please fill in all required fields.');
       return; // Prevent form submission if fields are empty
