@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 
 import React, { useState } from 'react';
 
@@ -80,75 +81,83 @@ function RegistrationForm() {
   };
 
   return (
-   <div className={styles.container}>
-  <form onSubmit={handleSubmit}>
-    <div className={styles.registrationContainer}>
-      <label htmlFor="name" className={styles.label}>
-        Nimi:
-      </label>
-      <div className={styles.fieldContainer}>
-        <input
-          className={styles.registrationForm}
-          type="text"
-          id="name"
-          name="name"
-          value={formData.name}
-          onChange={handleChange}
-        />
-        {errors.name && <p className={styles.error}>{errors.name}</p>}
-      </div>
+    <div className={styles.container}>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.registrationContainer}>
+          <div className={styles.formRow}>
+            <label htmlFor="name" className={styles.label}>
+              Nimi:
+            </label>
+            <div className={styles.fieldContainer}>
+              <input
+                className={styles.registrationForm}
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+              />
+              {errors.name && <p className={styles.error}>{errors.name}</p>}
+            </div>
+          </div>
 
-      <label htmlFor="email" className={styles.label}>
-        E-post:
-      </label>
-      <div className={styles.fieldContainer}>
-        <input
-          className={styles.registrationForm}
-          type="email"
-          id="email"
-          name="email"
-          value={formData.email}
-          onChange={handleChange}
-        />
-        {errors.email && <p className={styles.error}>{errors.email}</p>}
-      </div>
+          <div className={styles.formRow}>
+            <label htmlFor="email" className={styles.label}>
+              E-post:
+            </label>
+            <div className={styles.fieldContainer}>
+              <input
+                className={styles.registrationForm}
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+              />
+              {errors.email && <p className={styles.error}>{errors.email}</p>}
+            </div>
+          </div>
 
-      <label htmlFor="password" className={styles.label}>
-        Parool:
-      </label>
-      <div className={styles.fieldContainer}>
-        <input
-          className={styles.registrationForm}
-          type="password"
-          id="password"
-          name="password"
-          value={formData.password}
-          onChange={handleChange}
-        />
-        {errors.password && <p className={styles.error}>{errors.error}</p>}  {/* Typo fixed */}
-      </div>
+          <div className={styles.formRow}>
+            <label htmlFor="password" className={styles.label}>
+              Parool:
+            </label>
+            <div className={styles.fieldContainer}>
+              <input
+                className={styles.registrationForm}
+                type="password"
+                id="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+              {errors.password && <p className={styles.error}>{errors.password}</p>}
+            </div>
+          </div>
 
-      <label htmlFor="repeatPassword" className={styles.label}>
-        Korda parooli
-      </label>
-      <div className={styles.fieldContainer}>
-        <input
-          className={styles.registrationForm}
-          type="password"
-          id="repeatpassword"
-          name="repeatpassword"
-          value={formData.repeatpassword}
-          onChange={handleChange}
-        />
-        {errors.repeatPassword && <p className={styles.error}>{errors.repeatPassword}</p>}
-      </div>
+          <div className={styles.formRow}>
+            <label htmlFor="repeatPassword" className={styles.label}>
+              Korda parooli:
+            </label>
+            <div className={styles.fieldContainer}>
+              <input
+                className={styles.registrationForm}
+                type="password"
+                id="repeatpassword"
+                name="repeatpassword"
+                value={formData.repeatPassword}
+                onChange={handleChange}
+              />
+              {errors.repeatPassword && <p className={styles.error}>{errors.repeatPassword}</p>}
+            </div>
+          </div>
 
-      <button type="submit" className={styles.registrationButton}>
-        Registreeri
-      </button>
+          <button type="submit" className={styles.registrationButton}>
+            Registreeri
+          </button>
+        </div>
+      </form>
     </div>
-  </form>
-</div>
   );
 };
 
