@@ -25,13 +25,24 @@
   border: 1px solid #d9b6d9;
   background-color: #fff;
   border-radius: 2.25em;
-  padding: 1em 0.5em;
+  padding:12px;
   width: 100%;
   font-size: 16px;
   margin-bottom: 15px;
     
 }
+.fieldContainer {
+  position: relative;
+}
 
+.error {
+  color: red;
+  font-size: 12px;
+  position: absolute;
+  top: 100%; /* Position below the input field */
+  left: 0;
+  margin-top: 5px;
+}
 .registrationButton {
      background:
         #f5e3f4;

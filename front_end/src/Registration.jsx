@@ -80,13 +80,13 @@ function RegistrationForm() {
   };
 
   return (
-    <div className={styles.container}>
+   <div className={styles.container}>
   <form onSubmit={handleSubmit}>
     <div className={styles.registrationContainer}>
       <label htmlFor="name" className={styles.label}>
         Nimi:
       </label>
-      <div className={styles.fieldContainer}> {/* Wrap input and error message */}
+      <div className={styles.fieldContainer}>
         <input
           className={styles.registrationForm}
           type="text"
@@ -125,7 +125,7 @@ function RegistrationForm() {
           value={formData.password}
           onChange={handleChange}
         />
-        {errors.email && <p className={styles.error}>{errors.email}</p>}  {/* Typo here, should be errors.password */}
+        {errors.password && <p className={styles.error}>{errors.error}</p>}  {/* Typo fixed */}
       </div>
 
       <label htmlFor="repeatPassword" className={styles.label}>
