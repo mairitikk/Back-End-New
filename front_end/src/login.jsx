@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from './styles/LoginComponent.module.css'
 import { useNavigate } from 'react-router-dom';
+// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
 
 
@@ -24,7 +25,7 @@ export default function Login() {
 
             if (response.ok) {
                 const token = await response.json();
-                
+
                 // Handle successful login, e.g., store token, redirect
                 //console.log('Login successful:', token);
 
@@ -44,30 +45,30 @@ export default function Login() {
 
     return (
         <div className={styles.container}>
-            
-            
-        <form onSubmit={handleSubmit} className={styles.loginForm}>
-            <h1 className={styles.logTitel}>Sisene ülessanete listi</h1>
-            <div className={styles.loginContainer}>
-                <input
-                    type="email"
-                    placeholder="E-post"
-                    value={email}
-                    onChange={(e) => setUsername(e.target.value)}
-                    className={styles.usernameInput}
-                />
-                <input
-                    type="password"
-                    placeholder="Parool"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    className={styles.passwordInput}
-                />
-               <button className={styles.loginButton}>Sisene</button>
-               <button type="submit" className={styles.loginButton}>Registreeri</button>
-                
-            </div>
-        </form>
+
+
+            <form onSubmit={handleSubmit} className={styles.loginForm}>
+                <h1 className={styles.logTitel}>Sisene ülessanete listi</h1>
+                <div className={styles.loginContainer}>
+                    <input
+                        type="email"
+                        placeholder="E-post"
+                        value={email}
+                        onChange={(e) => setUsername(e.target.value)}
+                        className={styles.usernameInput}
+                    />
+                    <input
+                        type="password"
+                        placeholder="Parool"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        className={styles.passwordInput}
+                    />
+                    <button className={styles.loginButton}>Sisene</button>
+                    <button type="submit" className={styles.loginButton}>Registreeri</button>
+
+                </div>
+            </form>
         </div>
     );
 
