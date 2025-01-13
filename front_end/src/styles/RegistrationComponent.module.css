@@ -4,9 +4,15 @@
   min-height: 100vh;
 }
 .registratonContainer{
-      width: 65%;
+      max-width: 65%;
   margin: 0 auto; /* Center the form horizontally */
   padding: 20px;
+}
+@media (max-width: 768px) { 
+  .registratonContainer {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 15px;
+  }
 }
 .label{
     font-size: 20px;
