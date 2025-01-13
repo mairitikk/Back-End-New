@@ -1,52 +1,62 @@
 .container {
   display: grid;
-  justify-content: center; /* Center items horizontally */
-  align-items: center;   /* Center items vertically */
+  place-items: center; /* Center both horizontally and vertically */
   min-height: 100vh;
 }
-.registratonContainer{
-      width: 65%;
-  margin: 0 auto; /* Center the form horizontally */
+
+.registratonContainer {
+  max-width: 65%; /* Use max-width for better responsiveness */
+  margin: 0 auto;
   padding: 20px;
 }
-.label{
-    font-size: 20px;
-    font-weight: bold;
+
+@media (max-width: 768px) { 
+  .registratonContainer {
+    width: 90%; /* Adjust width for smaller screens */
+    padding: 15px;
+  }
+}
+
+.label {
+  font-size: 18px; 
+  font-weight: bold;
+  margin-bottom: 5px; /* Add some space below the label */
 }
 
 .registrationForm {
- outline: none;
-  border: 1px solid #d9b6d9;
-  background-color: #fff;
-  border-radius: 2.25em;
-  padding: 1em 0.5em;
   width: 100%;
-  font-size: 16px;
-  margin-bottom: 15px;
-    
+  padding: 12px; /* Increase padding for better tap targets */
+  margin-bottom: 10px;
+}
+
+.fieldContainer {
+  position: relative; /* For absolute positioning of error messages */
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  position: absolute;
+  top: 100%; /* Position below the input field */
+  left: 0;
+  margin-top: 5px;
 }
 
 .registrationButton {
-     background:
-        #f5e3f4;
-    /* Light pink background */
-    border: 1px solid #d9b6d9;
-    /* Pink border */
-    color: #cf4bcf;
-    /* Pink text */
-    padding: 0.55em 0.5em;
-    border-radius: 1.25em;
-    cursor: pointer;
-    outline: none;
-    width: 25%;
-    font-size: medium;
-   font-weight: bold;
- font-family: 'Gloria Hallelujah', cursive;
-    font-weight: bold;
-    font-size: 20px;
+  background: #f5e3f4;
+  border: 1px solid #d9b6d9;
+  color: #cf4bcf;
+  padding: 12px 20px;
+  border-radius: 1.25em;
+  cursor: pointer;
+  outline: none;
+  width: 100%; /* Make the button full width for better mobile experience */
+  font-size: 18px;
+  font-weight: bold;
+  font-family: 'Gloria Hallelujah', cursive;
 }
+
 .registrationButton:hover {
- background: #d9b6d9;
-    /* Darker pink background on hover */
-    color: #cf4bcf; 
+  background: #d9b6d9;
+  color: #cf4bcf;
 }
