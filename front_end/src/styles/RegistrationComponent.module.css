@@ -1,7 +1,6 @@
 .container {
   display: grid;
-  justify-content: center; /* Center items horizontally */
-  align-items: center;   /* Center items vertically */
+ place-items: center;
   min-height: 100vh;
 }
 .registratonContainer{
