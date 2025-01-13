@@ -76,7 +76,7 @@ function RegistrationForm() {
     if (Object.keys(errors).length === 0) {
       console.log('Registration data:', formData);
 
-      // ... rest of your form submission logic (e.g., send data to server)
+
     }
   };
 
