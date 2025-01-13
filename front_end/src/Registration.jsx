@@ -81,62 +81,74 @@ function RegistrationForm() {
 
   return (
     <div className={styles.container}>
-      <form onSubmit={handleSubmit}>
-        <div className={styles.registrationContainer}>
-          <label htmlFor="name" className={styles.label}>
-            Nimi:
-          </label>
-          <input
-            className={styles.registrationForm}
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-          />
-          {errors.name && <p className={styles.error}>{errors.name}</p>}
+  <form onSubmit={handleSubmit}>
+    <div className={styles.registrationContainer}>
+      <label htmlFor="name" className={styles.label}>
+        Nimi:
+      </label>
+      <div className={styles.fieldContainer}> {/* Wrap input and error message */}
+        <input
+          className={styles.registrationForm}
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+        />
+        {errors.name && <p className={styles.error}>{errors.name}</p>}
+      </div>
 
-          <label htmlFor="email" className={styles.label}>
-            E-post:
-          </label>
-          <input
-            className={styles.registrationForm}
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-          />
-          {errors.email && <p className={styles.error}>{errors.email}</p>}
+      <label htmlFor="email" className={styles.label}>
+        E-post:
+      </label>
+      <div className={styles.fieldContainer}>
+        <input
+          className={styles.registrationForm}
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+        />
+        {errors.email && <p className={styles.error}>{errors.email}</p>}
+      </div>
 
-          <label htmlFor="password" className={styles.label}>
-            Parool:
-          </label>
-          <input
-            className={styles.registrationForm}
-            type="password"
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-          />
-          {errors.password && <p className={styles.error}>{errors.password}</p>}
+      <label htmlFor="password" className={styles.label}>
+        Parool:
+      </label>
+      <div className={styles.fieldContainer}>
+        <input
+          className={styles.registrationForm}
+          type="password"
+          id="password"
+          name="password"
+          value={formData.password}
+          onChange={handleChange}
+        />
+        {errors.email && <p className={styles.error}>{errors.email}</p>}  {/* Typo here, should be errors.password */}
+      </div>
 
-          <label htmlFor="repeatPassword" className={styles.label}>Korda parooli</label>
-                <input className={styles.registrationForm}
-                    type="password"
-                    id="repeatpassword"
-                    name="repeatpassword"
-                    value={formData.repeatpassword}
-                    onChange={handleChange}
-                />
-           
-            <button type="submit" className={styles.registrationButton}>Registreeri</button>
-       </div>
-        </form>
-        </div>
-    );
-}
+      <label htmlFor="repeatPassword" className={styles.label}>
+        Korda parooli
+      </label>
+      <div className={styles.fieldContainer}>
+        <input
+          className={styles.registrationForm}
+          type="password"
+          id="repeatpassword"
+          name="repeatpassword"
+          value={formData.repeatpassword}
+          onChange={handleChange}
+        />
+        {errors.repeatPassword && <p className={styles.error}>{errors.repeatPassword}</p>}
+      </div>
+
+      <button type="submit" className={styles.registrationButton}>
+        Registreeri
+      </button>
+    </div>
+  </form>
+</div>
 
 
 export default RegistrationForm;

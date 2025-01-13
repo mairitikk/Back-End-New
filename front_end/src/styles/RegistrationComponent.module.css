@@ -15,8 +15,9 @@
   }
 }
 .label{
-    font-size: 20px;
+    font-size: 18px;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .registrationForm {
@@ -34,11 +35,10 @@
 .registrationButton {
      background:
         #f5e3f4;
-    /* Light pink background */
+ 
     border: 1px solid #d9b6d9;
-    /* Pink border */
+   
     color: #cf4bcf;
-    /* Pink text */
     padding: 0.55em 0.5em;
     border-radius: 1.25em;
     cursor: pointer;
