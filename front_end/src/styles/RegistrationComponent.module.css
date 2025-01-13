@@ -4,14 +4,13 @@
   min-height: 100vh;
 }
 
-.registrationContainer {
-  max-width: 500px;
+.registratonContainer {
+  max-width: 90%;
+  /* Set initial max-width for smaller screens */
   background-color: white;
-  /* Set a maximum width for better responsiveness */
   margin: 0 auto;
   padding: 20px;
 }
-
 .formRow {
   display: flex;
   /* Use flexbox to align label and input */
@@ -56,6 +55,8 @@
 }
 
 .registrationButton {
+  display: inline-block;
+  justify-content: center;
   background: #f5e3f4;
   border: 1px solid #d9b6d9;
   color: #cf4bcf;
@@ -63,7 +64,7 @@
   border-radius: 1.25em;
   cursor: pointer;
   outline: none;
-  width: 100%;
+  
   font-size: 18px;
   font-weight: bold;
   font-family: 'Gloria Hallelujah', cursive;
