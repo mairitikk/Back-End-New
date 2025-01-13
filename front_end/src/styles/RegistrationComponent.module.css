@@ -1,38 +1,61 @@
 .container {
-  display: grid;
-  place-items: center;
+  display: flex;
+  /* Change to flexbox for mobile */
+  flex-direction: column;
+  align-items: flex-start;
   min-height: 100vh;
+}
+
+@media (min-width: 768px) {
+  .container {
+    display: grid;
+    place-items: center;
+  }
 }
 
 .registratonContainer {
   max-width: 90%;
-  /* Set initial max-width for smaller screens */
   background-color: white;
-  margin: 0 auto;
   padding: 20px;
 }
+
+@media (min-width: 768px) {
+  .registratonContainer {
+    max-width: 600px;
+  }
+}
+
 .formRow {
   display: flex;
-  /* Use flexbox to align label and input */
-  align-items: center;
-  /* Vertically center elements */
+  flex-direction: column;
+  align-items: flex-start;
   margin-bottom: 15px;
-  /* Spacing between form rows */
+}
+
+@media (min-width: 768px) {
+  .formRow {
+    flex-direction: row;
+    align-items: center;
+  }
 }
 
 .label {
   font-size: 18px;
   font-weight: bold;
-  margin-right: 10px;
-  /* Space between label and input */
-  flex: 0 0 140px;
-  /* Fixed width for labels */
-  text-align: right;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+@media (min-width: 768px) {
+  .label {
+    margin-right: 10px;
+    text-align: right;
+    flex: 0 0 140px;
+  }
 }
 
 .registrationForm {
-  flex: 1;
-  /* Make input field take up remaining space */
+  width: 100%;
   outline: none;
   border: 1px solid #d9b6d9;
   background-color: #fff;
@@ -55,8 +78,8 @@
 }
 
 .registrationButton {
-  display: inline-block;
-  justify-content: center;
+  display: block;
+ 
   background: #f5e3f4;
   border: 1px solid #d9b6d9;
   color: #cf4bcf;
@@ -64,7 +87,6 @@
   border-radius: 1.25em;
   cursor: pointer;
   outline: none;
-  
   font-size: 18px;
   font-weight: bold;
   font-family: 'Gloria Hallelujah', cursive;
@@ -73,4 +95,9 @@
 .registrationButton:hover {
   background: #d9b6d9;
   color: #cf4bcf;
+}
+.registrationButtonDirection {
+  display: flex;
+  justify-content: flex-end;
+  /* Align elements to the right */
 }

@@ -151,10 +151,11 @@ function RegistrationForm() {
               {errors.repeatPassword && <p className={styles.error}>{errors.repeatPassword}</p>}
             </div>
           </div>
-
-          <button type="submit" className={styles.registrationButton}>
-            Registreeri
-          </button>
+          <div className={styles.registrationButtonDirection}>
+            <button type="submit" className={styles.registrationButton}>
+              Registreeri
+            </button>
+          </div>
         </div>
       </form>
     </div>
