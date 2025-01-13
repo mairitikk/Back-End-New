@@ -149,6 +149,7 @@ function RegistrationForm() {
     </div>
   </form>
 </div>
-
+  );
+};
 
 export default RegistrationForm;
