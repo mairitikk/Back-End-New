@@ -83,6 +83,7 @@ function RegistrationForm() {
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
+        <h1 className={styles.logTitel}>Registreeri ülessanete listi</h1>
         <div className={styles.registrationContainer}>
           <div className={styles.formRow}>
             <label htmlFor="name" className={styles.label}>
