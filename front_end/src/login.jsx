@@ -13,14 +13,13 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Send a POST request to your backend API
         try {
             const response = await fetch("http://localhost:3000/api/user/login/", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ "email": email, "password": password })
+                body: JSON.stringify({ "email": email, "password": password }) // Include password
             });
 
             if (response.ok) {

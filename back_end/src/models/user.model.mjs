@@ -69,7 +69,7 @@ const deleteUser = async (id) => {
         throw error;
     }
 };
-/*const findByEmail = async (email) => {
+const findByEmail = async (email) => {
     try {
         const [rows] = await db.query('SELECT * FROM user WHERE email = ?', [email]);
         console.log('Found user:', rows[0]);
@@ -77,25 +77,6 @@ const deleteUser = async (id) => {
     } catch (error) {
         console.error('Error finding user:', error);
         throw new Error('Failed to find user');
-    }
-};*/
-const findByEmail = async (email) => {
-    try {
-        const [rows] = await db.query('SELECT * FROM user WHERE email = ?', [email]);
-        const user = rows[0];
-        if (!user) {
-            throw new Error('Invalid email or password'); // Handle non-existent user
-        }
-
-        const validPassword = await bcrypt.compare(password, user.password); // Compare hashed passwords
-        if (!validPassword) {
-            throw new Error('Invalid email or password'); // Handle password mismatch
-        }
-
-        return user;
-    } catch (error) {
-        console.error('Error finding or authenticating user:', error);
-        throw error;
     }
 };
 
