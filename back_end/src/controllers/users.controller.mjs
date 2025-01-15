@@ -50,6 +50,7 @@ const deleteUser = async (req, res) => {
         res.status(500).json({ error: error.message });
     }
 };
+
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
@@ -63,14 +64,7 @@ const login = async (req, res) => {
         const passwordMatch = await bcrypt.compare(password, user.password);
 
         if (passwordMatch) {
-            // Generate JWT token on successful login (if using createToken)
-            let token;
-            if (createToken) { // Check if createToken function exists
-                token = createToken(user.id); // Call createToken if available
-            } else {
-                token = jwt.sign({ userId: user.id }, secret, { expiresIn: '1h' }); // Fallback to direct JWT generation
-            }
-
+            const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
             res.json({ success: 'Login successful', token });
         } else {
             return res.status(401).json({ message: 'Invalid email or password' });
@@ -82,4 +76,5 @@ const login = async (req, res) => {
 };
 
 
-export { getAllUsers, updateUser, deleteUser, register, login };
+
+export { getAllUsers, updateUser, deleteUser, register, login }
