@@ -9,7 +9,7 @@ export default function Login() {
     const navigate = useNavigate();
     const handleSubmit = async (e) => {
         e.preventDefault();
-
+        console.log("Submitting login with email:", email, "and password:", password);
         // Create an empty object to store validation errors
         const newErrors = {};
 

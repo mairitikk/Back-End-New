@@ -3,7 +3,7 @@ import createToken from '../helpers/utils.mjs';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 
-const secret = '123456789'
+const secret = process.env.JWT_SECRET;
 
 const register = async (req, res) => {
 
@@ -56,7 +56,7 @@ const login = async (req, res) => {
         const { email, password } = req.body;
 
         const user = await User.findByEmail(email);
-
+        console.log(user)
         if (!user) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
