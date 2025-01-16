@@ -29,7 +29,7 @@ sequelize.sync()
     })
     .catch(err => {
         console.error('Error syncing database:', err);
-    }); */
+    }); 
 
 
 const selectAllUsers = async () => {
