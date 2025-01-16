@@ -30,6 +30,9 @@ export default function Login() {
             // Handle errors gracefully (e.g., display generic error message)
         }
     };
+    const handleRegisterClick = () => {
+        navigate('/register');
+    };
 
     return (
         <div className={styles.container}>
