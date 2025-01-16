@@ -71,16 +71,26 @@ const deleteUser = async (id) => {
         throw error;
     }
 };
-const findByEmail = async (email) => {
+const findByEmailAndPassword = async (email, password) => {
     try {
         const [rows] = await db.query('SELECT * FROM user WHERE email = ?', [email]);
-        console.log('Found user:', rows[0]);
-        return rows[0];
+        if (rows.length === 0) {
+            return null; // User not found
+        }
+
+        const user = rows[0];
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+        if (isPasswordMatch) {
+            return user; // Return the user object if password matches
+        } else {
+            return null; // Password incorrect
+        }
     } catch (error) {
         console.error('Error finding user:', error);
         throw new Error('Failed to find user');
     }
 };
 
-export default { selectAllUsers, updateUser, deleteUser, findByEmail, create };
+export default { selectAllUsers, updateUser, deleteUser, findByEmailAndPassword, create };
 
