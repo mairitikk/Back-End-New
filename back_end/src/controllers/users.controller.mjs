@@ -1,9 +1,9 @@
 import User from '../models/user.model.mjs';
 import createToken from '../helpers/utils.mjs';
 import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
 
-const secret = process.env.JWT_SECRET;
+
+
 
 const register = async (req, res) => {
 
@@ -56,24 +56,26 @@ const login = async (req, res) => {
         const { email, password } = req.body;
 
         const user = await User.findByEmail(email);
-        console.log(user)
         if (!user) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
         const passwordMatch = await bcrypt.compare(password, user.password);
-
-        if (passwordMatch) {
-            const token = jwt.sign({ userId: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-            res.json({ success: 'Login successful', token });
-        } else {
+        if (!passwordMatch) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
+
+        // Generate JWT token using createToken
+        const token = createToken(user.id);
+
+        res.json({ success: 'Login successful', token });
     } catch (error) {
         console.error('Login error:', error);
         res.status(500).json({ error: 'Server error' });
     }
 };
+
+export { getAllUsers, updateUser, deleteUser, register, login };
 
 
 

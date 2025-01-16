@@ -29,14 +29,16 @@ sequelize.sync()
     })
     .catch(err => {
         console.error('Error syncing database:', err);
-    }); 
+    }); */
 
+import db from '../config/db.mjs';
+import bcrypt from 'bcrypt';
 
 const selectAllUsers = async () => {
     const [rows] = await db.query('SELECT * FROM user');
     return rows;
 };
-/*
+
 const create = async ({ name, email, password }) => {
     try {
         const [result] = await db.query(
@@ -80,67 +82,5 @@ const findByEmail = async (email) => {
     }
 };
 
-export default { selectAllUsers, updateUser, deleteUser, findByEmail, create }; */
+export default { selectAllUsers, updateUser, deleteUser, findByEmail, create };
 
-import db from '../config/db.mjs';
-import bcrypt from 'bcrypt';
-
-const User = {
-    // Assuming your table name is 'users' (modify if different)
-    tableName: 'users',
-
-    async selectAllUsers() {
-        const [rows] = await db.query(`SELECT * FROM ${this.tableName}`);
-        return rows;
-    },
-
-    async create({ name, email, password }) {
-        try {
-            const hashedPassword = await bcrypt.hash(password, 10); // Use a higher cost factor for better security
-            const [result] = await db.query(
-                `INSERT INTO ${this.tableName} (name, email, password) VALUES (?, ?, ?)`,
-                [name, email, hashedPassword]
-            );
-            const insertId = result.insertId;
-            return insertId;
-        } catch (error) {
-            console.error('Error inserting user:', error);
-            throw error;
-        }
-    },
-
-    async updateUser(id, { user }) {
-        try {
-            const [result] = await db.query(
-                `UPDATE ${this.tableName} SET user = ? WHERE id = ?`,
-                [user, id]
-            );
-            return result.affectedRows > 0;
-        } catch (error) {
-            console.error('Error updating user:', error);
-            throw error;
-        }
-    },
-
-    async deleteUser(id) {
-        try {
-            const [result] = await db.query(`DELETE FROM ${this.tableName} WHERE id = ?`, [id]);
-            return result.affectedRows > 0;
-        } catch (error) {
-            console.error('Error deleting user:', error);
-            throw error;
-        }
-    },
-
-    async findByEmail(email) {
-        try {
-            const [rows] = await db.query(`SELECT * FROM ${this.tableName} WHERE email = ?`, [email]);
-            return rows[0];
-        } catch (error) {
-            console.error('Error finding user:', error);
-            throw new Error('Failed to find user');
-        }
-    },
-};
-
-export default User;
