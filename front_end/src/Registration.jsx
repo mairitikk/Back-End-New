@@ -25,6 +25,7 @@ function RegistrationForm() {
     setErrors({ ...errors, ...updatedErrors }); // Update errors object
   };
 
+
   const validateField = (fieldName, fieldValue) => {
     const newErrors = {};
 
@@ -51,7 +52,7 @@ function RegistrationForm() {
       case 'repeatPassword':
         if (!fieldValue) {
           newErrors.repeatPassword = 'Repeat password is required.';
-        } else if (fieldValue !== formData.password) {
+        } else if (fieldValue !== fieldValue) { // Use the current fieldValue
           newErrors.repeatPassword = 'Passwords do not match.';
         }
         break;
@@ -144,8 +145,8 @@ function RegistrationForm() {
               <input
                 className={styles.registrationForm}
                 type="password"
-                id="repeatpassword"
-                name="repeatpassword"
+                id="repeatPassword"
+                name="repeatPassword"
                 value={formData.repeatPassword}
                 onChange={handleChange}
               />
