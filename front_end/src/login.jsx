@@ -11,12 +11,33 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Check if email and password are filled
-        if (!email || !password) {
-            alert('Sisenemiseks tuleb täita e-posti ja parooli väli');
-            return; // Exit the function if fields are empty
+        const newErrors = {};
+
+        // Email validation
+        if (!email) {
+            newErrors.email = 'Email is required.';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+            newErrors.email = 'Invalid email format.';
         }
 
+        // Password validation
+        if (!password) {
+            newErrors.password = 'Password is required.';
+        } else if (password.length < 6) {
+            newErrors.password = 'Password must be at least 6 characters long.';
+        }
+
+        // Display validation errors (if any)
+        if (Object.keys(newErrors).length > 0) {
+            let errorMessage = 'Please fix the following errors:\n';
+            for (const errorField in newErrors) {
+                errorMessage += `- ${newErrors[errorField]}\n`;
+            }
+            alert(errorMessage);
+            return;
+        }
+
+        // Proceed with login if all fields are valid
         try {
             const response = await api.post('/user/login', {
                 email,
@@ -26,17 +47,14 @@ export default function Login() {
             if (response.status === 200) {
                 const token = await response.json();
                 localStorage.setItem("TOKEN", token);
-                navigate('/home'); // Redirect to home page on successful login
+                navigate('/home');
             } else {
                 console.error('Login failed:', response.statusText);
-                // Handle login failure (e.g., display error message to user)
             }
         } catch (error) {
             console.error('Error logging in:', error);
-            // Handle errors gracefully (e.g., display generic error message)
         }
     };
-
     const handleRegisterClick = () => {
         navigate('/register');
     };
