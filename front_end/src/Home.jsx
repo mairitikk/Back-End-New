@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import HomeComponent from './HomeComponent';
 
 
@@ -21,13 +21,13 @@ export default function App() {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-            
+
         // Check for local storage data
         const tokenValue = localStorage.getItem("TOKEN");
         if (!tokenValue) {
             return navigate('/');
-        } 
-    
+        }
+
         const fetchData = async () => {
             const fetchedTodos = await fetchTodos();
             setTodos(fetchedTodos);
@@ -41,7 +41,8 @@ export default function App() {
             const response = await fetch('http://localhost:3000/api/todo/', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json'
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("TOKEN")}`
                 },
                 body: JSON.stringify(todoData)
             });

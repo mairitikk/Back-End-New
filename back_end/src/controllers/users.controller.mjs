@@ -55,13 +55,10 @@ const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        const user = await User.findByEmail(email);
-        if (!user) {
-            return res.status(401).json({ message: 'Invalid email or password' });
-        }
+        // Use findByEmailAndPassword for combined email and password verification
+        const user = await User.findByEmailAndPassword(email, password);
 
-        const passwordMatch = await bcrypt.compare(password, user.password);
-        if (!passwordMatch) {
+        if (!user) {
             return res.status(401).json({ message: 'Invalid email or password' });
         }
 
@@ -79,4 +76,3 @@ export { getAllUsers, updateUser, deleteUser, register, login };
 
 
 
-export { getAllUsers, updateUser, deleteUser, register, login }

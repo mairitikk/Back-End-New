@@ -6,7 +6,9 @@ import api from './apiClient';
 export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
     const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         console.log("Submitting login with email:", email, "and password:", password);
@@ -39,12 +41,19 @@ export default function Login() {
 
         // Proceed with login if all fields are valid
         try {
-            const response = await api.post('/user/login', {
-                email,
-                password,
+            const bodyData = { email: email, password: password }
+            const response = await fetch('http://localhost:3000/api/user/login/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(bodyData)
             });
 
+            //await api.post('/user/login', {bodyData });
+
             if (response.status === 200) {
+                console.log('Login successful:', response);
                 const token = await response.json();
                 localStorage.setItem("TOKEN", token);
                 navigate('/home'); // Redirect to home page on successful login

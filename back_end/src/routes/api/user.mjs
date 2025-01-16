@@ -6,7 +6,7 @@ import checkToken from '../../middelwares/auth.middleware.mjs'
 const router = express.Router();
 
 
-router.use(checkToken);
+//router.use(checkToken);
 
 // Define your user routes here
 router.get('/', getAllUsers);
