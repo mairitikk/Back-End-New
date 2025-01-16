@@ -11,6 +11,12 @@ export default function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Check if email and password are filled
+        if (!email || !password) {
+            alert('Sisenemiseks tuleb täita e-posti ja parooli väli');
+            return; // Exit the function if fields are empty
+        }
+
         try {
             const response = await api.post('/user/login', {
                 email,
@@ -30,6 +36,7 @@ export default function Login() {
             // Handle errors gracefully (e.g., display generic error message)
         }
     };
+
     const handleRegisterClick = () => {
         navigate('/register');
     };
