@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import HomeComponent from './HomeComponent';
 
 
-async function fetchTodos() {
+/*async function fetchTodos() {
     try {
         const response = await fetch('http://localhost:3000/api/todo/');
         if (!response.ok) throw new Error(`Failed to fetch todos: ${response.status}`);
@@ -12,7 +12,7 @@ async function fetchTodos() {
         console.error("Error fetching todos:", error);
         return [];
     }
-}
+}*/
 
 export default function App() {
 
@@ -21,28 +21,52 @@ export default function App() {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
-
-        // Check for local storage data
-        const tokenValue = localStorage.getItem("TOKEN");
-        if (!tokenValue) {
-            return navigate('/');
-        }
-
         const fetchData = async () => {
-            const fetchedTodos = await fetchTodos();
-            setTodos(fetchedTodos);
+            try {
+                const token = localStorage.getItem("TOKEN");
+                if (!token) {
+                    return navigate('/');
+                }
+
+                const response = await fetch('http://localhost:3000/api/todo/', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    if (response.status === 401) {
+                        // Handle 401 Unauthorized (e.g., redirect to login)
+                        console.error("Unauthorized access to todos.");
+                        navigate('/login');
+                        return;
+                    } else {
+                        throw new Error(`Failed to fetch todos: ${response.status} ${response.statusText}`);
+                    }
+                }
+
+                const fetchedTodos = await response.json();
+                setTodos(fetchedTodos);
+            } catch (error) {
+                console.error('Error fetching todos:', error);
+            }
         };
 
         fetchData();
     }, []);
 
-    async function insertTodo(todoData) {
+    const insertTodo = async (todoData) => {
         try {
+            const token = localStorage.getItem("TOKEN");
+            if (!token) {
+                return navigate('/');
+            }
+
             const response = await fetch('http://localhost:3000/api/todo/', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem("TOKEN")}`
+                    'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify(todoData)
             });
@@ -57,7 +81,9 @@ export default function App() {
             console.error('Error inserting todo:', error);
             throw error;
         }
-    }
+    };
+
+
 
     async function deleteTodo(id) {
         try {

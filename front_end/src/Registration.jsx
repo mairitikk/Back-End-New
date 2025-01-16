@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 
 import styles from './styles/RegistrationComponent.module.css';
+import { useNavigate } from 'react-router-dom';
 
 function RegistrationForm() {
   const [formData, setFormData] = useState({
@@ -62,6 +63,7 @@ function RegistrationForm() {
 
     return newErrors;
   };
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -75,10 +77,34 @@ function RegistrationForm() {
 
     // Submit form only if there are no errors
     if (Object.keys(errors).length === 0) {
-      console.log('Registration data:', formData);
+      try {
+        // Fetch with potential authorization header
+        const response = await fetch('http://localhost:3000/api/user/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: localStorage.getItem('TOKEN') ? `Bearer ${localStorage.getItem('TOKEN')}` : undefined, // Include authorization header only if a token exists in localStorage
+          },
+          body: JSON.stringify(formData),
 
+        }); console.log('Form data:', formData);
 
+        if (response.ok) {
+          console.log('Registration successful!');
+          // Show success message to user (consider clearing form or redirecting)
+          setFormData({ name: '', email: '', password: '' }); // Clear form data
+        } else {
+          console.error('Registration failed:', await response.text());
+          // Display error message to user (e.g., set appropriate errors state)
+        }
+      } catch (error) {
+        console.error('Error during registration:', error);
+        // Handle network errors or other unexpected issues
+      }
     }
+  };
+  const handleRegisterClick = () => {
+    navigate('/home');
   };
 
   return (
@@ -154,7 +180,7 @@ function RegistrationForm() {
             </div>
           </div>
           <div className={styles.registrationButtonDirection}>
-            <button type="submit" className={styles.registrationButton}>
+            <button type="submit" className={styles.registrationButton} onClick={handleRegisterClick}>
               Registreeri
             </button>
           </div>
