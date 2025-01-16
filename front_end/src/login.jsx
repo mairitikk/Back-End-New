@@ -7,34 +7,34 @@ export default function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
+        // Create an empty object to store validation errors
         const newErrors = {};
 
-        // Email validation
+        // Validate email
         if (!email) {
-            newErrors.email = 'Email is required.';
+            newErrors.email = 'Epost on vajalik';
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            newErrors.email = 'Invalid email format.';
+            newErrors.email = 'Vale eposti formaat';
         }
 
-        // Password validation
+        // Validate password
         if (!password) {
-            newErrors.password = 'Password is required.';
+            newErrors.password = 'Parool on vajalik';
         } else if (password.length < 6) {
-            newErrors.password = 'Password must be at least 6 characters long.';
+            newErrors.password = 'Parool peab olema vähemalt kuus tähte pikk';
         }
 
         // Display validation errors (if any)
         if (Object.keys(newErrors).length > 0) {
-            let errorMessage = 'Please fix the following errors:\n';
+            let errorMessage = 'Palun paranda järgnevad vead:\n';
             for (const errorField in newErrors) {
                 errorMessage += `- ${newErrors[errorField]}\n`;
             }
             alert(errorMessage);
-            return;
+            return; // Exit the function if there are validation errors
         }
 
         // Proceed with login if all fields are valid
@@ -47,14 +47,17 @@ export default function Login() {
             if (response.status === 200) {
                 const token = await response.json();
                 localStorage.setItem("TOKEN", token);
-                navigate('/home');
+                navigate('/home'); // Redirect to home page on successful login
             } else {
                 console.error('Login failed:', response.statusText);
+                // Handle login failure (e.g., display error message to user)
             }
         } catch (error) {
             console.error('Error logging in:', error);
+            // Handle errors gracefully (e.g., display generic error message)
         }
     };
+
     const handleRegisterClick = () => {
         navigate('/register');
     };
