@@ -5,7 +5,7 @@ const secret = process.env.JWT_SECRET;
 async function checkToken(req, res, next) {
     try {
         const authHeader = req.headers.authorization;
-        console.log(authHeader)
+        console.log('Authorization header:', authHeader)
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             return res.status(401).json({ message: 'Unauthorized: No token provided' });
         }

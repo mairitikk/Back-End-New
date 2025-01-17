@@ -36,9 +36,8 @@ export default function App() {
 
                 if (!response.ok) {
                     if (response.status === 401) {
-                        // Handle 401 Unauthorized (e.g., redirect to login)
                         console.error("Unauthorized access to todos.");
-                        navigate('/login');
+                        navigate('/');
                         return;
                     } else {
                         throw new Error(`Failed to fetch todos: ${response.status} ${response.statusText}`);
@@ -47,6 +46,7 @@ export default function App() {
 
                 const fetchedTodos = await response.json();
                 setTodos(fetchedTodos);
+
             } catch (error) {
                 console.error('Error fetching todos:', error);
             }

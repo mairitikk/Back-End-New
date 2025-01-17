@@ -56,7 +56,10 @@ export default function Login() {
                 console.log('Login successful:', response);
                 const token = await response.json();
                 localStorage.setItem("TOKEN", token);
+                console.log(localStorage)
+
                 navigate('/home'); // Redirect to home page on successful login
+
             } else {
                 console.error('Login failed:', response.statusText);
                 // Handle login failure (e.g., display error message to user)
