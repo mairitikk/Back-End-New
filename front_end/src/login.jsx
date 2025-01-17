@@ -41,7 +41,7 @@ export default function Login() {
 
         // Proceed with login if all fields are valid
         try {
-            const bodyData = { email: email, password: password }
+            const bodyData = { email: email, password: password };
             const response = await fetch('http://localhost:3000/api/user/login/', {
                 method: 'POST',
                 headers: {
@@ -50,23 +50,20 @@ export default function Login() {
                 body: JSON.stringify(bodyData)
             });
 
-            //await api.post('/user/login', {bodyData });
-
             if (response.status === 200) {
                 console.log('Login successful:', response);
-                const token = await response.json();
-                localStorage.setItem("TOKEN", token);
-                console.log(localStorage)
 
-                navigate('/home'); // Redirect to home page on successful login
+                //optener token y guardar en variable localStorage
+                const data = await response.json();
+                localStorage.setItem("TOKEN", data.token);
 
+                navigate('/home');
             } else {
-                console.error('Login failed:', response.statusText);
-                // Handle login failure (e.g., display error message to user)
+                // Handle login errors (e.g., display error message)
             }
         } catch (error) {
-            console.error('Error logging in:', error);
-            // Handle errors gracefully (e.g., display generic error message)
+            console.error('Login error:', error);
+            // Handle login errors
         }
     };
 

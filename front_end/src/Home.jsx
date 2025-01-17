@@ -3,16 +3,20 @@ import { useNavigate } from 'react-router-dom';
 import HomeComponent from './HomeComponent';
 
 
-/*async function fetchTodos() {
+async function fetchTodos(token) {
     try {
-        const response = await fetch('http://localhost:3000/api/todo/');
+        const response = await fetch('http://localhost:3000/api/todo/', {
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
         if (!response.ok) throw new Error(`Failed to fetch todos: ${response.status}`);
         return await response.json();
     } catch (error) {
         console.error("Error fetching todos:", error);
         return [];
     }
-}*/
+}
 
 export default function App() {
 
@@ -21,39 +25,21 @@ export default function App() {
     const [todos, setTodos] = useState([]);
 
     useEffect(() => {
+
+        // Check for local storage data
+        const tokenValue = localStorage.getItem("TOKEN");
+        if (!tokenValue) {
+            return navigate('/');
+        }
+
         const fetchData = async () => {
-            try {
-                const token = localStorage.getItem("TOKEN");
-                if (!token) {
-                    return navigate('/');
-                }
-
-                const response = await fetch('http://localhost:3000/api/todo/', {
-                    headers: {
-                        'Authorization': `Bearer ${token}`
-                    }
-                });
-
-                if (!response.ok) {
-                    if (response.status === 401) {
-                        console.error("Unauthorized access to todos.");
-                        navigate('/');
-                        return;
-                    } else {
-                        throw new Error(`Failed to fetch todos: ${response.status} ${response.statusText}`);
-                    }
-                }
-
-                const fetchedTodos = await response.json();
-                setTodos(fetchedTodos);
-
-            } catch (error) {
-                console.error('Error fetching todos:', error);
-            }
+            const fetchedTodos = await fetchTodos(tokenValue);
+            setTodos(fetchedTodos);
         };
 
         fetchData();
     }, []);
+
 
     const insertTodo = async (todoData) => {
         try {
@@ -87,9 +73,20 @@ export default function App() {
 
     async function deleteTodo(id) {
         try {
+
+            const token = localStorage.getItem("TOKEN");
+            if (!token) {
+                return navigate('/');
+            }
+
             const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
-                method: 'DELETE'
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                }
             });
+
 
             if (!response.ok) {
                 throw new Error(`Failed to delete todo: ${response.status}`);
