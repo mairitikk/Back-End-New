@@ -114,18 +114,24 @@ export default function App() {
                 throw new Error(`Failed to update todo: ${response.status}`);
             }
 
-            // No need to update the entire todo object, update local state directly
-            setTodos(currentTodos =>
-                currentTodos.map(todo => (todo.id === id ? { ...todo, completed } : todo))
-            );
+            // Update local state using find and spread operator
+            setTodos(currentTodos => {
+                const updatedTodos = [...currentTodos]; // Create a copy of the array
+                const indexToUpdate = updatedTodos.findIndex(todo => todo.id === id);
 
+                if (indexToUpdate !== -1) {
+                    updatedTodos[indexToUpdate] = { ...updatedTodos[indexToUpdate], completed };
+                }
+
+                return updatedTodos;
+            });
             console.log("Todo updated successfully:", { completed });
-
         } catch (error) {
             console.error('Error updating todo:', error);
             throw error;
         }
     }
+
 
 
     function addTodo(title) {
