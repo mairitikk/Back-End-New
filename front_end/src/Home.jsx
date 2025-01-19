@@ -101,6 +101,10 @@ export default function App() {
     }
 
     async function updateTodo(id, completed, title) {
+        const token = localStorage.getItem("TOKEN");
+        if (!token) {
+            return navigate('/');
+        }
         try {
             const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
                 method: 'PUT',
