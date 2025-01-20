@@ -176,6 +176,13 @@ export default function App() {
         }
     }
 
+    async function logout() {
+        // Remove token from local storage
+        localStorage.removeItem('TOKEN');
+
+        // Redirect user to login page using useNavigate
+        navigate('/');
+    }
 
     return (
         <div>
