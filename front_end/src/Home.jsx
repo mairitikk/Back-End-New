@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import HomeComponent from './HomeComponent';
+import LogoutComponent from './LogoutComponent'
 
 
 async function fetchTodos(token) {
@@ -176,13 +177,7 @@ export default function App() {
         }
     }
 
-    async function logout() {
-        // Remove token from local storage
-        localStorage.removeItem('TOKEN');
 
-        // Redirect user to login page using useNavigate
-        navigate('/');
-    }
 
     return (
         <div>
@@ -190,7 +185,7 @@ export default function App() {
                 addTodo={addTodo}
                 toggleTodo={toggleTodo}
                 deleteTodo={deleteTodo} ></HomeComponent>
-            <button onClick={logout}>Logout</button>
+            <LogoutComponent></LogoutComponent>
         </div>
 
     )

@@ -15,7 +15,7 @@ export default function Logout() {
     return (
 
 
-        <button type="button" onClick={logout}>Logi välja</button>
+        <button type="button" onClick={logout} className={styles.logoutButton}>Logi välja</button>
     )
 
 }
