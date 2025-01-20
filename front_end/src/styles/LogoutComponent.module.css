@@ -16,7 +16,7 @@
     font-size: smaller;
     margin: 2px;
     width: auto;
-    min-width: 40px;
+    min-width: 30px;
     /* Reduced min-width */
     font-weight: normal;
     /* Reduced font weight */
@@ -30,12 +30,11 @@
         /* Reduced width for larger screens */
     }
 }
-
 @media (max-width: 767px) {
 
-    /* Added mobile media query */
     .logoutButton {
-        margin-right: 10px;
-        /* Added margin for better spacing */
+            margin-right: 5px;
+            padding: 0.15em 0.1em;
+            /* Slightly reduced padding for mobile */
+        }
     }
-}
