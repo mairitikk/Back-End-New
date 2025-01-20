@@ -1,16 +1,13 @@
-/* eslint-disable no-unused-vars */
-
-import React, { useState } from 'react';
-
+import { useState } from 'react';
 import styles from './styles/RegistrationComponent.module.css';
 import { useNavigate } from 'react-router-dom';
 
 function RegistrationForm() {
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    password: '',
-    repeatPassword: '',
+    password: ''
   });
 
   const [errors, setErrors] = useState({}); // Object to store field-specific errors
@@ -79,6 +76,11 @@ function RegistrationForm() {
     if (Object.keys(errors).length === 0) {
       try {
         // Fetch with potential authorization header
+        const formData = {
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+        };
         const response = await fetch('http://localhost:3000/api/user/register', {
           method: 'POST',
           headers: {
