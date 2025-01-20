@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import HomeComponent from './HomeComponent';
-import LogoutComponent from './LogoutComponent'
+import LogoutComponent from './LogoutComponent';
+
 
 
 async function fetchTodos(token) {
@@ -181,12 +182,21 @@ export default function App() {
 
     return (
         <div>
+
+
+            <LogoutComponent></LogoutComponent>
+
+
             <HomeComponent todos={todos}
                 addTodo={addTodo}
                 toggleTodo={toggleTodo}
-                deleteTodo={deleteTodo} ></HomeComponent>
-            <LogoutComponent></LogoutComponent>
+                deleteTodo={deleteTodo} >
+            </HomeComponent>
+
+
+
         </div>
+
 
     )
 

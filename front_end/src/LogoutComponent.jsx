@@ -14,8 +14,10 @@ export default function Logout() {
 
     return (
 
+        <div className={styles.logoutContainer}>
+            <button type="button" onClick={logout} className={styles.logoutButton}>Logi välja</button>
+        </div>
 
-        <button type="button" onClick={logout} className={styles.logoutButton}>Logi välja</button>
     )
 
 }
