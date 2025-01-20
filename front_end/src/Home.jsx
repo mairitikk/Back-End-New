@@ -190,6 +190,7 @@ export default function App() {
                 addTodo={addTodo}
                 toggleTodo={toggleTodo}
                 deleteTodo={deleteTodo} ></HomeComponent>
+            <button onClick={logout}>Logout</button>
         </div>
 
     )
