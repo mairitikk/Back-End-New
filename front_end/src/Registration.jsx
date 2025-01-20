@@ -10,6 +10,8 @@ function RegistrationForm() {
     password: ''
   });
 
+  const [repeatPassword] = useState();
+
   const [errors, setErrors] = useState({}); // Object to store field-specific errors
 
   const handleChange = (event) => {
@@ -29,11 +31,13 @@ function RegistrationForm() {
 
     switch (fieldName) {
       case 'name':
+        newErrors.name = "";
         if (!fieldValue) {
           newErrors.name = 'Name is required.';
         }
         break;
       case 'email':
+        newErrors.email = "";
         if (!fieldValue) {
           newErrors.email = 'Email is required.';
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fieldValue)) {
@@ -41,16 +45,20 @@ function RegistrationForm() {
         }
         break;
       case 'password':
+        newErrors.password = "";
         if (!fieldValue) {
           newErrors.password = 'Password is required.';
-        } else if (fieldValue.length < 6) {
-          newErrors.password = 'Password must be at least 6 characters long.';
+        } else {
+          if (fieldValue.length < 6) {
+            newErrors.password = 'Password must be at least 6 characters long.';
+          }
         }
         break;
       case 'repeatPassword':
+        newErrors.repeatPassword = "";
         if (!fieldValue) {
           newErrors.repeatPassword = 'Repeat password is required.';
-        } else if (fieldValue !== fieldValue) { // Use the current fieldValue
+        } else if (fieldValue !== formData.password) { // Use the current fieldValue
           newErrors.repeatPassword = 'Passwords do not match.';
         }
         break;
@@ -65,22 +73,11 @@ function RegistrationForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Validate all fields before submission
-    const allErrors = validateField('name', formData.name);
-    allErrors.email = validateField('email', formData.email).email;
-    allErrors.password = validateField('password', formData.password).password;
-    allErrors.repeatPassword = validateField('repeatPassword', formData.repeatPassword).repeatPassword;
-    setErrors({ ...errors, ...allErrors }); // Update errors object
-
     // Submit form only if there are no errors
-    if (Object.keys(errors).length === 0) {
+    if (errors.email == "" && errors.password == "" && errors.name == "" && errors.repeatPassword == "") {
+
       try {
-        // Fetch with potential authorization header
-        const formData = {
-          name: formData.name,
-          email: formData.email,
-          password: formData.password,
-        };
+
         const response = await fetch('http://localhost:3000/api/user/register', {
           method: 'POST',
           headers: {
@@ -89,12 +86,14 @@ function RegistrationForm() {
           },
           body: JSON.stringify(formData),
 
-        }); console.log('Form data:', formData);
+        });
+
+        console.log('Form data:', formData);
 
         if (response.ok) {
           console.log('Registration successful!');
           // Show success message to user (consider clearing form or redirecting)
-          setFormData({ name: '', email: '', password: '' }); // Clear form data
+          navigate('/');
         } else {
           console.error('Registration failed:', await response.text());
           // Display error message to user (e.g., set appropriate errors state)
@@ -105,9 +104,9 @@ function RegistrationForm() {
       }
     }
   };
-  const handleRegisterClick = () => {
-    navigate('/home');
-  };
+
+
+
 
   return (
     <div className={styles.container}>
@@ -175,14 +174,14 @@ function RegistrationForm() {
                 type="password"
                 id="repeatPassword"
                 name="repeatPassword"
-                value={formData.repeatPassword}
+                value={repeatPassword}
                 onChange={handleChange}
               />
               {errors.repeatPassword && <p className={styles.error}>{errors.repeatPassword}</p>}
             </div>
           </div>
           <div className={styles.registrationButtonDirection}>
-            <button type="submit" className={styles.registrationButton} onClick={handleRegisterClick}>
+            <button type="submit" className={styles.registrationButton}>
               Registreeri
             </button>
           </div>
