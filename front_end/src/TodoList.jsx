@@ -3,8 +3,10 @@ import styles from "./styles/HomeComponent.module.css"
 import { TodoItem } from "./TodoItem"
 
 export function TodoList({ todos, toggleTodo, deleteTodo }) {
-  return (
 
+
+
+  return (
 
     <ul className={styles.list}>
       {todos.length === 0 && "Pole ülessandeid"}
