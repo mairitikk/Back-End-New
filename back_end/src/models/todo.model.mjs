@@ -5,9 +5,9 @@ const selectAllTodos = async () => {
     return rows;
 };
 
-const insertTodo = async ({ title }) => {
+const insertTodo = async ({ title, user_id }) => {
     try {
-        const [result] = await db.query('INSERT INTO todo(title, completed) VALUES (?,false)', [title]);
+        const [result] = await db.query('INSERT INTO todo(title, completed, user_id) VALUES (?,false, ?)', [title, user_id]);
         const insertId = result.insertId;
         return insertId;
     } catch (error) {
