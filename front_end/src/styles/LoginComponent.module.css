@@ -1,8 +1,32 @@
 .container {
-  display: grid;
-  justify-content: center; /* Center items horizontally */
-  align-items: center;   /* Center items vertically */
-  min-height: 100vh;
+    display: grid;
+    place-items: center;
+    /* Center both horizontally and vertically */
+    min-height: 100vh;
+}
+
+@media (max-width: 768px) {
+
+    /* Adjust breakpoint as needed */
+    .container {
+        display: flex;
+        flex-direction: column-reverse;
+        /* Align items to the end (right) */
+        align-items: flex-end;
+    }
+
+    .loginContainer {
+        width: 90%;
+        margin-top: 20px;
+        margin-right: 20px;
+        /* Add margin to push the form to the right */
+    }
+
+    .logTitel {
+        margin-left: 0;
+        text-align: right;
+        /* Align title to the right */
+    }
 }
 .logTitel{
     margin-left: 65px;
