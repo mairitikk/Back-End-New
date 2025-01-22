@@ -101,3 +101,14 @@
   justify-content: flex-end;
   /* Align elements to the right */
 }
+@media (max-width: 767px) {
+
+  /* Adjust breakpoint as needed */
+  .registrationButtonDirection {
+    display: flex;
+    justify-content: flex-start;
+    /* Align to the left */
+    margin-top: 15px;
+    /* Add some space above the button */
+  }
+}
