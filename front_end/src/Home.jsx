@@ -142,11 +142,17 @@ export default function App() {
 
 
     function addTodo(title) {
-        const newTodo = { id: crypto.randomUUID(), title, completed: false };
+        const userId = localStorage.getItem('userId'); // Assuming you're storing userId in localStorage
+
+        if (!userId) {
+            // Handle missing userId (e.g., redirect to login)
+            return;
+        }
+        const newTodo = { id: crypto.randomUUID(), title, completed: false, user_id: userId };
 
         setTodos(currentTodos => [...currentTodos, newTodo]);
 
-        insertTodo(newTodo)
+        insertTodo({ title, user_id: userId })
             .then(responseTodo => {
                 console.log("New todo created:", responseTodo);
             })
@@ -182,7 +188,6 @@ export default function App() {
 
     return (
         <div>
-
 
             <LogoutComponent></LogoutComponent>
 
