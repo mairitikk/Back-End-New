@@ -7,16 +7,13 @@ import LogoutComponent from './LogoutComponent';
 
 async function fetchTodos(token) {
     try {
-        const headers = {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        };
-        console.log("Authorization header:", headers); // Log the actual headers object
-
         const response = await fetch('http://localhost:3000/api/todo/', {
-            headers: headers
+            headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+            }
         });
-
+        console.log("Authorization header:", `Bearer ${token}`);
         if (!response.ok) throw new Error(`Failed to fetch todos: ${response.status}`);
         return await response.json();
     } catch (error) {

@@ -2,8 +2,14 @@ import db from '../config/db.mjs';
 
 const selectAllTodos = async ({ user_id }) => {
     console.log('Executing selectAllTodos with user_id:', user_id);
-    const [rows] = await db.query('SELECT * FROM todo WHERE user_id = ?', [user_id]);
-    return rows;
+    try {
+        const [rows] = await db.query('SELECT id, title, completed, user_id FROM todo WHERE user_id = ?', [user_id]);
+        console.log('Retrieved rows:', rows); // Log the retrieved rows
+        return rows;
+    } catch (error) {
+        console.error('Error fetching todos:', error);
+        throw error;
+    }
 };
 
 const insertTodo = async ({ title, user_id }) => {
