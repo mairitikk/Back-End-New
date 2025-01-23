@@ -3,7 +3,8 @@ import TodoModel from '../models/todo.model.mjs';
 // GET /api/todos
 const getAllTodos = async (req, res) => {
     try {
-        const userId = req.user.id;
+        const userId = req.userId;
+
         const result = await TodoModel.selectAllTodos(userId);
         res.json(result);
     } catch (error) {
@@ -14,8 +15,8 @@ const getAllTodos = async (req, res) => {
 
 const createTodo = async (req, res) => {
     try {
-        console.log('Received request to get all todos for user:', req.user.id);
-        const userId = req.user.id;
+        console.log('Received request to get all todos for user:', req.userId);
+        const userId = req.userId;
         const todoData = { title: req.body.title, user_id: userId };
         const newTodoId = await TodoModel.insertTodo(todoData);
         res.status(201).json({ id: newTodoId }); // Send the inserted ID as a response

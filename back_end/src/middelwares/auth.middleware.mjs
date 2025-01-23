@@ -4,6 +4,7 @@ const secret = process.env.JWT_SECRET;
 
 async function checkToken(req, res, next) {
     try {
+        console.log('Checking token...');
         const authHeader = req.headers.authorization;
         console.log('Authorization header:', authHeader);
 
