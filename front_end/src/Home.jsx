@@ -12,6 +12,7 @@ async function fetchTodos(token) {
                 'Authorization': `Bearer ${token}`
             }
         });
+        console.log("Authorization header:", `Bearer ${token}`);
         if (!response.ok) throw new Error(`Failed to fetch todos: ${response.status}`);
         return await response.json();
     } catch (error) {
@@ -30,6 +31,7 @@ export default function App() {
 
         // Check for local storage data
         const tokenValue = localStorage.getItem("TOKEN");
+        console.log("Token retrieved from localStorage:", tokenValue);
         if (!tokenValue) {
             return navigate('/');
         }

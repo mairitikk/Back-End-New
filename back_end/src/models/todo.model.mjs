@@ -1,6 +1,7 @@
 import db from '../config/db.mjs';
 
 const selectAllTodos = async ({ user_id }) => {
+    console.log('Executing selectAllTodos with user_id:', user_id);
     const [rows] = await db.query('SELECT * FROM todo WHERE user_id = ?', [user_id]);
     return rows;
 };

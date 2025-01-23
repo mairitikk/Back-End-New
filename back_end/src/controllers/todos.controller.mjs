@@ -13,6 +13,7 @@ const getAllTodos = async (req, res) => {
 
 const createTodo = async (req, res) => {
     try {
+        console.log('Received request to get all todos for user:', req.user.id);
         const userId = req.user.id;
         const todoData = { title: req.body.title, user_id: userId };
         const newTodoId = await TodoModel.insertTodo(todoData);
