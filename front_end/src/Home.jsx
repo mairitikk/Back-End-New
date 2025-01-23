@@ -56,7 +56,7 @@ export default function App() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify(todoData)
+                body: JSON.stringify({ ...todoData, user_id: localStorage.getItem('userId') })
             });
 
             if (!response.ok) {
