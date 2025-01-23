@@ -15,8 +15,8 @@ async function checkToken(req, res, next) {
         const decoded = jwt.verify(token, secret);
 
         // Check if userId exists in the decoded payload
-        if (!decoded.userId) {
-            return res.status(401).json({ message: 'Unauthorized: Invalid token payload' });
+        if (!decoded.userId || decoded.userId === '') {
+            return res.status(401).json({ message: 'Unauthorized: Invalid token payload (missing or empty userId)' });
         }
 
         req.userId = decoded.userId;

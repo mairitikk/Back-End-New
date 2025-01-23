@@ -7,7 +7,8 @@ const getAllTodos = async (req, res) => {
         const result = await TodoModel.selectAllTodos(userId);
         res.json(result);
     } catch (error) {
-        res.status(500).json({ error: 'Failed to retrieve todos', details: error.message })
+        console.error(error).
+            res.status(500).json({ error: 'Failed to retrieve todos', details: error.message })
     }
 };
 
