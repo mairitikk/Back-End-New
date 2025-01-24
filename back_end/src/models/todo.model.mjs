@@ -32,9 +32,9 @@ const updateTodo = async (id, { title, completed, user_id }) => {
         throw error;
     }
 };
-const deleteTodo = async (id) => {
+const deleteTodo = async (id, user_id) => {
     try {
-        const [result] = await db.query('DELETE FROM todo WHERE id = ?', [id]);
+        const [result] = await db.query('DELETE FROM todo WHERE id = ? AND user_id = ?', [id, user_id]);
         return result.affectedRows > 0;
     } catch (error) {
         console.error('Error deleting todo:', error);
