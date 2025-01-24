@@ -110,13 +110,14 @@ export default function App() {
             return navigate('/');
         }
         try {
+            const userId = localStorage.getItem('userId');
             const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ completed, title }) // Only send the updated completed state
+                body: JSON.stringify({ completed, title, user_id: userId }) // Only send the updated completed state
             });
 
             if (!response.ok) {
