@@ -75,7 +75,6 @@ export default function App() {
     };
 
 
-
     async function deleteTodo(id) {
         try {
 
