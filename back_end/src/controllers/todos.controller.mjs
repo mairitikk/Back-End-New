@@ -28,11 +28,10 @@ const createTodo = async (req, res) => {
 
 const updateTodo = async (req, res) => {
     try {
+        const userId = req.userId;
         const { todoId } = req.params;
-        const { title, completed } = req.body;
-        const todoData = { title, completed };
-
-        await TodoModel.updateTodo(todoId, todoData); // Update the completed state in the database
+        const todoData = { title: req.body.title, completed: req.body.completed, user_id: userId };
+        await TodoModel.updateTodo(todoId, todoData);
 
         res.json({ message: 'Todo updated successfully' });
     } catch (error) {
