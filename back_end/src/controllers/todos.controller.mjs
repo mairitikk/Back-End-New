@@ -30,10 +30,15 @@ const updateTodo = async (req, res) => {
     try {
         const userId = req.userId;
         const { todoId } = req.params;
-        const todoData = { title: req.body.title, completed: req.body.completed }; // Extract the completed state from the request body
+        const todoData = { title: req.body.title, completed: req.body.completed, user_id: userId };
 
-        await TodoModel.updateTodo(todoId, todoData); // Update the completed state in the database
+        // Check if the todo belongs to the current user
+        const todo = await TodoModel.getTodoById(todoId);
+        if (!todo || todo.user_id !== userId) {
+            return res.status(403).json({ error: 'Forbidden: You can only update your own todos.' });
+        }
 
+        await TodoModel.updateTodo(todoId, todoData);
         res.json({ message: 'Todo updated successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
