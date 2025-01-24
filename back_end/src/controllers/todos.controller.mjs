@@ -29,7 +29,6 @@ const createTodo = async (req, res) => {
 const updateTodo = async (req, res) => {
     try {
         const { todoId } = req.params;
-
         const { title, completed } = req.body;
         const todoData = { title, completed };
 
