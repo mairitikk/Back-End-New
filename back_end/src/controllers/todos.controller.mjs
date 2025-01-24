@@ -28,6 +28,7 @@ const createTodo = async (req, res) => {
 
 const updateTodo = async (req, res) => {
     try {
+        const userId = req.userId;
         const { todoId } = req.params;
         const todoData = { title: req.body.title, completed: req.body.completed }; // Extract the completed state from the request body
 
