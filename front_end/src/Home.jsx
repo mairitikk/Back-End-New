@@ -13,7 +13,7 @@ async function fetchTodos(token) {
                 'Content-Type': 'application/json'
             }
         });
-        console.log("Authorization header:", `Bearer ${token}`);
+
         if (!response.ok) throw new Error(`Failed to fetch todos: ${response.status}`);
         return await response.json();
     } catch (error) {
@@ -27,6 +27,7 @@ export default function App() {
     const navigate = useNavigate();
 
     const [todos, setTodos] = useState([]);
+    const [userId, setUserId] = useState(null);
 
     useEffect(() => {
 
@@ -43,6 +44,13 @@ export default function App() {
         };
 
         fetchData();
+    }, []);
+
+    useEffect(() => {
+        const storedUserId = localStorage.getItem('userId');
+        if (storedUserId) {
+            setUserId(storedUserId);
+        }
     }, []);
 
 
@@ -147,7 +155,7 @@ export default function App() {
 
     function addTodo(title) {
         const userId = localStorage.getItem('userId'); // Assuming you're storing userId in localStorage
-
+        console.log(localStorage.getItem('userId'));
         if (!userId) {
             // Handle missing userId (e.g., redirect to login)
             return;
