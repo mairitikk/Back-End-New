@@ -41,10 +41,17 @@ const updateTodo = async (req, res) => {
 
 const deleteTodo = async (req, res) => {
     try {
+        const userId = req.userId;
         const { todoId } = req.params;
-        await TodoModel.deleteTodo(todoId);
-        res.status(200).json({ message: 'Todo deleted successfully' }); // Send a success message
 
+        // Check if the todo belongs to the current user
+        const todo = await TodoModel.getTodoById(todoId);
+        if (!todo || todo.user_id !== userId) {
+            return res.status(403).json({ error: 'Forbidden: You can only delete your own todos.' });
+        }
+
+        await TodoModel.deleteTodo(todoId, userId); // Pass userId to the model
+        res.status(200).json({ message: 'Todo deleted successfully' });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
