@@ -60,8 +60,9 @@ export default function App() {
                     'Authorization': `Bearer ${token}`
                 },
                 body: JSON.stringify({ ...todoData, user_id: localStorage.getItem('userId') })
-            });
 
+            });
+            console.log(response)
             if (!response.ok) {
                 throw new Error(`Failed to insert todo: ${response.status}`);
             }
