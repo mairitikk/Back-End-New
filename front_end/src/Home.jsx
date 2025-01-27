@@ -27,7 +27,7 @@ export default function App() {
     const navigate = useNavigate();
 
     const [todos, setTodos] = useState([]);
-    const [userId, setUserId] = useState(null);
+
 
     useEffect(() => {
 
@@ -44,13 +44,6 @@ export default function App() {
         };
 
         fetchData();
-    }, []);
-
-    useEffect(() => {
-        const storedUserId = localStorage.getItem('userId');
-        if (storedUserId) {
-            setUserId(storedUserId);
-        }
     }, []);
 
 

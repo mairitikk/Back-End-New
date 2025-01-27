@@ -1,7 +1,7 @@
 import db from '../config/db.mjs';
 
 const selectAllTodos = async (user_id) => {
-    console.log('Executing selectAllTodos with user_id:', user_id);
+
     try {
         const [rows] = await db.query('SELECT id, title, completed, user_id FROM todo WHERE user_id = ?', [user_id]);
         console.log('Retrieved rows:', rows); // Log the retrieved rows
@@ -12,7 +12,8 @@ const selectAllTodos = async (user_id) => {
     }
 };
 
-const insertTodo = async ({ title, user_id }) => {
+const insertTodo = async (title, user_id) => {
+    console.log('Executing selectAllTodos with user_id:', user_id, title);
     try {
         const [result] = await db.query('INSERT INTO todo(title, completed, user_id) VALUES (?,false, ?)', [title, user_id]);
         const insertId = result.insertId;
