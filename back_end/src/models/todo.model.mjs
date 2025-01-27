@@ -12,12 +12,17 @@ const selectAllTodos = async (user_id) => {
     }
 };
 
-const insertTodo = async (title, user_id) => {
+const insertTodo = async ({ title, completed = false, user_id }) => {
     console.log('Executing selectAllTodos with user_id:', user_id, title);
     try {
-        const [result] = await db.query('INSERT INTO todo(title, completed, user_id) VALUES (?,false, ?)', [title, user_id]);
-        const insertId = result.insertId;
-        return insertId;
+        const [result] = await db.query('INSERT INTO todo(title, completed, user_id) VALUES (?,false, ?)', [title, user_id, completed]);
+        // Check if `result` and `insertId` exist before accessing them
+        if (result && result.insertId) {
+            const insertId = result.insertId;
+            return insertId;
+        } else {
+            throw new Error('No insertId returned from database query');
+        }
     } catch (error) {
         console.error('Error inserting todo:', error);
         throw error;
