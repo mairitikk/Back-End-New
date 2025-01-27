@@ -13,7 +13,7 @@ const selectAllTodos = async (user_id) => {
 };
 
 const insertTodo = async ({ title, completed = false, user_id }) => {
-    console.log('Executing selectAllTodos with user_id:', user_id, title);
+    console.log('Executing selectAllTodos with user_id:', user_id, title, completed);
     try {
         const [result] = await db.query('INSERT INTO todo(title, completed, user_id) VALUES (?,false, ?)', [title, user_id, completed]);
         // Check if `result` and `insertId` exist before accessing them

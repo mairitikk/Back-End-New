@@ -19,7 +19,7 @@ const createTodo = async (req, res) => {
         const userId = req.userId;
 
         const title = req.body.title;
-        const newTodoId = await TodoModel.insertTodo(title, userId);
+        const newTodoId = await TodoModel.insertTodo({ title, completed: false, user_id: userId });
         res.status(201).json({ id: newTodoId }); // Send the inserted ID as a response
     } catch (error) {
         console.error(error);
