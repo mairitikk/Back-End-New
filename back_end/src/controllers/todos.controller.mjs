@@ -15,13 +15,12 @@ const getAllTodos = async (req, res) => {
 
 const createTodo = async (req, res) => {
     try {
-
         const userId = req.userId;
-        const { todoId } = req.params;
+        const { title } = req.body;
+        const newTodoData = { title, completed: false, user_id: userId };
 
-        const title = req.body.title;
-        const newTodoId = await TodoModel.insertTodo({ title, completed: false, user_id: userId });
-        res.status(201).json({ id: newTodoId }); // Send the inserted ID as a response
+        const newTodoId = await TodoModel.insertTodo(newTodoData);
+        res.status(201).json({ id: newTodoId });
 
     } catch (error) {
         console.error(error);

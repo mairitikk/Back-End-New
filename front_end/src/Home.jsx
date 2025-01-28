@@ -86,35 +86,35 @@ export default function App() {
         }
     };
 
-
     async function deleteTodo(id) {
         try {
-
             const token = localStorage.getItem("TOKEN");
             if (!token) {
                 return navigate('/');
             }
-
+            const userId = localStorage.getItem('userId');
             const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
-                }
+                },
+                body: JSON.stringify({ user_id: userId })
             });
-
 
             if (!response.ok) {
                 throw new Error(`Failed to delete todo: ${response.status}`);
             }
 
             setTodos(currentTodos => currentTodos.filter(todo => todo.id !== id));
-
             console.log("Todo deleted successfully!");
         } catch (error) {
             console.error("Error deleting todo:", error);
+            // Inform user about the error
+            alert("Failed to delete todo. Please try again later.");
         }
     }
+
 
     async function updateTodo(id, completed, title) {
         const token = localStorage.getItem("TOKEN");
@@ -157,17 +157,17 @@ export default function App() {
 
 
     function addTodo(title) {
-        const userId = localStorage.getItem('userId'); // Assuming you're storing userId in localStorage
+
 
         if (!userId) {
             // Handle missing userId (e.g., redirect to login)
             return;
         }
-        const newTodo = { id: crypto.randomUUID(), title, completed: false, user_id: userId };
+        const newTodo = { id: crypto.randomUUID(), title, completed: false };
 
         setTodos(currentTodos => [...currentTodos, newTodo]);
 
-        insertTodo({ title, user_id: userId })
+        insertTodo({ title })
             .then(responseTodo => {
                 console.log("New todo created:", responseTodo);
             })
