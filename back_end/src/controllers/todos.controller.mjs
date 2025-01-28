@@ -43,13 +43,11 @@ const updateTodo = async (req, res) => {
 
 const deleteTodo = async (req, res) => {
     try {
-        const userId = req.userId;
-        const { todoId } = req.params;
-        const todoData = { title: req.body.title, completed: req.body.completed, user_id: userId };
 
-        // Check if the todo belongs to the current user
-        await TodoModel.deleteTodo(todoId, todoData);
-        res.json({ message: 'Todo updated successfully' });
+        const { todoId } = req.params;
+
+        await TodoModel.deleteTodo(todoId);
+        res.status(200).json({ message: 'Todo deleted successfully' });
 
     } catch (error) {
         res.status(500).json({ error: error.message });

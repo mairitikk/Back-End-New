@@ -73,7 +73,7 @@ export default function App() {
                 body: JSON.stringify({ title })
 
             });
-            console.log(response)
+
             if (!response.ok) {
                 throw new Error(`Failed to insert todo: ${response.status}`);
             }
@@ -86,10 +86,10 @@ export default function App() {
         }
     };
 
-    async function deleteTodo(id, completed, title, userId) {
+    async function deleteTodo(id) {
         try {
             const token = localStorage.getItem("TOKEN");
-            console.log("TOKEN");
+            console.log(token);
             if (!token) {
                 return navigate('/'); // Redirect if no token found
             }
@@ -99,9 +99,9 @@ export default function App() {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}` // Include token in authorization header
-                },
-                body: JSON.stringify({ completed, title, user_id: userId })
+                }
             });
+            console.log(response)
 
             if (!response.ok) {
                 throw new Error(`Failed to delete todo: ${response.status}`);
@@ -109,6 +109,7 @@ export default function App() {
 
             setTodos(currentTodos => currentTodos.filter(todo => todo.id !== id));
             console.log("Todo deleted successfully!");
+            console.log(setTodos)
         } catch (error) {
             console.error("Error deleting todo:", error);
             // Inform user about the error
