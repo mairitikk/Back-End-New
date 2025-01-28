@@ -40,15 +40,15 @@ const updateTodo = async (id, { title, completed = false, user_id }) => {
         throw error;
     }
 };
-const deleteTodo = async (id, user_id) => {
+const deleteTodo = async (id) => {
     try {
         const [result] = await db.query(
-            'DELETE FROM todo WHERE id = ? AND user_id = ?',
-            [id, user_id]
+            'DELETE FROM todo WHERE id = ?',
+            [id]
         );
 
         if (result.affectedRows === 0) {
-            throw new Error('Todo not found or does not belong to the user.');
+            throw new Error('Todo not found');
         }
 
         return true;
