@@ -16,11 +16,14 @@ const getAllTodos = async (req, res) => {
 const createTodo = async (req, res) => {
     try {
         const userId = req.userId;
-        const { title } = req.body;
-        const newTodoData = { title, completed: false, user_id: userId };
+
+        console.log(req.body)
+
+        const newTodoData = { title: req.body.title, completed: false, user_id: userId };
 
         const newTodoId = await TodoModel.insertTodo(newTodoData);
         res.status(201).json({ id: newTodoId });
+        console.log(newTodoId)
 
     } catch (error) {
         console.error(error);

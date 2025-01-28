@@ -16,7 +16,7 @@ const insertTodo = async ({ title, completed = false, user_id }) => {
 
     try {
         const [result] = await db.query('INSERT INTO todo(title, completed, user_id) VALUES (?,false, ?)', [title, user_id, completed]);
-        console.log('Inserted row:', result); // Log the inserted row
+
         // Check if `result` and `insertId` exist before accessing them
         if (result && result.insertId) {
             const insertId = result.insertId;

@@ -28,41 +28,31 @@ export default function App() {
 
     const [todos, setTodos] = useState([]);
 
-    const [userId, setUserId] = useState(null);
-
-    useEffect(() => {
+    const fetchData = async () => {
 
         // Check for local storage data
         const tokenValue = localStorage.getItem("TOKEN");
-        console.log("Token retrieved from localStorage:", tokenValue);
+        //console.log("Token retrieved from localStorage:", tokenValue);
         if (!tokenValue) {
             return navigate('/');
         }
 
-        const fetchData = async () => {
-            const fetchedTodos = await fetchTodos(tokenValue);
-            setTodos(fetchedTodos);
-        };
+        const fetchedTodos = await fetchTodos(tokenValue);
+        setTodos(fetchedTodos);
+    };
 
+    useEffect(() => {
         fetchData();
     }, []);
-    useEffect(() => {
-        const storedUserId = localStorage.getItem('userId');
-        if (storedUserId) {
-            setUserId(storedUserId);
-        }
-    }, []);
-
-
-
 
 
     const insertTodo = async (title) => {
         try {
             const token = localStorage.getItem("TOKEN");
+            console.log("Retrieved token:", token);
             if (!token) {
                 return navigate('/');
-            }
+            };
 
             const response = await fetch('http://localhost:3000/api/todo/', {
                 method: 'POST',
@@ -79,6 +69,9 @@ export default function App() {
             }
 
             const newTodo = await response.json();
+
+            fetchData();
+
             return newTodo;
         } catch (error) {
             console.error('Error inserting todo:', error);
@@ -157,29 +150,6 @@ export default function App() {
     }
 
 
-
-    function addTodo(title) {
-
-
-        if (!userId) {
-            // Handle missing userId (e.g., redirect to login)
-            return;
-        }
-        const newTodo = { id: crypto.randomUUID(), title, completed: false };
-
-        setTodos(currentTodos => [...currentTodos, newTodo]);
-
-        insertTodo({ title })
-            .then(responseTodo => {
-                console.log("New todo created:", responseTodo);
-            })
-            .catch(error => {
-                console.error("Error creating todo:", error);
-            });
-    }
-
-
-
     function toggleTodo(id, completed) {
         const currentTodo = todos.find(todo => todo.id === id);
 
@@ -200,8 +170,6 @@ export default function App() {
         }
     }
 
-
-
     return (
         <div>
 
@@ -209,7 +177,7 @@ export default function App() {
 
 
             <HomeComponent todos={todos}
-                addTodo={addTodo}
+                addTodo={insertTodo}
                 toggleTodo={toggleTodo}
                 deleteTodo={deleteTodo} >
             </HomeComponent>

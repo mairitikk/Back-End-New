@@ -26,9 +26,12 @@ export function NewTodoForm({ onSubmit }) {
           onChange={(e) => setNewItem(e.target.value)}
           type="text"
           id="item"
+
         />
       </div>
+
       <button className={styles.addTodoBtn}>Lisa</button>
+
     </form>
   );
 }

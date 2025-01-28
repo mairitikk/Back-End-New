@@ -13,6 +13,7 @@ export function TodoItem({ completed, id, title, toggleTodo, deleteTodo }) {
           onChange={e => toggleTodo(id, e.target.checked)} // Pass updated completed state (true)
         />
         {title}
+
       </label>
       <button onClick={() => deleteTodo(id)} className={styles.btnDelete}>
         <img src="/src/assets/cross.png" title="delete button" alt="" />
