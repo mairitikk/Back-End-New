@@ -86,20 +86,21 @@ export default function App() {
         }
     };
 
-    async function deleteTodo(id) {
+    async function deleteTodo(id, completed, title, userId) {
         try {
             const token = localStorage.getItem("TOKEN");
+            console.log("TOKEN");
             if (!token) {
-                return navigate('/');
+                return navigate('/'); // Redirect if no token found
             }
-            const userId = localStorage.getItem('userId');
+
             const response = await fetch(`http://localhost:3000/api/todo/${id}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
+                    'Authorization': `Bearer ${token}` // Include token in authorization header
                 },
-                body: JSON.stringify({ user_id: userId })
+                body: JSON.stringify({ completed, title, user_id: userId })
             });
 
             if (!response.ok) {
