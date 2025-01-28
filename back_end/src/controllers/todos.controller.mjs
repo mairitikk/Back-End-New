@@ -15,12 +15,14 @@ const getAllTodos = async (req, res) => {
 
 const createTodo = async (req, res) => {
     try {
-        console.log("tere");
+
         const userId = req.userId;
+        const { todoId } = req.params;
 
         const title = req.body.title;
         const newTodoId = await TodoModel.insertTodo({ title, completed: false, user_id: userId });
         res.status(201).json({ id: newTodoId }); // Send the inserted ID as a response
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Failed to create todo' });

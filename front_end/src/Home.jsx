@@ -28,6 +28,7 @@ export default function App() {
 
     const [todos, setTodos] = useState([]);
 
+    const [userId, setUserId] = useState(null);
 
     useEffect(() => {
 
@@ -45,9 +46,18 @@ export default function App() {
 
         fetchData();
     }, []);
+    useEffect(() => {
+        const storedUserId = localStorage.getItem('userId');
+        if (storedUserId) {
+            setUserId(storedUserId);
+        }
+    }, []);
 
 
-    const insertTodo = async (todoData) => {
+
+
+
+    const insertTodo = async (title) => {
         try {
             const token = localStorage.getItem("TOKEN");
             if (!token) {
@@ -60,7 +70,7 @@ export default function App() {
                     'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token}`
                 },
-                body: JSON.stringify({ ...todoData, user_id: localStorage.getItem('userId') })
+                body: JSON.stringify({ title })
 
             });
             console.log(response)
@@ -148,7 +158,7 @@ export default function App() {
 
     function addTodo(title) {
         const userId = localStorage.getItem('userId'); // Assuming you're storing userId in localStorage
-        console.log(localStorage.getItem('userId'));
+
         if (!userId) {
             // Handle missing userId (e.g., redirect to login)
             return;

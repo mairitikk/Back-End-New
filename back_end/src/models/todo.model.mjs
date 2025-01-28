@@ -4,7 +4,7 @@ const selectAllTodos = async (user_id) => {
 
     try {
         const [rows] = await db.query('SELECT id, title, completed, user_id FROM todo WHERE user_id = ?', [user_id]);
-        console.log('Retrieved rows:', rows); // Log the retrieved rows
+
         return rows;
     } catch (error) {
         console.error('Error fetching todos:', error);
@@ -13,9 +13,10 @@ const selectAllTodos = async (user_id) => {
 };
 
 const insertTodo = async ({ title, completed = false, user_id }) => {
-    console.log('Executing selectAllTodos with user_id:', user_id, title, completed);
+
     try {
         const [result] = await db.query('INSERT INTO todo(title, completed, user_id) VALUES (?,false, ?)', [title, user_id, completed]);
+        console.log('Inserted row:', result); // Log the inserted row
         // Check if `result` and `insertId` exist before accessing them
         if (result && result.insertId) {
             const insertId = result.insertId;
@@ -30,7 +31,7 @@ const insertTodo = async ({ title, completed = false, user_id }) => {
 };
 
 const updateTodo = async (id, { title, completed = false, user_id }) => {
-    console.log('Executing selectAllTodos with user_id:', user_id);
+
     try {
         const [result] = await db.query('UPDATE todo SET title = ?, completed = ? WHERE id = ? AND user_id = ?', [title, completed, id, user_id]);
         return result.affectedRows > 0;
