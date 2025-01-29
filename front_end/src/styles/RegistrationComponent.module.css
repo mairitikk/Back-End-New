@@ -73,11 +73,11 @@
 
 .registrationButton {
   display: block;
-width: 60%;
+width: 88%;
   background: #f5e3f4;
   border: 1px solid #d9b6d9;
   color: #cf4bcf;
-  padding: 12px 20px;
+  padding: 10px 20px;
   border-radius: 1.25em;
   cursor: pointer;
   outline: none;
@@ -91,7 +91,7 @@ width: 60%;
   color: #cf4bcf;
 }
 .registrationButtonDirection {
-  display: flex;
+
   justify-content: flex-end;
   /* Align elements to the right */
 }
