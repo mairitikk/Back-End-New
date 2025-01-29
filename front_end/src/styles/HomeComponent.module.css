@@ -22,7 +22,8 @@ body {
         /* Prevent the image from repeating */
         background-position: center;
         /* Center the image vertically and horizontally */
-        height: 100vh;
+        min-height: 100vh;
+        background-attachment: scroll;
 }
 
 .container {
