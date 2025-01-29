@@ -16,10 +16,8 @@
     }
 
     .loginContainer {
-        width: 90%;
-        margin-top: 20px;
-        margin-right: 20px;
-        /* Add margin to push the form to the right */
+        width: 100%;
+       
     }
 
     .logTitel {
@@ -46,8 +44,7 @@
     
 }
 .loginContainer {
-    width: 85%;
-    padding: 20px;
+    text-align: center;
 }
 
 .loginButton {

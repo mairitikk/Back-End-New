@@ -1,6 +1,7 @@
 import { useState } from "react";
 import styles from './styles/LoginComponent.module.css'
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 
 export default function Login() {
@@ -67,9 +68,7 @@ export default function Login() {
         }
     };
 
-    const handleRegisterClick = () => {
-        navigate('/register');
-    };
+
 
     return (
         <div className={styles.container}>
@@ -92,8 +91,12 @@ export default function Login() {
                     />
                     <div className={styles.buttonContainer}>
                         <button type="submit" className={styles.loginButton}>Sisene</button>
-                        <button type="button" className={styles.loginButton} onClick={handleRegisterClick}>Registreeri</button>
                     </div>
+                    <div>
+                        <p>Pole veel kasutajat?</p>
+                        <Link to="/register">Registreeri siin</Link>
+                    </div>
+
                 </div>
             </form>
         </div>
