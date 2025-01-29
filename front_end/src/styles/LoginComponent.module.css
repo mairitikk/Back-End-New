@@ -28,6 +28,7 @@
 }
 .logTitel{
     margin-left: 0px;
+    text-align: center;
 }
 
 .loginForm input {
@@ -65,9 +66,10 @@
 }
 
 .link{
-    text-decoration: none;
+    color: #cf4bcf;
 }
 .linkText{
     color: #cf4bcf;
    margin-bottom: 0;
+
 }
