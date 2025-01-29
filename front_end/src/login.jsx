@@ -90,8 +90,10 @@ export default function Login() {
                         onChange={(e) => setPassword(e.target.value)}
                         className={styles.passwordInput}
                     />
-                    <button type="submit" className={styles.loginButton}>Sisene</button>
-                    <button type="button" className={styles.loginButton} onClick={handleRegisterClick}>Registreeri</button>
+                    <div className={styles.buttonContainer}>
+                        <button type="submit" className={styles.loginButton}>Sisene</button>
+                        <button type="button" className={styles.loginButton} onClick={handleRegisterClick}>Registreeri</button>
+                    </div>
                 </div>
             </form>
         </div>
