@@ -15,10 +15,11 @@
     outline: none;
     font-size: smaller;
     margin: 2px;
+    padding: 6px;
     width: auto;
     min-width: 30px;
     /* Reduced min-width */
-    font-weight: normal;
+    font-weight: bold;
     /* Reduced font weight */
     text-align: center;
     /* Center text for better appearance */
@@ -34,7 +35,6 @@
 
     .logoutButton {
             margin-right: 5px;
-            padding: 0.15em 0.1em;
-            /* Slightly reduced padding for mobile */
+            
         }
     }
