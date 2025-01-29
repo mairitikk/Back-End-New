@@ -93,8 +93,8 @@ export default function Login() {
                         <button type="submit" className={styles.loginButton}>Sisene</button>
                     </div>
                     <div>
-                        <p>Pole veel kasutajat?</p>
-                        <Link to="/register">Registreeri siin</Link>
+                        <p className={styles.linkText}>Pole veel kasutajat?</p>
+                        <Link to="/register" className={styles.link}>Registreeri siin</Link>
                     </div>
 
                 </div>

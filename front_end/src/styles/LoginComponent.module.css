@@ -33,12 +33,10 @@
 .loginForm input {
     outline: none;
     border: 1px solid #d9b6d9;
-   
     background: #f5e3f4;
-    
     border-radius: 2.25em;
     padding: 1em 0.5em;
-    width: 70%;
+    width: 80%;
     color: #000000;
     margin: 7px;
     
@@ -59,10 +57,17 @@
     border-radius: 1.25em;
     cursor: pointer;
     outline: none;
-    width: 37%;
+    width: 85%;
     font-size: medium;
     margin: 7px;
     
     font-weight: bold;
 }
 
+.link{
+    text-decoration: none;
+}
+.linkText{
+    color: #cf4bcf;
+   margin-bottom: 0;
+}
