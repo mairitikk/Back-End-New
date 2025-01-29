@@ -6,12 +6,7 @@
   min-height: 100vh;
 }
 
-@media (min-width: 768px) {
-  .container {
-   
-    
-  }
-}
+
 
 .registratonContainer {
   max-width: 90%;
@@ -26,10 +21,12 @@
 }
 
 .formRow {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  margin-bottom: 25px;
+ 
+    
+    align-items: center;
+    /* Optional: Center inputs vertically */
+    margin-bottom: 1.5rem;
+    /* Add spacing between form rows */
 }
 
 @media (min-width: 768px) {
@@ -40,10 +37,7 @@
 }
 
 .label {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  text-align: left;
+  width: fit-content;
 }
 
 @media (min-width: 768px) {
@@ -55,7 +49,7 @@
 }
 
 .registrationForm {
-  width: 100%;
+  width: 80%;
   outline: none;
   border: 1px solid #d9b6d9;
   background-color: #fff;
@@ -79,7 +73,7 @@
 
 .registrationButton {
   display: block;
- 
+width: 60%;
   background: #f5e3f4;
   border: 1px solid #d9b6d9;
   color: #cf4bcf;
