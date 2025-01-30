@@ -33,33 +33,33 @@ function RegistrationForm() {
       case 'name':
         newErrors.name = "";
         if (!fieldValue) {
-          newErrors.name = 'Name is required.';
+          newErrors.name = 'Nimi on vajalik';
         }
         break;
       case 'email':
         newErrors.email = "";
         if (!fieldValue) {
-          newErrors.email = 'Email is required.';
+          newErrors.email = 'Email on vajalik';
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fieldValue)) {
-          newErrors.email = 'Invalid email format.';
+          newErrors.email = 'E-posti pole korrektne';
         }
         break;
       case 'password':
         newErrors.password = "";
         if (!fieldValue) {
-          newErrors.password = 'Password is required.';
+          newErrors.password = 'Parool on vajalik';
         } else {
           if (fieldValue.length < 6) {
-            newErrors.password = 'Password must be at least 6 characters long.';
+            newErrors.password = 'Parool peab olema vähemalt 6 tähte pikk';
           }
         }
         break;
       case 'repeatPassword':
         newErrors.repeatPassword = "";
         if (!fieldValue) {
-          newErrors.repeatPassword = 'Repeat password is required.';
+          newErrors.repeatPassword = 'Parooli kordamine on vajalik';
         } else if (fieldValue !== formData.password) { // Use the current fieldValue
-          newErrors.repeatPassword = 'Passwords do not match.';
+          newErrors.repeatPassword = 'Paroolid ei ole ühesugused';
         }
         break;
       default:
