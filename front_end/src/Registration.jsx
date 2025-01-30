@@ -20,7 +20,7 @@ function RegistrationForm() {
       ...formData,
       [name]: value.trim(),
     });
-
+    setErrors(prevErrors => ({ ...prevErrors, [name]: "" }));
 
   };
 
