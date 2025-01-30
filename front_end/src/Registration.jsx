@@ -15,9 +15,10 @@ function RegistrationForm() {
   const [errors, setErrors] = useState({}); // Object to store field-specific errors
 
   const handleChange = (event) => {
+    const { name, value } = event.target; // Destructure name and value
     setFormData({
       ...formData,
-      [event.target.name]: event.target.value.trim(), // Trim whitespace
+      [name]: value.trim(),
     });
 
 
