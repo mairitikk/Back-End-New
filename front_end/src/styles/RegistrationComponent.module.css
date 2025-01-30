@@ -63,7 +63,7 @@
 }
 
 .error {
-  color: red;
+  color: #a710a7;
   font-size: 12px;
   position: absolute;
   top: 100%;
@@ -76,7 +76,7 @@
 width: 88%;
   background: #f5e3f4;
   border: 1px solid #d9b6d9;
-  color: #cf4bcf;
+  color: #a710a7;
   padding: 10px 20px;
   border-radius: 1.25em;
   cursor: pointer;
@@ -88,7 +88,7 @@ width: 88%;
 
 .registrationButton:hover {
   background: #d9b6d9;
-  color: #cf4bcf;
+  color: #a710a7;
 }
 .registrationButtonDirection {
 

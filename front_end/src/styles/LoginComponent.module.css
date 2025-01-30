@@ -52,7 +52,7 @@
     /* Light pink background */
     border: 1px solid #d9b6d9;
     /* Pink border */
-    color: #cf4bcf;
+    color: #a710a7;
     /* Pink text */
     padding: 0.55em 0.5em;
     border-radius: 1.25em;
@@ -66,10 +66,10 @@
 }
 
 .link{
-    color: #cf4bcf;
+    color: #a710a7;
 }
 .linkText{
-    color: #cf4bcf;
+    color: #a710a7;
    margin-bottom: 0;
 
 }

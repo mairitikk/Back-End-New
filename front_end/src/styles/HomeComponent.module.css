@@ -9,7 +9,7 @@ font-family: 'Gloria Hallelujah', cursive;
 body {
     background: #f5e3f4;
     /* Light pink background */
-    color: #e233e2;
+    color: #a710a7;
     /* Black text for better contrast */
     
     padding: 1rem;
@@ -107,7 +107,7 @@ text-transform: uppercase;
     /* Light pink background */
     border: 1px solid #d9b6d9;
     /* Pink border */
-    color: #cf4bcf;
+    color: #a710a7;
     /* Pink text */
     padding: 0.55em 0.5em;
     border-radius: 1.25em;
