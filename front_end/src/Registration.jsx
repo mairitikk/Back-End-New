@@ -9,7 +9,7 @@ function RegistrationForm() {
     email: '',
     password: ''
   });
-
+  const navigate = useNavigate();
   const [repeatPassword] = useState();
 
   const [errors, setErrors] = useState({}); // Object to store field-specific errors
@@ -20,61 +20,40 @@ function RegistrationForm() {
       [event.target.name]: event.target.value.trim(), // Trim whitespace
     });
 
-    // Validate individual fields on change
-    const updatedErrors = validateField(event.target.name, event.target.value);
-    setErrors({ ...errors, ...updatedErrors }); // Update errors object
+
   };
 
-
-  const validateField = (fieldName, fieldValue) => {
+  const validateForm = () => {  // New function to validate all fields
     const newErrors = {};
-
-    switch (fieldName) {
-      case 'name':
-        newErrors.name = "";
-        if (!fieldValue) {
-          newErrors.name = 'Nimi on vajalik';
-        }
-        break;
-      case 'email':
-        newErrors.email = "";
-        if (!fieldValue) {
-          newErrors.email = 'Email on vajalik';
-        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fieldValue)) {
-          newErrors.email = 'E-posti pole korrektne';
-        }
-        break;
-      case 'password':
-        newErrors.password = "";
-        if (!fieldValue) {
-          newErrors.password = 'Parool on vajalik';
-        } else {
-          if (fieldValue.length < 6) {
-            newErrors.password = 'Parool peab olema vähemalt 6 tähte pikk';
-          }
-        }
-        break;
-      case 'repeatPassword':
-        newErrors.repeatPassword = "";
-        if (!fieldValue) {
-          newErrors.repeatPassword = 'Parooli kordamine on vajalik';
-        } else if (fieldValue !== formData.password) { // Use the current fieldValue
-          newErrors.repeatPassword = 'Paroolid ei ole ühesugused';
-        }
-        break;
-      default:
-        break;
+    newErrors.name = formData.name ? "" : "Nimi on vajalik";
+    newErrors.email = formData.email ? "" : "Email on vajalik";
+    if (!formData.password) {
+      newErrors.password = "Parool on vajalik";
+    } else if (formData.password.length < 6) {
+      newErrors.password = "Parool peab olema vähemalt 6 tähte pikk";
+    } else {
+      newErrors.password = "";
     }
 
-    return newErrors;
+    newErrors.repeatPassword = formData.repeatPassword ? "" : "Parooli kordamine on vajalik";
+    if (formData.password != formData.repeatPassword) {
+      newErrors.repeatPassword = "Paroolid ei ole ühesugused";
+    } else {
+      newErrors.repeatPassword = "";
+    }
+
+    setErrors(newErrors);
+    return Object.values(newErrors).every(error => error === ""); // Return true if no errors
   };
-  const navigate = useNavigate();
+
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Submit form only if there are no errors
-    if (errors.email == "" && errors.password == "" && errors.name == "" && errors.repeatPassword == "") {
+    const isValid = validateForm();
+    if (isValid) {
 
       try {
 
