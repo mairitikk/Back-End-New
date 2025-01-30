@@ -72,15 +72,15 @@ function RegistrationForm() {
 
         if (response.ok) {
           console.log('Registration successful!');
-          // Show success message to user (consider clearing form or redirecting)
+          alert('Registreerimine õnnestus');
           navigate('/');
         } else {
           console.error('Registration failed:', await response.text());
-          // Display error message to user (e.g., set appropriate errors state)
+
         }
       } catch (error) {
         console.error('Error during registration:', error);
-        // Handle network errors or other unexpected issues
+
       }
     }
   };
