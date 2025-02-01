@@ -1,5 +1,5 @@
 import TodoModel from '../models/todo.model.mjs';
-import { AES, enc } from 'crypto-js';
+
 // GET /api/todos
 const getAllTodos = async (req, res) => {
     try {
@@ -14,23 +14,10 @@ const getAllTodos = async (req, res) => {
 };
 
 const createTodo = async (req, res) => {
-    const encryptedTitle = req.body.title; // Encrypted title from the client
-    const secretKey = process.env.SECRET_KEY; // From environment variables (Base64 encoded)
-    const iv = process.env.IV;       // From environment variables (Base64 encoded)
-
-    if (!secretKey || !iv) {
-        console.error("Missing secret key or IV");
-        return res.status(500).json({ error: "Internal server error" }); // Don't reveal too much
-    }
     try {
-
-        const bytes = AES.decrypt(encryptedTitle, secretKey, { iv: enc.Utf8.parse(iv) });
-        const decryptedTitle = bytes.toString(enc.Utf8);
-        // Or const decryptedTitle = decrypt(encryptedTitle); if you implemented the decrypt function.
-
         const userId = req.userId;
 
-
+        console.log(req.body)
 
         const newTodoData = { title: req.body.title, completed: false, user_id: userId };
 
