@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
 import HomeComponent from './HomeComponent';
 import LogoutComponent from './LogoutComponent';
-import { AES, enc } from 'crypto-js';
+
 
 
 
@@ -54,18 +54,6 @@ export default function App() {
             if (!token) {
                 return navigate('/');
             };
-            // Encryption
-            const secretKey = 'your-32-byte-secret-key'; // MUST be 32 bytes (256 bits) - SECURELY store this!
-            const iv = 'your-16-byte-iv';       // MUST be 16 bytes (128 bits)  - SECURELY store this!
-
-            //  Important Security Notes:
-            //  - **Key and IV Storage:**  DO NOT hardcode the key and IV directly in your client-side code.  This is extremely insecure.  These values should be generated server-side and ideally never transmitted to the client.  The client should only receive encrypted data.  A proper key management system (KMS) is necessary for production applications.
-            //  - **Client-Side Encryption:**  Encrypting on the client-side offers some protection, but it's inherently less secure than server-side encryption. If the key is ever compromised on the client-side, all data encrypted with it is vulnerable.  Server-side encryption is the strongly recommended approach.
-            //  - **Key Derivation:** For even better security, derive your encryption key from a strong master secret using a key derivation function (KDF) like PBKDF2.  This adds a layer of protection.
-            //  - **Library Choice:**  `crypto-js` is a commonly used library.  Ensure you're using a well-maintained and reputable crypto library.  Consider Web Crypto API if you're targeting modern browsers.
-
-            const encryptedTitle = AES.encrypt(title, secretKey, { iv: enc.Utf8.parse(iv) }).toString();
-
 
             const response = await fetch('http://localhost:3000/api/todo/', {
                 method: 'POST',
@@ -91,15 +79,6 @@ export default function App() {
             throw error;
         }
     };
-    // Example decryption (you'll need the key and IV on the client-side - INSECURE for production!)
-    const decryptTodoTitle = (encryptedTitle) => {
-        const decrypted = AES.decrypt(encryptedTitle, 'your-32-byte-secret-key', { iv: enc.Utf8.parse('your-16-byte-iv') }).toString(enc.Utf8);
-        return decrypted;
-    }
-
-    // Example usage (after fetching the todo):
-    const decryptedTitle = decryptTodoTitle(newTodo.title); // newTodo.title is the encrypted title from the server
-    console.log("Decrypted Title:", decryptedTitle);
 
     async function deleteTodo(id) {
         try {
