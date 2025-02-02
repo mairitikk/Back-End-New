@@ -38,6 +38,7 @@
 
 .label {
   width: fit-content;
+  font-size: large;
 }
 
 @media (min-width: 768px) {
