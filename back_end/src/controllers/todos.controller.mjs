@@ -15,11 +15,7 @@ const getAllTodos = async (req, res) => {
 
 const createTodo = async (req, res) => {
     try {
-        console.log("Request body title:", req.body.title); // Before encryption
 
-        const encryptedTitle = AES.encrypt(req.body.title, secretKey, { iv: enc.Utf8.parse(iv) }).toString();
-
-        console.log("Encrypted title:", encryptedTitle); // After encryption
         const userId = req.userId;
 
         console.log(req.body)
