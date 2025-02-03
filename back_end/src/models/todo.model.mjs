@@ -9,10 +9,16 @@ const selectAllTodos = async (user_id) => {
         }
 
         const [rows] = await db.query(
-            "SELECT id, AES_DECRYPT(title, '1234') AS title, completed, user_id FROM todo WHERE user_id = ?",
-            [user_id]
+            "SELECT id, AES_DECRYPT(title, ?) AS title, completed, user_id FROM todo WHERE user_id = ?",
+            [secretKey, user_id]
         );
-        return rows;
+        // Handle potential NULL values from decryption:
+        const decryptedRows = rows.map(row => ({
+            ...row,
+            title: row.title === null ? null : row.title.toString(), // Convert Buffer to string if not null
+        }));
+
+        return decryptedRows;
     } catch (error) {
         console.error('Error fetching todos:', error);
         throw error;
@@ -22,7 +28,16 @@ const selectAllTodos = async (user_id) => {
 const insertTodo = async ({ title, completed = false, user_id }) => {
 
     try {
-        const [result] = await db.query('INSERT INTO todo(title, completed, user_id) VALUES (?,false, ?)', [title, user_id, completed]);
+        const secretKey = process.env.DB_ENCRYPTION_KEY;
+
+        if (!secretKey) {
+            throw new Error("Encryption key is missing");
+        }
+        const [result] = await db.query(
+            'INSERT INTO todo(title, completed, user_id) VALUES (AES_ENCRYPT(?, ?), ?, ?)',
+            [title, secretKey, completed, user_id] // Encrypt title with secretKey
+        );
+
 
         // Check if `result` and `insertId` exist before accessing them
         if (result && result.insertId) {
