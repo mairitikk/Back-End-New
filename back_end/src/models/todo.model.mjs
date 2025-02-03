@@ -1,10 +1,17 @@
 import db from '../config/db.mjs';
 
 const selectAllTodos = async (user_id) => {
-
     try {
-        const [rows] = await db.query('SELECT id, title, completed, user_id FROM todo WHERE user_id = ?', [user_id]);
+        const secretKey = process.env.DB_ENCRYPTION_KEY; // Get from environment variables (Base64 encoded if needed)
 
+        if (!secretKey) {
+            throw new Error("Encryption key is missing");
+        }
+
+        const [rows] = await db.query(
+            'SELECT id, AES_DECRYPT(title, ?) AS title, completed, user_id FROM todo WHERE user_id = ?',
+            [secretKey, user_id]
+        );
         return rows;
     } catch (error) {
         console.error('Error fetching todos:', error);
