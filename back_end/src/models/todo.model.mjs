@@ -9,8 +9,8 @@ const selectAllTodos = async (user_id) => {
         }
 
         const [rows] = await db.query(
-            'SELECT id, AES_DECRYPT(title, ?) AS title, completed, user_id FROM todo WHERE user_id = ?',
-            [secretKey, user_id]
+            "SELECT id, AES_DECRYPT(title, '1234') AS title, completed, user_id FROM todo WHERE user_id = ?",
+            [user_id]
         );
         return rows;
     } catch (error) {
