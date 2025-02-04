@@ -18,7 +18,7 @@ export default function Login() {
 
         // Validate email
         if (!email) {
-            newErrors.email = 'Epost on vajalik';
+            newErrors.email = t('emailRequired');
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
             newErrors.email = 'Vale eposti formaat';
         }

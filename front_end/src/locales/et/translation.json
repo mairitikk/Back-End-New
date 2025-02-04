@@ -1,4 +1,13 @@
 {
-  "welcome": "Tere tulemast!",
-  "description": "See on kirjeldus."
+  "loginTitle": "Logi sisse oma ülesannete loendisse",
+  "emailPlaceholder": "E-post",
+  "passwordPlaceholder": "Parool",
+  "loginButton": "Logi sisse",
+  "noAccountYet": "Kas sul pole veel kontot?",
+  "registerHere": "Registreeru siin",
+  "emailRequired": "E-post on vajalik",
+  "invalidEmailFormat": "Vale e-posti formaat",
+  "passwordRequired": "Parool on vajalik",
+  "passwordLength": "Parool peab olema vähemalt kuus tähte pikk",
+  "validationErrors": "Palun paranda järgnevad vead"
 }
