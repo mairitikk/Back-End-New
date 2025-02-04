@@ -1,4 +1,13 @@
 {
-  "welcome": "Welcome!",
-  "description": "This is a description."
+  "loginTitle": "Log in to your Task List",
+  "emailPlaceholder": "Email",
+  "passwordPlaceholder": "Password",
+  "loginButton": "Log In",
+  "noAccountYet": "Don't have an account yet?",
+  "registerHere": "Register here",
+  "emailRequired": "Email is required",
+  "invalidEmailFormat": "Invalid email format",
+  "passwordRequired": "Password is required",
+  "passwordLength": "Password must be at least 6 characters long",
+  "validationErrors": "Please correct the following errors"
 }
