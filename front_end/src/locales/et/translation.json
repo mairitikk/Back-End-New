@@ -9,5 +9,6 @@
   "invalidEmailFormat": "Vale e-posti formaat",
   "passwordRequired": "Parool on vajalik",
   "passwordLength": "Parool peab olema vähemalt kuus tähte pikk",
-  "validationErrors": "Palun paranda järgnevad vead"
+  "validationErrors": "Palun paranda järgnevad vead",
+  "deleteTodoError": "Ülesande kustutamine ebaõnnestus. Palun proovi hiljem uuesti."
 }
