@@ -11,5 +11,8 @@
   "passwordLength": "Parool peab olema vähemalt kuus tähte pikk",
   "validationErrors": "Palun paranda järgnevad vead",
   "deleteTodoError": "Ülesande kustutamine ebaõnnestus. Palun proovi hiljem uuesti.",
-  "logoutButton": "Logi välja"
+  "logoutButton": "Logi välja",
+   "addNewTodoTitle": "Lisa uus toimetus",
+  "newTodoPlaceholder": "Sisesta uus toimetus",
+  "addTodoButton": "Lisa"
 }

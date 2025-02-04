@@ -11,5 +11,8 @@
   "passwordLength": "Password must be at least 6 characters long",
   "validationErrors": "Please correct the following errors",
   "deleteTodoError": "Failed to delete todo. Please try again later.",
-  "logoutButton": "Log Out"
+  "logoutButton": "Log Out",
+  "addNewTodoTitle": "Add New Task",
+  "newTodoPlaceholder": "Enter a new task",
+  "addTodoButton": "Add"
 }
