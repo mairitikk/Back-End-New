@@ -14,5 +14,18 @@
   "logoutButton": "Cerrar sesión",
   "addNewTodoTitle": "Añadir nueva tarea",
   "newTodoPlaceholder": "Ingrese una nueva tarea",
-  "addTodoButton": "Añadir"
+  "addTodoButton": "Añadir",
+   "registrationTitle": "Registrarse en la Lista de Tareas",
+  "nameLabel": "Nombre:",
+  "emailLabel": "Correo electrónico:",
+  "passwordLabel": "Contraseña:",
+  "repeatPasswordLabel": "Repetir contraseña:",
+  "registerButton": "Registrarse",
+  "nameRequired": "Se requiere nombre",
+  
+  "repeatPasswordRequired": "Se requiere confirmación de contraseña",
+  "passwordsMatch": "Las contraseñas no coinciden",
+  "registrationSuccess": "¡Registro exitoso!",
+  "registrationFailed": "Registro fallido. Por favor, inténtelo de nuevo.",
+  "registrationError": "Ocurrió un error durante el registro. Por favor, inténtelo de nuevo más tarde."
 }

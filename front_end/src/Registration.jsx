@@ -1,101 +1,102 @@
 import { useState } from 'react';
 import styles from './styles/RegistrationComponent.module.css';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 function RegistrationForm() {
-
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     password: ''
   });
   const navigate = useNavigate();
-  const [repeatPassword] = useState();
+  const [repeatPassword, setRepeatPassword] = useState(''); // Add state for repeat password
 
-  const [errors, setErrors] = useState({}); // Object to store field-specific errors
+  const [errors, setErrors] = useState({});
 
   const handleChange = (event) => {
-    const { name, value } = event.target; // Destructure name and value
+    const { name, value } = event.target;
     setFormData({
       ...formData,
       [name]: value.trim(),
     });
     setErrors(prevErrors => ({ ...prevErrors, [name]: "" }));
 
+    if (name === "repeatPassword") {
+      setRepeatPassword(value.trim()); // Update repeatPassword state
+    }
   };
 
-  const validateForm = () => {  // New function to validate all fields
+  const validateForm = () => {
     const newErrors = {};
-    newErrors.name = formData.name ? "" : "Nimi on vajalik";
-    newErrors.email = formData.email ? "" : "Email on vajalik";
+    newErrors.name = formData.name ? "" : t("nameRequired"); // Translate error messages
+    newErrors.email = formData.email ? "" : t("emailRequired");
+
     if (!formData.password) {
-      newErrors.password = "Parool on vajalik";
+      newErrors.password = t("passwordRequired");
     } else if (formData.password.length < 6) {
-      newErrors.password = "Parool peab olema vähemalt 6 tähte pikk";
+      newErrors.password = t("passwordLength");
     } else {
       newErrors.password = "";
     }
 
-    newErrors.repeatPassword = formData.repeatPassword ? "" : "Parooli kordamine on vajalik";
-    if (formData.password != formData.repeatPassword) {
-      newErrors.repeatPassword = "Paroolid ei ole ühesugused";
+    newErrors.repeatPassword = repeatPassword ? "" : t("repeatPasswordRequired"); // Use repeatPassword state
+    if (formData.password !== repeatPassword) { // Compare with repeatPassword state
+      newErrors.repeatPassword = t("passwordsMatch");
     } else {
       newErrors.repeatPassword = "";
     }
 
     setErrors(newErrors);
-    return Object.values(newErrors).every(error => error === ""); // Return true if no errors
+    return Object.values(newErrors).every(error => error === "");
   };
-
-
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     const isValid = validateForm();
     if (isValid) {
-
       try {
-
         const response = await fetch('http://localhost:3000/api/user/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            Authorization: localStorage.getItem('TOKEN') ? `Bearer ${localStorage.getItem('TOKEN')}` : undefined, // Include authorization header only if a token exists in localStorage
+            Authorization: localStorage.getItem('TOKEN') ? `Bearer ${localStorage.getItem('TOKEN')}` : undefined,
           },
           body: JSON.stringify(formData),
-
         });
 
         console.log('Form data:', formData);
 
         if (response.ok) {
           console.log('Registration successful!');
-          alert('Registreerimine õnnestus');
+          alert(t('registrationSuccess')); // Translate success message
           navigate('/');
         } else {
           console.error('Registration failed:', await response.text());
-
+          const errorData = await response.json(); // Try to parse JSON error response
+          if (errorData && errorData.message) {
+            alert(errorData.message); // Display server error message if available
+          } else {
+            alert(t('registrationFailed')); // Generic error message
+          }
         }
       } catch (error) {
         console.error('Error during registration:', error);
-
+        alert(t('registrationError')); // Translate generic error message
       }
     }
   };
 
-
-
-
   return (
     <div className={styles.container}>
       <form onSubmit={handleSubmit}>
-        <h1 className={styles.logTitel}>Registreeri ülessanete listi</h1>
+        <h1 className={styles.logTitel}>{t('registrationTitle')}</h1>
         <div className={styles.registrationContainer}>
           <div className={styles.formRow}>
             <label htmlFor="name" className={styles.label}>
-              Nimi:
+              {t('nameLabel')}
             </label>
             <div className={styles.fieldContainer}>
               <input
@@ -110,9 +111,10 @@ function RegistrationForm() {
             </div>
           </div>
 
+
           <div className={styles.formRow}>
             <label htmlFor="email" className={styles.label}>
-              E-post:
+              {t('emailLabel')}
             </label>
             <div className={styles.fieldContainer}>
               <input
@@ -129,7 +131,7 @@ function RegistrationForm() {
 
           <div className={styles.formRow}>
             <label htmlFor="password" className={styles.label}>
-              Parool:
+              {t('passwordLabel')}
             </label>
             <div className={styles.fieldContainer}>
               <input
@@ -146,7 +148,7 @@ function RegistrationForm() {
 
           <div className={styles.formRow}>
             <label htmlFor="repeatPassword" className={styles.label}>
-              Korda parooli:
+              {t('repeatPasswordLabel')}
             </label>
             <div className={styles.fieldContainer}>
               <input
@@ -154,7 +156,7 @@ function RegistrationForm() {
                 type="password"
                 id="repeatPassword"
                 name="repeatPassword"
-                value={repeatPassword}
+                value={repeatPassword} // Use repeatPassword state
                 onChange={handleChange}
               />
               {errors.repeatPassword && <p className={styles.error}>{errors.repeatPassword}</p>}
@@ -162,13 +164,13 @@ function RegistrationForm() {
           </div>
           <div className={styles.registrationButtonDirection}>
             <button type="submit" className={styles.registrationButton}>
-              Registreeri
+              {t('registerButton')}
             </button>
           </div>
         </div>
       </form>
     </div>
   );
-};
+}
 
 export default RegistrationForm;

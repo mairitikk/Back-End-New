@@ -14,5 +14,18 @@
   "logoutButton": "Log Out",
   "addNewTodoTitle": "Add New Task",
   "newTodoPlaceholder": "Enter a new task",
-  "addTodoButton": "Add"
+  "addTodoButton": "Add",
+  "registrationTitle": "Register for Task List",
+  "nameLabel": "Name:",
+  "emailLabel": "Email:",
+  "passwordLabel": "Password:",
+  "repeatPasswordLabel": "Repeat Password:",
+  "registerButton": "Register",
+  "nameRequired": "Name is required",
+ 
+  "repeatPasswordRequired": "Password confirmation is required",
+  "passwordsMatch": "Passwords do not match",
+  "registrationSuccess": "Registration successful!",
+  "registrationFailed": "Registration failed. Please try again.",
+  "registrationError": "An error occurred during registration. Please try again later."
 }

@@ -14,5 +14,18 @@
   "logoutButton": "Logi välja",
    "addNewTodoTitle": "Lisa uus toimetus",
   "newTodoPlaceholder": "Sisesta uus toimetus",
-  "addTodoButton": "Lisa"
+  "addTodoButton": "Lisa",
+  "registrationTitle": "Registreeru ülesannete loendisse",
+  "nameLabel": "Nimi:",
+  "emailLabel": "E-post:",
+  "passwordLabel": "Parool:",
+  "repeatPasswordLabel": "Korda parooli:",
+  "registerButton": "Registreeru",
+  "nameRequired": "Nimi on vajalik",
+ 
+  "repeatPasswordRequired": "Parooli kinnitus on vajalik",
+  "passwordsMatch": "Paroolid ei ühti",
+  "registrationSuccess": "Registreerimine õnnestus!",
+  "registrationFailed": "Registreerimine ebaõnnestus. Palun proovi uuesti.",
+  "registrationError": "Registreerimisel tekkis viga. Palun proovi hiljem uuesti."
 }
