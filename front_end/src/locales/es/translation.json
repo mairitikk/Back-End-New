@@ -1,4 +1,13 @@
 {
-  "welcome": "¡Bienvenido!",
-  "description": "Esta es una descripción."
+  "loginTitle": "Iniciar sesión en su Lista de tareas",
+  "emailPlaceholder": "Correo electrónico",
+  "passwordPlaceholder": "Contraseña",
+  "loginButton": "Iniciar sesión",
+  "noAccountYet": "¿Aún no tienes una cuenta?",
+  "registerHere": "Regístrate aquí",
+  "emailRequired": "El correo electrónico es obligatorio",
+  "invalidEmailFormat": "Formato de correo electrónico no válido",
+  "passwordRequired": "Se requiere contraseña",
+  "passwordLength": "La contraseña debe tener al menos 6 caracteres",
+  "validationErrors": "Por favor, corrija los siguientes errores"
 }
