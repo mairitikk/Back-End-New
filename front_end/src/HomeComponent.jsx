@@ -2,6 +2,7 @@
 import styles from "./styles/HomeComponent.module.css"
 import { NewTodoForm } from "./NewTodoForm";
 import { TodoList } from "./TodoList";
+import { Trans } from 'react-i18next';
 
 
 
@@ -16,15 +17,10 @@ function HomeComponent({ todos, addTodo, toggleTodo, deleteTodo }) {
 
             <div>
                 <h1 className={styles.header}>
-                    <span>Ü</span>
-                    <span>l</span>
-                    <span>e</span>
-                    <span>s</span>
-                    <span>a</span>
-                    <span>n</span>
-                    <span>d</span>
-                    <span>e</span>
-                    <span>d</span>
+                    <Trans
+                        i18nKey="task"
+                        components={{ span: <span /> }}
+                    />
                 </h1>
                 <TodoList todos={todos} toggleTodo={toggleTodo} deleteTodo={deleteTodo} />
             </div>

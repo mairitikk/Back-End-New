@@ -27,5 +27,6 @@
   "passwordsMatch": "Paroolid ei ühti",
   "registrationSuccess": "Registreerimine õnnestus!",
   "registrationFailed": "Registreerimine ebaõnnestus. Palun proovi uuesti.",
-  "registrationError": "Registreerimisel tekkis viga. Palun proovi hiljem uuesti."
+  "registrationError": "Registreerimisel tekkis viga. Palun proovi hiljem uuesti.",
+  "task" : "<span>Ü</span><span>l</span><span>e</span><span>s</span><span>a</span><span>n</span><span>d</span><span>e</span><span>d</span>"
 }

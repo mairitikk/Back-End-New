@@ -15,7 +15,7 @@
   "addNewTodoTitle": "Añadir nueva tarea",
   "newTodoPlaceholder": "Ingrese una nueva tarea",
   "addTodoButton": "Añadir",
-   "registrationTitle": "Registrarse en la Lista de Tareas",
+  "registrationTitle": "Registrarse en la Lista de Tareas",
   "nameLabel": "Nombre:",
   "emailLabel": "Correo electrónico:",
   "passwordLabel": "Contraseña:",
@@ -27,5 +27,6 @@
   "passwordsMatch": "Las contraseñas no coinciden",
   "registrationSuccess": "¡Registro exitoso!",
   "registrationFailed": "Registro fallido. Por favor, inténtelo de nuevo.",
-  "registrationError": "Ocurrió un error durante el registro. Por favor, inténtelo de nuevo más tarde."
+  "registrationError": "Ocurrió un error durante el registro. Por favor, inténtelo de nuevo más tarde.",  
+  "task" : "<span>T</span><span>A</span><span>R</span><span>E</span><span>A</span><span>S</span>"
 }
