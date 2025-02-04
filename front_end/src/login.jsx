@@ -20,19 +20,19 @@ export default function Login() {
         if (!email) {
             newErrors.email = t('emailRequired');
         } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-            newErrors.email = 'Vale eposti formaat';
+            newErrors.email = t('invalidEmailFormat');
         }
 
         // Validate password
         if (!password) {
-            newErrors.password = 'Parool on vajalik';
+            newErrors.password = t('passwordRequired');
         } else if (password.length < 6) {
-            newErrors.password = 'Parool peab olema vähemalt kuus tähte pikk';
+            newErrors.password = t('passwordLength');
         }
 
         // Display validation errors (if any)
         if (Object.keys(newErrors).length > 0) {
-            let errorMessage = 'Palun paranda järgnevad vead:\n';
+            let errorMessage = t('validationErrors') + '\n';
             for (const errorField in newErrors) {
                 errorMessage += `- ${newErrors[errorField]}\n`;
             }
@@ -73,28 +73,28 @@ export default function Login() {
     return (
         <div className={styles.container}>
             <form onSubmit={handleSubmit} className={styles.loginForm}>
-                <h1 className={styles.logTitel}>Sisene ülessanete listi</h1>
+                <h1 className={styles.logTitel}>{t('loginTitle')}</h1>
                 <div className={styles.loginContainer}>
                     <input
                         type="email"
-                        placeholder="E-post"
+                        placeholder={t('emailPlaceholder')}
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         className={styles.usernameInput}
                     />
                     <input
                         type="password"
-                        placeholder="Parool"
+                        placeholder={t('passwordPlaceholder')}
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         className={styles.passwordInput}
                     />
                     <div className={styles.buttonContainer}>
-                        <button type="submit" className={styles.loginButton}>Sisene</button>
+                        <button type="submit" className={styles.loginButton}>{t('loginButton')}</button>
                     </div>
                     <div>
-                        <p className={styles.linkText}>Pole veel kasutajat?</p>
-                        <Link to="/register" className={styles.link}>Registreeri siin</Link>
+                        <p className={styles.linkText}>{t('noAccountYet')}</p>
+                        <Link to="/register" className={styles.link}>{t('registerHere')}</Link>
                     </div>
 
                 </div>
