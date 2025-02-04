@@ -10,5 +10,6 @@
   "passwordRequired": "Password is required",
   "passwordLength": "Password must be at least 6 characters long",
   "validationErrors": "Please correct the following errors",
-  "deleteTodoError": "Failed to delete todo. Please try again later."
+  "deleteTodoError": "Failed to delete todo. Please try again later.",
+  "logoutButton": "Log Out"
 }

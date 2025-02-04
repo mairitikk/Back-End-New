@@ -10,5 +10,6 @@
   "passwordRequired": "Parool on vajalik",
   "passwordLength": "Parool peab olema vähemalt kuus tähte pikk",
   "validationErrors": "Palun paranda järgnevad vead",
-  "deleteTodoError": "Ülesande kustutamine ebaõnnestus. Palun proovi hiljem uuesti."
+  "deleteTodoError": "Ülesande kustutamine ebaõnnestus. Palun proovi hiljem uuesti.",
+  "logoutButton": "Logi välja"
 }

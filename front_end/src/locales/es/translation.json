@@ -10,5 +10,6 @@
   "passwordRequired": "Se requiere contraseña",
   "passwordLength": "La contraseña debe tener al menos 6 caracteres",
   "validationErrors": "Por favor, corrija los siguientes errores",
-  "deleteTodoError": "No se pudo eliminar la tarea. Por favor, inténtelo de nuevo más tarde."
+  "deleteTodoError": "No se pudo eliminar la tarea. Por favor, inténtelo de nuevo más tarde.",
+  "logoutButton": "Cerrar sesión"
 }
