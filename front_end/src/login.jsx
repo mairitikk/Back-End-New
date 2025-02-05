@@ -87,6 +87,11 @@ export default function Login() {
         <div className={styles.container}>
             <form onSubmit={handleSubmit} className={styles.loginForm}>
                 <h1 className={styles.logTitel}>{t('loginTitle')}</h1>
+                {errorMessage && ( // Conditionally render the error message
+                    <div className={styles.errorMessage}>
+                        {errorMessage}
+                    </div>
+                )}
                 <div className={styles.loginContainer}>
                     <input
                         type="email"
