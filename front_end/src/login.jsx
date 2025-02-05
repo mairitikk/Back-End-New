@@ -9,6 +9,7 @@ export default function Login() {
     const [password, setPassword] = useState('');
     const { t } = useTranslation();
     const navigate = useNavigate();
+    const [errorMessage, setErrorMessage] = useState(null);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
