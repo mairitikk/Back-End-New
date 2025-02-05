@@ -27,5 +27,10 @@
   "passwordsMatch": "Passwords do not match",
   "registrationSuccess": "Registration successful!",
   "registrationFailed": "Registration failed. Please try again.",
-  "registrationError": "An error occurred during registration. Please try again later."
+  "registrationError": "An error occurred during registration. Please try again later.",
+   "incorrectCredentials": "Incorrect email or password",
+    "badRequest": "Bad request. Please check your input.",
+    "loginFailed": "Login failed. Please try again later.",
+    "userNotFound": "User not found.", 
+    "invalidPassword": "Invalid password format."
 }
