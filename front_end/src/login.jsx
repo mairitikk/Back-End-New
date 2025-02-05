@@ -59,25 +59,25 @@ export default function Login() {
 
                 navigate('/home');
             } else {
-                const errorData = await response.json(); // Try to parse error details from server
+                const errorData = await response.json();
                 let message;
 
                 if (errorData && errorData.message) {
-                    message = errorData.message; // Display server-specific message if available
+                    message = errorData.message;
                 } else if (response.status === 401) {
-                    message = t('incorrectCredentials'); // Generic message for unauthorized access
+                    message = t('incorrectCredentials');
                 } else if (response.status === 400) {
-                    message = t('badRequest'); // Generic message for bad request
+                    message = t('badRequest');
                 }
                 else {
-                    message = t('loginFailed'); // Default generic error message
+                    message = t('loginFailed');
                 }
 
-                setErrorMessage(message); // Set the error message to display
+                setErrorMessage(message);
             }
         } catch (error) {
             console.error('Login error:', error);
-            setErrorMessage(t('loginFailed')); // Set a generic error message
+            setErrorMessage(t('loginFailed'));
         }
     };
 
