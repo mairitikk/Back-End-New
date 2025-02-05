@@ -105,7 +105,7 @@ export default function Login() {
                     />
                     {errorMessage && (
                         <div className={styles.errorMessage}>
-                            {errorMessage}
+                            {t(errorMessage) || errorMessage}
                         </div>
                     )}
                     <div className={styles.buttonContainer}>

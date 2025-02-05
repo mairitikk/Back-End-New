@@ -73,19 +73,19 @@ text-transform: uppercase;
     {
         color: #fff;
         filter:blur(2px);
-        text-shadow: 0 0 10px #d9b6d9,
-                    0 0 20px #d9b6d9,
-                    0 0 40px #d9b6d9,
-                    0 0 80px #d9b6d9,
-                    0 0 120px #d9b6d9,
-                    0 0 200px #d9b6d9,
-                    0 0 300px #d9b6d9,
-                    0 0 400px #d9b6d9,
-                    0 0 500px #d9b6d9;
+        text-shadow: 0 0 10px #a710a7,
+                    0 0 20px #a710a7,
+                    0 0 40px #a710a7,
+                    0 0 80px #a710a7,
+                    0 0 120px #a710a7,
+                    0 0 200px #a710a7,
+                    0 0 300px #a710a7,
+                    0 0 400px #a710a7,
+                    0 0 500px #a710a7;
 
     }
            5%,95% {
-            color: #e233e2;
+            color: #a710a7;
                filter: blur(0px);
                text-shadow: none;
            }

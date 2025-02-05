@@ -29,9 +29,11 @@
   "registrationFailed": "Registro fallido. Por favor, inténtelo de nuevo.",
   "registrationError": "Ocurrió un error durante el registro. Por favor, inténtelo de nuevo más tarde.",  
   "task" : "<span>T</span><span>A</span><span>R</span><span>E</span><span>A</span><span>S</span>",
+
    "incorrectCredentials": "Correo electrónico o contraseña incorrectos",
     "badRequest": "Solicitud incorrecta. Por favor, revise sus datos.",
     "loginFailed": "Inicio de sesión fallido. Por favor, inténtelo de nuevo más tarde.",
     "userNotFound": "Usuario no encontrado.",
     "invalidPassword": "Formato de contraseña no válido."
+    
 }
