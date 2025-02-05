@@ -13,6 +13,7 @@ export default function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setErrorMessage(null);
 
         // Create an empty object to store validation errors
         const newErrors = {};
@@ -52,20 +53,31 @@ export default function Login() {
                 body: JSON.stringify(bodyData)
             });
 
-            if (response.status === 200) {
-                console.log('Login successful:', response);
-
-                //optener token y guardar en variable localStorage
+            if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem("TOKEN", data.token);
 
                 navigate('/home');
             } else {
-                // Handle login errors (e.g., display error message)
+                const errorData = await response.json(); // Try to parse error details from server
+                let message;
+
+                if (errorData && errorData.message) {
+                    message = errorData.message; // Display server-specific message if available
+                } else if (response.status === 401) {
+                    message = t('incorrectCredentials'); // Generic message for unauthorized access
+                } else if (response.status === 400) {
+                    message = t('badRequest'); // Generic message for bad request
+                }
+                else {
+                    message = t('loginFailed'); // Default generic error message
+                }
+
+                setErrorMessage(message); // Set the error message to display
             }
         } catch (error) {
             console.error('Login error:', error);
-            // Handle login errors
+            setErrorMessage(t('loginFailed')); // Set a generic error message
         }
     };
 
