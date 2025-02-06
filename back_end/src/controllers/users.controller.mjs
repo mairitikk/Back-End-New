@@ -30,7 +30,7 @@ const register = async (req, res) => {
             from: process.env.EMAIL_FROM,
             to: email,
             subject: 'Registration Confirmed',
-            html: `<p>Hi ${username},</p><p>Thank you for registering!</p><p>Click here to activate your account: <a href="${process.env.FRONTEND_URL}/activate?token=${activationToken}">Activate</a></p>`,
+            html: `<p>Hi ${newUser},</p><p>Thank you for registering!</p><p>Click here to activate your account: <a href="${process.env.FRONTEND_URL}/activate?token=${activationToken}">Activate</a></p>`,
         };
 
         await transporter.sendMail(mailOptions);
