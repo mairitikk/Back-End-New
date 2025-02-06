@@ -3,7 +3,7 @@ import createToken from '../helpers/utils.mjs';
 import bcrypt from 'bcrypt'; // Import bcrypt
 import { v4 as uuidv4 } from 'uuid'; // For generating activation tokens
 
-const registerUser = async (req, res) => {
+const register = async (req, res) => {
     const { username, email, password } = req.body;
 
     try {
@@ -66,7 +66,7 @@ const registerUser = async (req, res) => {
 
 
 
-const register = async (req, res) => {
+/*const register = async (req, res) => {
 
     try {
         const newUserId = await User.create(req.body);
@@ -76,6 +76,7 @@ const register = async (req, res) => {
         res.json({ fatal: error.message });
     }
 }
+    */
 
 // GET /api/users
 
@@ -133,7 +134,7 @@ const login = async (req, res) => {
     }
 };
 
-export { getAllUsers, updateUser, deleteUser, register, login, registerUser };
+export { getAllUsers, updateUser, deleteUser, register, login };
 
 
 
