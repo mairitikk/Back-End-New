@@ -1,7 +1,7 @@
 import User from '../models/user.model.mjs';
 import createToken from '../helpers/utils.mjs';
-import bcrypt from 'bcrypt'; // Import bcrypt
-import { v4 as uuidv4 } from 'uuid'; // For generating activation tokens
+
+
 
 const register = async (req, res) => {
     const { name, email, password } = req.body;
@@ -30,7 +30,7 @@ const register = async (req, res) => {
             from: process.env.EMAIL_FROM,
             to: email,
             subject: 'Registration Confirmed',
-            html: `<p>Hi ${newUser},</p><p>Thank you for registering!</p><p>Click here to activate your account: <a href="${process.env.FRONTEND_URL}/activate?token=${activationToken}">Activate</a></p>`,
+            html: `<p>Hi ${newUser.name},</p><p>Thank you for registering!</p><p>Click here to activate your account: <a href="${process.env.FRONTEND_URL}/activate?token=${newUser.activationToken}">Activate</a></p>`,
         };
 
         await transporter.sendMail(mailOptions);
