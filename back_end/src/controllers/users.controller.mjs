@@ -4,11 +4,11 @@ import bcrypt from 'bcrypt'; // Import bcrypt
 import { v4 as uuidv4 } from 'uuid'; // For generating activation tokens
 
 const register = async (req, res) => {
-    const { username, email, password } = req.body;
+    const { name, email, password } = req.body;
 
     try {
         // 1. Validate data (Crucial)
-        if (!username || !email || !password) {
+        if (!name || !email || !password) {
             return res.status(400).json({ message: "All fields are required." });
         }
 
@@ -16,7 +16,7 @@ const register = async (req, res) => {
         if (password.length < 6) {
             return res.status(400).json({ message: "Password must be at least 6 characters." });
         }
-        // ... (Add more checks for email format, etc.)
+
 
         // 2. Hash the password (Essential)
         const hashedPassword = await bcrypt.hash(password, 10);
