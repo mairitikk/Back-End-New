@@ -1,5 +1,6 @@
 import User from '../models/user.model.mjs';
 import createToken from '../helpers/utils.mjs';
+import nodemailer from 'nodemailer';
 
 
 
