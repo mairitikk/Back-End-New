@@ -16,11 +16,7 @@ const register = async (req, res) => {
         if (password.length < 6) {
             return res.status(400).json({ message: "Password must be at least 6 characters." });
         }
-        const newUser = await User.create({
-            name,
-            email,
-            password
-        });
+        const newUser = await User.create({ name, email, password });
 
         const transporter = nodemailer.createTransport({
             service: process.env.EMAIL_SERVICE,

@@ -46,7 +46,10 @@ const create = async ({ name, email, password }) => {
             [name, email, bcrypt.hashSync(password, 8)]
         );
         const insertId = result.insertId;
-        return insertId;
+        const [rows] = await db.query('SELECT * FROM user WHERE id = ?', [insertId]);
+        const newUser = rows[0]; // Access the first element of rows array
+
+        return newUser; // Return the complete user object
     } catch (error) {
         console.error('Error inserting user:', error);
         throw error;
