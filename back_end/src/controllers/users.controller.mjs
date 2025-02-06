@@ -7,33 +7,21 @@ const register = async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
-        // 1. Validate data (Crucial)
+
         if (!name || !email || !password) {
             return res.status(400).json({ message: "All fields are required." });
         }
 
-        // More thorough validation (example):
+
         if (password.length < 6) {
             return res.status(400).json({ message: "Password must be at least 6 characters." });
         }
-
-
-        // 2. Hash the password (Essential)
-        const hashedPassword = await bcrypt.hash(password, 10);
-
-        // 3. Generate activation token
-        const activationToken = uuidv4();
-
-        // 4. Store user data in the database (including activation token)
         const newUser = await User.create({
-            username,
+            name,
             email,
-            password: hashedPassword,
-            activationToken: activationToken, // Store the token
-            active: false, // Set user as inactive initially
+            password
         });
 
-        // 5. Send confirmation email
         const transporter = nodemailer.createTransport({
             service: process.env.EMAIL_SERVICE,
             auth: {
