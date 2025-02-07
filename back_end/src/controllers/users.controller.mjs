@@ -4,6 +4,7 @@ import nodemailer from 'nodemailer';
 
 
 
+
 const register = async (req, res) => {
     const { name, email, password } = req.body;
 
@@ -34,9 +35,13 @@ const register = async (req, res) => {
             html: `<p>Hi ${newUser.name},</p><p>Thank you for registering!</p><p>Click here to activate your account: <a href="${process.env.FRONTEND_URL}/activate?token=${newUser.activationToken}">Activate</a></p>`,
         };
 
-        await transporter.sendMail(mailOptions);
-
-        res.status(201).json({ message: 'Registration successful! Check your email to activate your account.' });
+        try {
+            await transporter.sendMail(mailOptions);
+            res.status(201).json({ message: 'Registration successful! Check your email to activate your account.' });
+        } catch (emailError) {
+            console.error("Error sending email:", emailError);
+            res.status(200).json({ message: 'Registration successful, but there was an error sending the confirmation email. Please try again later.' }); // Or a 5xx status code if you consider it a server error.
+        }
     } catch (error) {
         console.error('Registration error:', error);
 
