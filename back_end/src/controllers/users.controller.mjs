@@ -27,6 +27,7 @@ const register = async (req, res) => {
                 pass: process.env.EMAIL_PASSWORD,
             },
         });
+        console.log(transporter)
 
         const mailOptions = {
             from: process.env.EMAIL_FROM,
