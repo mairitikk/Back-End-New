@@ -6,7 +6,7 @@ import { createActivationToken, generateActivationSecret } from './activation.mj
 
 
 
-export const registerUser = async (req, res) => {
+export const register = async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
