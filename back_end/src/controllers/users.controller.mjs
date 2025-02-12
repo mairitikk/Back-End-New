@@ -1,24 +1,32 @@
 import User from '../models/user.model.mjs';
 import createToken from '../helpers/utils.mjs';
 import nodemailer from 'nodemailer';
+import { createActivationToken, generateActivationSecret } from './activation.mjs';
 
 
 
 
-const register = async (req, res) => {
+export const registerUser = async (req, res) => {
     const { name, email, password } = req.body;
 
     try {
-
         if (!name || !email || !password) {
-            return res.status(400).json({ message: "All fields are required." });
+            return { success: false, status: 400, message: "All fields are required." };
         }
-
 
         if (password.length < 6) {
-            return res.status(400).json({ message: "Password must be at least 6 characters." });
+            return { success: false, status: 400, message: "Password must be at least 6 characters." };
         }
-        const newUser = await User.create({ name, email, password });
+
+        const newUser = new User({ name, email, password }); // Create User instance
+
+        const activationToken = createActivationToken(newUser._id);
+        const activationSecret = generateActivationSecret();
+
+        newUser.activationToken = activationToken; // Assign to the user object
+        newUser.activationSecret = activationSecret; // Assign to the user object
+
+        await newUser.save(); // Save the user *after* generating and setting the tokens
 
         const transporter = nodemailer.createTransport({
             service: process.env.EMAIL_SERVICE,
@@ -27,30 +35,32 @@ const register = async (req, res) => {
                 pass: process.env.EMAIL_PASSWORD,
             },
         });
-        console.log(transporter)
 
         const mailOptions = {
             from: process.env.EMAIL_FROM,
             to: email,
             subject: 'Registration Confirmed',
-            html: `<p>Hi ${newUser.name},</p><p>Thank you for registering!</p><p>Click here to activate your account: <a href="${process.env.FRONTEND_URL}/activate?token=${newUser.activationToken}">Activate</a></p>`,
+            html: `<p>Hi ${newUser.name},</p><p>Thank you for registering!</p><p>Click here to activate your account: <a href="${process.env.FRONTEND_URL}/activate?token=${activationToken}">Activate</a></p>`,
         };
 
         try {
             await transporter.sendMail(mailOptions);
-            res.status(201).json({ message: 'Registration successful! Check your email to activate your account.' });
+            return { success: true, status: 201, message: 'Registration successful! Check your email to activate your account.' };
         } catch (emailError) {
             console.error("Error sending email:", emailError);
-            res.status(200).json({ message: 'Registration successful, but there was an error sending the confirmation email. Please try again later.' }); // Or a 5xx status code if you consider it a server error.
+            // Consider if you want to delete the user if email sending fails.
+            // If you delete the user, you should also handle the case where the email sending fails and the user tries to register again
+            // with the same email.
+            return { success: true, status: 200, message: 'Registration successful, but there was an error sending the confirmation email. Please try again later.' };
         }
     } catch (error) {
         console.error('Registration error:', error);
 
         if (error.code === 11000 && error.name === 'MongoError') {
-            return res.status(400).json({ message: "Email already exists." });
+            return { success: false, status: 400, message: "Email already exists." };
         }
 
-        res.status(500).json({ message: 'Registration failed. Please try again later.' });
+        return { success: false, message: 'Registration failed. Please try again later.' };
     }
 };
 
