@@ -56,9 +56,21 @@ const create = async ({ name, email, password }) => {
     }
 };
 
-const updateUser = async (id, { user }) => {
+/*const updateUser = async (id, { user }) => {
     try {
         const [result] = await db.query('UPDATE user SET user = ? WHERE id = ?', [user, id]);
+        return result.affectedRows > 0;
+    } catch (error) {
+        console.error('Error updating user:', error);
+        throw error;
+    }
+};*/
+const updateUser = async (id, { activationToken, activationSecret }) => {  // Add parameters for tokens
+    try {
+        const [result] = await db.query(
+            'UPDATE user SET activationToken = ?, activationSecret = ? WHERE id = ?', // Update query
+            [activationToken, activationSecret, id] // Values for the query
+        );
         return result.affectedRows > 0;
     } catch (error) {
         console.error('Error updating user:', error);
