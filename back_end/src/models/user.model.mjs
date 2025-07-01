@@ -1,7 +1,7 @@
-/*import db from '../config/db.mjs';
+import db from '../config/db.mjs';
 import bcrypt from 'bcrypt';
 
-/* import Sequelize from 'sequelize';
+import Sequelize from 'sequelize';
 
 const sequelize = new Sequelize('to_do_db', 'root', '', {
     dialect: 'mysql',
@@ -29,10 +29,9 @@ sequelize.sync()
     })
     .catch(err => {
         console.error('Error syncing database:', err);
-    }); */
+    });
 
-import db from '../config/db.mjs';
-import bcrypt from 'bcrypt';
+
 
 const selectAllUsers = async () => {
     const [rows] = await db.query('SELECT * FROM user');
