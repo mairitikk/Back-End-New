@@ -74,7 +74,7 @@ const register = async (req, res) => { // <-- Use res to send responses
 // New (correct)
 const getAllUsers = async (req, res) => {
     try {
-        const result = await UserModel.selectAllUsers(); // <-- Changed from User to UserModel
+        const result = await UserModel.selectAllUsers();
         res.json(result);
     } catch (error) {
         res.json({ fatal: error.message });
@@ -84,7 +84,7 @@ const getAllUsers = async (req, res) => {
 const updateUser = async (req, res) => {
     try {
         const { userId } = req.params;
-        const updatedUser = await UserModel.updateUser(userId, req.body); // <-- Changed from User to UserModel
+        const updatedUser = await UserModel.updateUser(userId, req.body);
         res.json(updatedUser);
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -94,7 +94,7 @@ const updateUser = async (req, res) => {
 const deleteUser = async (req, res) => {
     try {
         const { userId } = req.params;
-        const deleted = await UserModel.deleteUser(userId); // <-- Changed from User to UserModel
+        const deleted = await UserModel.deleteUser(userId);
         if (deleted) {
             res.status(204).send();
         } else {
@@ -110,7 +110,7 @@ const login = async (req, res) => {
         const { email, password } = req.body;
 
         // Use findByEmailAndPassword for combined email and password verification
-        const user = await UserModel.findByEmailAndPassword(email, password); // <-- Changed from User to UserModel
+        const user = await UserModel.findByEmailAndPassword(email, password);
 
         if (!user) {
             return res.status(401).json({ message: 'Invalid email or password' });
