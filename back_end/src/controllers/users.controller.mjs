@@ -71,9 +71,10 @@ const register = async (req, res) => { // <-- Use res to send responses
 
 // GET /api/users
 
+// New (correct)
 const getAllUsers = async (req, res) => {
     try {
-        const result = await User.selectAllUsers();
+        const result = await UserModel.selectAllUsers(); // <-- Changed from User to UserModel
         res.json(result);
     } catch (error) {
         res.json({ fatal: error.message });
@@ -82,22 +83,22 @@ const getAllUsers = async (req, res) => {
 
 const updateUser = async (req, res) => {
     try {
-
         const { userId } = req.params;
-        const updatedUser = await User.updateUser(userId, req.body);
+        const updatedUser = await UserModel.updateUser(userId, req.body); // <-- Changed from User to UserModel
         res.json(updatedUser);
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
 };
+
 const deleteUser = async (req, res) => {
     try {
         const { userId } = req.params;
-        const deleted = await User.deleteUser(userId);
+        const deleted = await UserModel.deleteUser(userId); // <-- Changed from User to UserModel
         if (deleted) {
-            res.status(204).send(); // No Content response for successful deletion
+            res.status(204).send();
         } else {
-            res.status(404).json({ error: 'User not found' }); // Handle non-existent user
+            res.status(404).json({ error: 'User not found' });
         }
     } catch (error) {
         res.status(500).json({ error: error.message });
@@ -109,7 +110,7 @@ const login = async (req, res) => {
         const { email, password } = req.body;
 
         // Use findByEmailAndPassword for combined email and password verification
-        const user = await User.findByEmailAndPassword(email, password);
+        const user = await UserModel.findByEmailAndPassword(email, password); // <-- Changed from User to UserModel
 
         if (!user) {
             return res.status(401).json({ message: 'Invalid email or password' });
